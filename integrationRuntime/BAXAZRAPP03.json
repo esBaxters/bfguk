@@ -1,0 +1,7 @@
+{
+	"name": "BAXAZRAPP03",
+	"properties": {
+		"type": "SelfHosted",
+		"description": "Oracle OCI / Ebusiness"
+	}
+}

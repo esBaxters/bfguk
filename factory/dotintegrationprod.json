@@ -1,0 +1,9 @@
+{
+	"name": "dotintegrationprod",
+	"location": "uksouth",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "b99c4bc3-d8ee-4b37-abc3-e80554eac5bc",
+		"tenantId": "e63a506a-68f4-40f1-a419-585cfeca6876"
+	}
+}
