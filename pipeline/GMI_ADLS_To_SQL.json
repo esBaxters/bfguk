@@ -1,0 +1,163 @@
+{
+  "name": "GMI_ADLS_To_SQL",
+  "properties": {
+    "activities": [
+      {
+        "name": "Copy IC_ITEM_MST_B To SQL",
+        "type": "Copy",
+        "dependsOn": [
+          {
+            "activity": "Lookup Generic File Timestamp",
+            "dependencyConditions": ["Succeeded"]
+          }
+        ],
+        "policy": {
+          "timeout": "7.00:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "userProperties": [],
+        "typeProperties": {
+          "source": {
+            "type": "DelimitedTextSource",
+            "storeSettings": {
+              "type": "AzureBlobStorageReadSettings",
+              "recursive": true,
+              "modifiedDatetimeStart": {
+                "value": "@activity('Lookup Generic File Timestamp').output.FirstRow.WATERMARK_DATETIME",
+                "type": "Expression"
+              },
+              "wildcardFolderPath": "bfguk_erp_prod/schemas/GMI/IC_ITEM_MST_B",
+              "wildcardFileName": "*",
+              "enablePartitionDiscovery": false
+            },
+            "formatSettings": {
+              "type": "DelimitedTextReadSettings"
+            }
+          },
+          "sink": {
+            "type": "AzureSqlSink",
+            "preCopyScript": {
+              "value": "begin try\ntruncate table [stg].[IC_ITEM_MST_B]\nend try\nbegin catch \nselect null\nend catch",
+              "type": "Expression"
+            },
+            "writeBehavior": "insert",
+            "sqlWriterUseTableLock": false,
+            "tableOption": "autoCreate",
+            "disableMetricsCollection": false
+          },
+          "enableStaging": false,
+          "translator": {
+            "type": "TabularTranslator",
+            "typeConversion": true,
+            "typeConversionSettings": {
+              "allowDataTruncation": true,
+              "treatBooleanAsNumber": false
+            }
+          }
+        },
+        "inputs": [
+          {
+            "referenceName": "ADLS_ODB_IC_ITEM_MST_B",
+            "type": "DatasetReference"
+          }
+        ],
+        "outputs": [
+          {
+            "referenceName": "SQL_IC_ITEM_MST_B",
+            "type": "DatasetReference"
+          }
+        ]
+      },
+      {
+        "name": "Lookup Generic File Timestamp",
+        "type": "Lookup",
+        "dependsOn": [],
+        "policy": {
+          "timeout": "7.00:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "userProperties": [],
+        "typeProperties": {
+          "source": {
+            "type": "AzureSqlSource",
+            "sqlReaderQuery": {
+              "value": "select WATERMARK_DATETIME \nfrom [dbo].[WATERMARK] \nwhere OWNER_NAME = '@{variables('ADF_OWNER_NAME')}'\nand TABLE_NAME = '@{variables('Table_Generic')}'",
+              "type": "Expression"
+            },
+            "queryTimeout": "02:00:00",
+            "partitionOption": "None"
+          },
+          "dataset": {
+            "referenceName": "WATERMARK",
+            "type": "DatasetReference"
+          }
+        }
+      },
+      {
+        "name": "Update Generic ADLS Watermark",
+        "type": "SqlServerStoredProcedure",
+        "dependsOn": [
+          {
+            "activity": "Copy IC_ITEM_MST_B To SQL",
+            "dependencyConditions": ["Succeeded"]
+          }
+        ],
+        "policy": {
+          "timeout": "7.00:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "userProperties": [],
+        "typeProperties": {
+          "storedProcedureName": "[dbo].[UpdateWatermark]",
+          "storedProcedureParameters": {
+            "LastModifiedtime": {
+              "value": {
+                "value": "@pipeline().TriggerTime",
+                "type": "Expression"
+              },
+              "type": "Datetime"
+            },
+            "OWNER_NAME": {
+              "value": {
+                "value": "@variables('ADF_OWNER_NAME')",
+                "type": "Expression"
+              },
+              "type": "String"
+            },
+            "TABLE_NAME": {
+              "value": {
+                "value": "@variables('Table_Generic')",
+                "type": "Expression"
+              },
+              "type": "String"
+            }
+          }
+        },
+        "linkedServiceName": {
+          "referenceName": "BFG_SQL_DB",
+          "type": "LinkedServiceReference"
+        }
+      }
+    ],
+    "variables": {
+      "ADF_OWNER_NAME": {
+        "type": "String",
+        "defaultValue": "ADF"
+      },
+      "Table_Generic": {
+        "type": "String",
+        "defaultValue": "GMI_TABLES"
+      }
+    },
+    "annotations": []
+  }
+}

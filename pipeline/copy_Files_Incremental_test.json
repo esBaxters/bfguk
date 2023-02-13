@@ -1,0 +1,2366 @@
+{
+  "name": "copy_Files_Incremental_test",
+  "properties": {
+    "activities": [
+      {
+        "name": "Copy RA_CUSTOMER_TRX_ALL from ADLS to SQL",
+        "type": "Copy",
+        "dependsOn": [],
+        "policy": {
+          "timeout": "7.00:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "userProperties": [],
+        "typeProperties": {
+          "source": {
+            "type": "DelimitedTextSource",
+            "storeSettings": {
+              "type": "AzureBlobStorageReadSettings",
+              "recursive": true,
+              "modifiedDatetimeStart": {
+                "value": "2022-04-19T20:30:13.000Z",
+                "type": "Expression"
+              },
+              "modifiedDatetimeEnd": {
+                "value": "2022-04-19T20:35:13.000Z",
+                "type": "Expression"
+              },
+              "wildcardFolderPath": "bfguk_erp_prod/schemas/AR/RA_CUSTOMER_TRX_ALL",
+              "wildcardFileName": "*",
+              "enablePartitionDiscovery": false
+            },
+            "formatSettings": {
+              "type": "DelimitedTextReadSettings"
+            }
+          },
+          "sink": {
+            "type": "AzureSqlSink",
+            "writeBehavior": "insert",
+            "sqlWriterUseTableLock": false,
+            "tableOption": "autoCreate",
+            "disableMetricsCollection": false
+          },
+          "enableStaging": false,
+          "translator": {
+            "type": "TabularTranslator",
+            "mappings": [
+              {
+                "source": {
+                  "name": "CUSTOMER_TRX_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "CUSTOMER_TRX_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "LAST_UPDATE_DATE",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "LAST_UPDATE_DATE",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "LAST_UPDATED_BY",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "LAST_UPDATED_BY",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "CREATION_DATE",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "CREATION_DATE",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "CREATED_BY",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "CREATED_BY",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "LAST_UPDATE_LOGIN",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "LAST_UPDATE_LOGIN",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "TRX_NUMBER",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "TRX_NUMBER",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "CUST_TRX_TYPE_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "CUST_TRX_TYPE_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "TRX_DATE",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "TRX_DATE",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "SET_OF_BOOKS_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "SET_OF_BOOKS_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "BILL_TO_CONTACT_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "BILL_TO_CONTACT_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "BATCH_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "BATCH_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "BATCH_SOURCE_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "BATCH_SOURCE_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "REASON_CODE",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "REASON_CODE",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "SOLD_TO_CUSTOMER_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "SOLD_TO_CUSTOMER_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "SOLD_TO_CONTACT_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "SOLD_TO_CONTACT_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "SOLD_TO_SITE_USE_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "SOLD_TO_SITE_USE_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "BILL_TO_CUSTOMER_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "BILL_TO_CUSTOMER_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "BILL_TO_SITE_USE_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "BILL_TO_SITE_USE_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "SHIP_TO_CUSTOMER_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "SHIP_TO_CUSTOMER_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "SHIP_TO_CONTACT_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "SHIP_TO_CONTACT_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "SHIP_TO_SITE_USE_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "SHIP_TO_SITE_USE_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "SHIPMENT_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "SHIPMENT_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "REMIT_TO_ADDRESS_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "REMIT_TO_ADDRESS_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "TERM_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "TERM_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "TERM_DUE_DATE",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "TERM_DUE_DATE",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "PREVIOUS_CUSTOMER_TRX_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "PREVIOUS_CUSTOMER_TRX_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "PRIMARY_SALESREP_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "PRIMARY_SALESREP_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "PRINTING_ORIGINAL_DATE",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "PRINTING_ORIGINAL_DATE",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "PRINTING_LAST_PRINTED",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "PRINTING_LAST_PRINTED",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "PRINTING_OPTION",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "PRINTING_OPTION",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "PRINTING_COUNT",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "PRINTING_COUNT",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "PRINTING_PENDING",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "PRINTING_PENDING",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "PURCHASE_ORDER",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "PURCHASE_ORDER",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "PURCHASE_ORDER_REVISION",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "PURCHASE_ORDER_REVISION",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "PURCHASE_ORDER_DATE",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "PURCHASE_ORDER_DATE",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "CUSTOMER_REFERENCE",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "CUSTOMER_REFERENCE",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "CUSTOMER_REFERENCE_DATE",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "CUSTOMER_REFERENCE_DATE",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "COMMENTS",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "COMMENTS",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "INTERNAL_NOTES",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "INTERNAL_NOTES",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "EXCHANGE_RATE_TYPE",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "EXCHANGE_RATE_TYPE",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "EXCHANGE_DATE",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "EXCHANGE_DATE",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "EXCHANGE_RATE",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "EXCHANGE_RATE",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "TERRITORY_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "TERRITORY_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "INVOICE_CURRENCY_CODE",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "INVOICE_CURRENCY_CODE",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "INITIAL_CUSTOMER_TRX_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "INITIAL_CUSTOMER_TRX_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "AGREEMENT_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "AGREEMENT_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "END_DATE_COMMITMENT",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "END_DATE_COMMITMENT",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "START_DATE_COMMITMENT",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "START_DATE_COMMITMENT",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "LAST_PRINTED_SEQUENCE_NUM",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "LAST_PRINTED_SEQUENCE_NUM",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "ATTRIBUTE_CATEGORY",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "ATTRIBUTE_CATEGORY",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "ATTRIBUTE1",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "ATTRIBUTE1",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "ATTRIBUTE2",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "ATTRIBUTE2",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "ATTRIBUTE3",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "ATTRIBUTE3",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "ATTRIBUTE4",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "ATTRIBUTE4",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "ATTRIBUTE5",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "ATTRIBUTE5",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "ATTRIBUTE6",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "ATTRIBUTE6",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "ATTRIBUTE7",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "ATTRIBUTE7",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "ATTRIBUTE8",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "ATTRIBUTE8",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "ATTRIBUTE9",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "ATTRIBUTE9",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "ATTRIBUTE10",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "ATTRIBUTE10",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "ORIG_SYSTEM_BATCH_NAME",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "ORIG_SYSTEM_BATCH_NAME",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "POST_REQUEST_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "POST_REQUEST_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "REQUEST_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "REQUEST_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "PROGRAM_APPLICATION_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "PROGRAM_APPLICATION_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "PROGRAM_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "PROGRAM_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "PROGRAM_UPDATE_DATE",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "PROGRAM_UPDATE_DATE",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "FINANCE_CHARGES",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "FINANCE_CHARGES",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "COMPLETE_FLAG",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "COMPLETE_FLAG",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "POSTING_CONTROL_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "POSTING_CONTROL_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "BILL_TO_ADDRESS_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "BILL_TO_ADDRESS_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "RA_POST_LOOP_NUMBER",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "RA_POST_LOOP_NUMBER",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "SHIP_TO_ADDRESS_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "SHIP_TO_ADDRESS_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "CREDIT_METHOD_FOR_RULES",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "CREDIT_METHOD_FOR_RULES",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "CREDIT_METHOD_FOR_INSTALLMENTS",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "CREDIT_METHOD_FOR_INSTALLMENTS",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "RECEIPT_METHOD_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "RECEIPT_METHOD_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "ATTRIBUTE11",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "ATTRIBUTE11",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "ATTRIBUTE12",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "ATTRIBUTE12",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "ATTRIBUTE13",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "ATTRIBUTE13",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "ATTRIBUTE14",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "ATTRIBUTE14",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "ATTRIBUTE15",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "ATTRIBUTE15",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "RELATED_CUSTOMER_TRX_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "RELATED_CUSTOMER_TRX_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "INVOICING_RULE_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "INVOICING_RULE_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "SHIP_VIA",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "SHIP_VIA",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "SHIP_DATE_ACTUAL",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "SHIP_DATE_ACTUAL",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "WAYBILL_NUMBER",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "WAYBILL_NUMBER",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "FOB_POINT",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "FOB_POINT",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "CUSTOMER_BANK_ACCOUNT_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "CUSTOMER_BANK_ACCOUNT_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "INTERFACE_HEADER_ATTRIBUTE1",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "INTERFACE_HEADER_ATTRIBUTE1",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "INTERFACE_HEADER_ATTRIBUTE2",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "INTERFACE_HEADER_ATTRIBUTE2",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "INTERFACE_HEADER_ATTRIBUTE3",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "INTERFACE_HEADER_ATTRIBUTE3",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "INTERFACE_HEADER_ATTRIBUTE4",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "INTERFACE_HEADER_ATTRIBUTE4",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "INTERFACE_HEADER_ATTRIBUTE5",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "INTERFACE_HEADER_ATTRIBUTE5",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "INTERFACE_HEADER_ATTRIBUTE6",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "INTERFACE_HEADER_ATTRIBUTE6",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "INTERFACE_HEADER_ATTRIBUTE7",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "INTERFACE_HEADER_ATTRIBUTE7",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "INTERFACE_HEADER_ATTRIBUTE8",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "INTERFACE_HEADER_ATTRIBUTE8",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "INTERFACE_HEADER_CONTEXT",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "INTERFACE_HEADER_CONTEXT",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "DEFAULT_USSGL_TRX_CODE_CONTEXT",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "DEFAULT_USSGL_TRX_CODE_CONTEXT",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "INTERFACE_HEADER_ATTRIBUTE10",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "INTERFACE_HEADER_ATTRIBUTE10",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "INTERFACE_HEADER_ATTRIBUTE11",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "INTERFACE_HEADER_ATTRIBUTE11",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "INTERFACE_HEADER_ATTRIBUTE12",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "INTERFACE_HEADER_ATTRIBUTE12",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "INTERFACE_HEADER_ATTRIBUTE13",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "INTERFACE_HEADER_ATTRIBUTE13",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "INTERFACE_HEADER_ATTRIBUTE14",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "INTERFACE_HEADER_ATTRIBUTE14",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "INTERFACE_HEADER_ATTRIBUTE15",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "INTERFACE_HEADER_ATTRIBUTE15",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "INTERFACE_HEADER_ATTRIBUTE9",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "INTERFACE_HEADER_ATTRIBUTE9",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "DEFAULT_USSGL_TRANSACTION_CODE",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "DEFAULT_USSGL_TRANSACTION_CODE",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "RECURRED_FROM_TRX_NUMBER",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "RECURRED_FROM_TRX_NUMBER",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "STATUS_TRX",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "STATUS_TRX",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "DOC_SEQUENCE_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "DOC_SEQUENCE_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "DOC_SEQUENCE_VALUE",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "DOC_SEQUENCE_VALUE",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "PAYING_CUSTOMER_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "PAYING_CUSTOMER_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "PAYING_SITE_USE_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "PAYING_SITE_USE_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "RELATED_BATCH_SOURCE_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "RELATED_BATCH_SOURCE_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "DEFAULT_TAX_EXEMPT_FLAG",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "DEFAULT_TAX_EXEMPT_FLAG",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "CREATED_FROM",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "CREATED_FROM",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "ORG_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "ORG_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "WH_UPDATE_DATE",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "WH_UPDATE_DATE",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "GLOBAL_ATTRIBUTE1",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "GLOBAL_ATTRIBUTE1",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "GLOBAL_ATTRIBUTE2",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "GLOBAL_ATTRIBUTE2",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "GLOBAL_ATTRIBUTE3",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "GLOBAL_ATTRIBUTE3",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "GLOBAL_ATTRIBUTE4",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "GLOBAL_ATTRIBUTE4",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "GLOBAL_ATTRIBUTE5",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "GLOBAL_ATTRIBUTE5",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "GLOBAL_ATTRIBUTE6",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "GLOBAL_ATTRIBUTE6",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "GLOBAL_ATTRIBUTE7",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "GLOBAL_ATTRIBUTE7",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "GLOBAL_ATTRIBUTE8",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "GLOBAL_ATTRIBUTE8",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "GLOBAL_ATTRIBUTE9",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "GLOBAL_ATTRIBUTE9",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "GLOBAL_ATTRIBUTE10",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "GLOBAL_ATTRIBUTE10",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "GLOBAL_ATTRIBUTE11",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "GLOBAL_ATTRIBUTE11",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "GLOBAL_ATTRIBUTE12",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "GLOBAL_ATTRIBUTE12",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "GLOBAL_ATTRIBUTE13",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "GLOBAL_ATTRIBUTE13",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "GLOBAL_ATTRIBUTE14",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "GLOBAL_ATTRIBUTE14",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "GLOBAL_ATTRIBUTE15",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "GLOBAL_ATTRIBUTE15",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "GLOBAL_ATTRIBUTE16",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "GLOBAL_ATTRIBUTE16",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "GLOBAL_ATTRIBUTE17",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "GLOBAL_ATTRIBUTE17",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "GLOBAL_ATTRIBUTE18",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "GLOBAL_ATTRIBUTE18",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "GLOBAL_ATTRIBUTE19",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "GLOBAL_ATTRIBUTE19",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "GLOBAL_ATTRIBUTE20",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "GLOBAL_ATTRIBUTE20",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "GLOBAL_ATTRIBUTE21",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "GLOBAL_ATTRIBUTE21",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "GLOBAL_ATTRIBUTE22",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "GLOBAL_ATTRIBUTE22",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "GLOBAL_ATTRIBUTE23",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "GLOBAL_ATTRIBUTE23",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "GLOBAL_ATTRIBUTE24",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "GLOBAL_ATTRIBUTE24",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "GLOBAL_ATTRIBUTE25",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "GLOBAL_ATTRIBUTE25",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "GLOBAL_ATTRIBUTE26",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "GLOBAL_ATTRIBUTE26",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "GLOBAL_ATTRIBUTE27",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "GLOBAL_ATTRIBUTE27",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "GLOBAL_ATTRIBUTE28",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "GLOBAL_ATTRIBUTE28",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "GLOBAL_ATTRIBUTE29",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "GLOBAL_ATTRIBUTE29",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "GLOBAL_ATTRIBUTE30",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "GLOBAL_ATTRIBUTE30",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "GLOBAL_ATTRIBUTE_CATEGORY",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "GLOBAL_ATTRIBUTE_CATEGORY",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "EDI_PROCESSED_FLAG",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "EDI_PROCESSED_FLAG",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "EDI_PROCESSED_STATUS",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "EDI_PROCESSED_STATUS",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "MRC_EXCHANGE_RATE_TYPE",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "MRC_EXCHANGE_RATE_TYPE",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "MRC_EXCHANGE_DATE",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "MRC_EXCHANGE_DATE",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "MRC_EXCHANGE_RATE",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "MRC_EXCHANGE_RATE",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "PAYMENT_SERVER_ORDER_NUM",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "PAYMENT_SERVER_ORDER_NUM",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "APPROVAL_CODE",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "APPROVAL_CODE",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "ADDRESS_VERIFICATION_CODE",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "ADDRESS_VERIFICATION_CODE",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "OLD_TRX_NUMBER",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "OLD_TRX_NUMBER",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "BR_AMOUNT",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "BR_AMOUNT",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "BR_UNPAID_FLAG",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "BR_UNPAID_FLAG",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "BR_ON_HOLD_FLAG",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "BR_ON_HOLD_FLAG",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "DRAWEE_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "DRAWEE_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "DRAWEE_CONTACT_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "DRAWEE_CONTACT_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "DRAWEE_SITE_USE_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "DRAWEE_SITE_USE_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "REMITTANCE_BANK_ACCOUNT_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "REMITTANCE_BANK_ACCOUNT_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "OVERRIDE_REMIT_ACCOUNT_FLAG",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "OVERRIDE_REMIT_ACCOUNT_FLAG",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "DRAWEE_BANK_ACCOUNT_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "DRAWEE_BANK_ACCOUNT_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "SPECIAL_INSTRUCTIONS",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "SPECIAL_INSTRUCTIONS",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "REMITTANCE_BATCH_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "REMITTANCE_BATCH_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "PREPAYMENT_FLAG",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "PREPAYMENT_FLAG",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "CT_REFERENCE",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "CT_REFERENCE",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "CONTRACT_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "CONTRACT_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "BILL_TEMPLATE_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "BILL_TEMPLATE_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "REVERSED_CASH_RECEIPT_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "REVERSED_CASH_RECEIPT_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "CC_ERROR_CODE",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "CC_ERROR_CODE",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "CC_ERROR_TEXT",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "CC_ERROR_TEXT",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "CC_ERROR_FLAG",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "CC_ERROR_FLAG",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "UPGRADE_METHOD",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "UPGRADE_METHOD",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "LEGAL_ENTITY_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "LEGAL_ENTITY_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "REMIT_BANK_ACCT_USE_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "REMIT_BANK_ACCT_USE_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "PAYMENT_TRXN_EXTENSION_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "PAYMENT_TRXN_EXTENSION_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "AX_ACCOUNTED_FLAG",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "AX_ACCOUNTED_FLAG",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "APPLICATION_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "APPLICATION_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "PAYMENT_ATTRIBUTES",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "PAYMENT_ATTRIBUTES",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "BILLING_DATE",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "BILLING_DATE",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "INTEREST_HEADER_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "INTEREST_HEADER_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "LATE_CHARGES_ASSESSED",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "LATE_CHARGES_ASSESSED",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "REV_REC_APPLICATION",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "REV_REC_APPLICATION",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "DOCUMENT_TYPE_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "DOCUMENT_TYPE_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "DOCUMENT_CREATION_DATE",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "DOCUMENT_CREATION_DATE",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "SRC_INVOICING_RULE_ID",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "SRC_INVOICING_RULE_ID",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "BILLING_EXT_REQUEST",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "BILLING_EXT_REQUEST",
+                  "type": "String",
+                  "physicalType": "nvarchar"
+                }
+              }
+            ],
+            "typeConversion": true,
+            "typeConversionSettings": {
+              "allowDataTruncation": true,
+              "treatBooleanAsNumber": false
+            }
+          }
+        },
+        "inputs": [
+          {
+            "referenceName": "ADLS_RA_CUSTOMER_TRX_ALL",
+            "type": "DatasetReference"
+          }
+        ],
+        "outputs": [
+          {
+            "referenceName": "BFG_ASQL_RA_CUSTOMER_TRX_ALL",
+            "type": "DatasetReference"
+          }
+        ]
+      }
+    ],
+    "annotations": []
+  }
+}

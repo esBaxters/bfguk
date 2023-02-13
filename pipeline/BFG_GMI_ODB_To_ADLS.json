@@ -1,0 +1,1513 @@
+{
+	"name": "BFG_GMI_ODB_To_ADLS",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy IC_ITEM_MST_B To ADLS",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "OracleSource",
+						"partitionOption": "None",
+						"queryTimeout": "02:00:00"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings",
+							"metadata": [
+								{
+								  "name": "_M_TIMESTAMP",
+								  "value": {
+									"value": "@utcnow()",
+									"type": "Expression"
+								  }
+								},
+								{
+								  "name": "_M_PIPELINE",
+								  "value": {
+									"value": "@pipeline().Pipeline",
+									"type": "Expression"
+								  }
+								},
+								{
+								  "name": "_M_DATETIME",
+								  "value": {
+									"value": "@formatDateTime(utcnow())",
+									"type": "Expression"
+								  }
+								}
+							  ]
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "ITEM_ID",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "ITEM_ID",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ITEM_NO",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ITEM_NO",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ITEM_DESC1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ITEM_DESC1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ITEM_DESC2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ITEM_DESC2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ALT_ITEMA",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ALT_ITEMA",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ALT_ITEMB",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ALT_ITEMB",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ITEM_UM",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ITEM_UM",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DUALUM_IND",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "DUALUM_IND",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ITEM_UM2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ITEM_UM2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DEVIATION_LO",
+									"type": "Double"
+								},
+								"sink": {
+									"name": "DEVIATION_LO",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DEVIATION_HI",
+									"type": "Double"
+								},
+								"sink": {
+									"name": "DEVIATION_HI",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "LEVEL_CODE",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "LEVEL_CODE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "LOT_CTL",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "LOT_CTL",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "LOT_INDIVISIBLE",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "LOT_INDIVISIBLE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SUBLOT_CTL",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "SUBLOT_CTL",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "LOCT_CTL",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "LOCT_CTL",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "NONINV_IND",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "NONINV_IND",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "MATCH_TYPE",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "MATCH_TYPE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "INACTIVE_IND",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "INACTIVE_IND",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "INV_TYPE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "INV_TYPE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SHELF_LIFE",
+									"type": "Double"
+								},
+								"sink": {
+									"name": "SHELF_LIFE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "RETEST_INTERVAL",
+									"type": "Double"
+								},
+								"sink": {
+									"name": "RETEST_INTERVAL",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "GL_CLASS",
+									"type": "String"
+								},
+								"sink": {
+									"name": "GL_CLASS",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "INV_CLASS",
+									"type": "String"
+								},
+								"sink": {
+									"name": "INV_CLASS",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SALES_CLASS",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SALES_CLASS",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SHIP_CLASS",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SHIP_CLASS",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "FRT_CLASS",
+									"type": "String"
+								},
+								"sink": {
+									"name": "FRT_CLASS",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PRICE_CLASS",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PRICE_CLASS",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "STORAGE_CLASS",
+									"type": "String"
+								},
+								"sink": {
+									"name": "STORAGE_CLASS",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PURCH_CLASS",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PURCH_CLASS",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "TAX_CLASS",
+									"type": "String"
+								},
+								"sink": {
+									"name": "TAX_CLASS",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CUSTOMS_CLASS",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CUSTOMS_CLASS",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ALLOC_CLASS",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ALLOC_CLASS",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PLANNING_CLASS",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PLANNING_CLASS",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ITEMCOST_CLASS",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ITEMCOST_CLASS",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "COST_MTHD_CODE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "COST_MTHD_CODE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "UPC_CODE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "UPC_CODE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "GRADE_CTL",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "GRADE_CTL",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "STATUS_CTL",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "STATUS_CTL",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "QC_GRADE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "QC_GRADE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "LOT_STATUS",
+									"type": "String"
+								},
+								"sink": {
+									"name": "LOT_STATUS",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "BULK_ID",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "BULK_ID",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PKG_ID",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "PKG_ID",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "QCITEM_ID",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "QCITEM_ID",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "QCHOLD_RES_CODE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "QCHOLD_RES_CODE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "EXPACTION_CODE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "EXPACTION_CODE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "FILL_QTY",
+									"type": "Double"
+								},
+								"sink": {
+									"name": "FILL_QTY",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "FILL_UM",
+									"type": "String"
+								},
+								"sink": {
+									"name": "FILL_UM",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "EXPACTION_INTERVAL",
+									"type": "Double"
+								},
+								"sink": {
+									"name": "EXPACTION_INTERVAL",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PHANTOM_TYPE",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "PHANTOM_TYPE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "WHSE_ITEM_ID",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "WHSE_ITEM_ID",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "EXPERIMENTAL_IND",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "EXPERIMENTAL_IND",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "EXPORTED_DATE",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "EXPORTED_DATE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "TRANS_CNT",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "TRANS_CNT",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DELETE_MARK",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "DELETE_MARK",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "TEXT_CODE",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "TEXT_CODE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SEQ_DPND_CLASS",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SEQ_DPND_CLASS",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "COMMODITY_CODE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "COMMODITY_CODE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CREATION_DATE",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "CREATION_DATE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CREATED_BY",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "CREATED_BY",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "LAST_UPDATE_DATE",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "LAST_UPDATE_DATE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "LAST_UPDATED_BY",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "LAST_UPDATED_BY",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "LAST_UPDATE_LOGIN",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "LAST_UPDATE_LOGIN",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PROGRAM_APPLICATION_ID",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "PROGRAM_APPLICATION_ID",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PROGRAM_ID",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "PROGRAM_ID",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PROGRAM_UPDATE_DATE",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "PROGRAM_UPDATE_DATE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "REQUEST_ID",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "REQUEST_ID",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE4",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE4",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE5",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE5",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE6",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE6",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE7",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE7",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE8",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE8",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE9",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE9",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE10",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE10",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE11",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE11",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE12",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE12",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE13",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE13",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE14",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE14",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE15",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE15",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE16",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE16",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE17",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE17",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE18",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE18",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE19",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE19",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE20",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE20",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE21",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE21",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE22",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE22",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE23",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE23",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE24",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE24",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE25",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE25",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE26",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE26",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE27",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE27",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE28",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE28",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE29",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE29",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE30",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE30",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE_CATEGORY",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE_CATEGORY",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ITEM_ABCCODE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ITEM_ABCCODE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ONT_PRICING_QTY_SOURCE",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "ONT_PRICING_QTY_SOURCE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ALLOC_CATEGORY_ID",
+									"type": "Double"
+								},
+								"sink": {
+									"name": "ALLOC_CATEGORY_ID",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CUSTOMS_CATEGORY_ID",
+									"type": "Double"
+								},
+								"sink": {
+									"name": "CUSTOMS_CATEGORY_ID",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "FRT_CATEGORY_ID",
+									"type": "Double"
+								},
+								"sink": {
+									"name": "FRT_CATEGORY_ID",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "GL_CATEGORY_ID",
+									"type": "Double"
+								},
+								"sink": {
+									"name": "GL_CATEGORY_ID",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "INV_CATEGORY_ID",
+									"type": "Double"
+								},
+								"sink": {
+									"name": "INV_CATEGORY_ID",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "COST_CATEGORY_ID",
+									"type": "Double"
+								},
+								"sink": {
+									"name": "COST_CATEGORY_ID",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PLANNING_CATEGORY_ID",
+									"type": "Double"
+								},
+								"sink": {
+									"name": "PLANNING_CATEGORY_ID",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PRICE_CATEGORY_ID",
+									"type": "Double"
+								},
+								"sink": {
+									"name": "PRICE_CATEGORY_ID",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PURCH_CATEGORY_ID",
+									"type": "Double"
+								},
+								"sink": {
+									"name": "PURCH_CATEGORY_ID",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SALES_CATEGORY_ID",
+									"type": "Double"
+								},
+								"sink": {
+									"name": "SALES_CATEGORY_ID",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SEQ_CATEGORY_ID",
+									"type": "Double"
+								},
+								"sink": {
+									"name": "SEQ_CATEGORY_ID",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SHIP_CATEGORY_ID",
+									"type": "Double"
+								},
+								"sink": {
+									"name": "SHIP_CATEGORY_ID",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "STORAGE_CATEGORY_ID",
+									"type": "Double"
+								},
+								"sink": {
+									"name": "STORAGE_CATEGORY_ID",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "TAX_CATEGORY_ID",
+									"type": "Double"
+								},
+								"sink": {
+									"name": "TAX_CATEGORY_ID",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "AUTOLOT_ACTIVE_INDICATOR",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "AUTOLOT_ACTIVE_INDICATOR",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "LOT_PREFIX",
+									"type": "String"
+								},
+								"sink": {
+									"name": "LOT_PREFIX",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "LOT_SUFFIX",
+									"type": "String"
+								},
+								"sink": {
+									"name": "LOT_SUFFIX",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SUBLOT_PREFIX",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SUBLOT_PREFIX",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SUBLOT_SUFFIX",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SUBLOT_SUFFIX",
+									"type": "String",
+									"physicalType": "String"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "BFG_ODB_IC_ITEM_MST_B",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ADLS_ODB_IC_ITEM_MST_B",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Archive IC_ITEM_MST_B",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copy IC_ITEM_MST_B To ADLS",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"modifiedDatetimeStart": "2022-05-01T00:00:00.000Z",
+							"modifiedDatetimeEnd": {
+								"value": "@pipeline().TriggerTime",
+								"type": "Expression"
+							},
+							"wildcardFolderPath": "bfguk_erp_prod/schemas/GMI/IC_ITEM_MST_B",
+							"wildcardFileName": "*",
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings",
+							"copyBehavior": "PreserveHierarchy"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"parallelCopies": 1,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ADLS_ODB_IC_ITEM_MST_B",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "IC_ITEM_MST_B_Archive",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Delete IC_ITEM_MST_B",
+				"type": "Delete",
+				"dependsOn": [
+					{
+						"activity": "Archive IC_ITEM_MST_B",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "ADLS_ODB_IC_ITEM_MST_B",
+						"type": "DatasetReference"
+					},
+					"logStorageSettings": {
+						"linkedServiceName": {
+							"referenceName": "BFG_Azure_Storage",
+							"type": "LinkedServiceReference"
+						},
+						"path": "raw/oracle_erp/logging"
+					},
+					"enableLogging": true,
+					"storeSettings": {
+						"type": "AzureBlobStorageReadSettings",
+						"recursive": true,
+						"modifiedDatetimeStart": "2022-05-01T00:00:00.000Z",
+						"modifiedDatetimeEnd": {
+							"value": "@pipeline().TriggerTime",
+							"type": "Expression"
+						},
+						"wildcardFileName": "*",
+						"enablePartitionDiscovery": false
+					}
+				}
+			}
+		],
+		"annotations": []
+	}
+}

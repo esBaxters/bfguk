@@ -1,0 +1,36 @@
+{
+	"name": "Run_Scripts",
+	"properties": {
+		"activities": [
+			{
+				"name": "Script1",
+				"type": "Script",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"linkedServiceName": {
+					"referenceName": "BFG_SQL_DB",
+					"type": "LinkedServiceReference"
+				},
+				"typeProperties": {
+					"scripts": [
+						{
+							"type": "Query",
+							"text": {
+								"value": "insert into FactSales(DimProductKey\n,DimCustomerKey\n,DimDateKey\n,segment1\n,segment3\n,segment4\n,ship_to_customer_id\n,bill_to_customer_id\n,customer_id\n,customer_trx_id\n,shipment_id\n,ship_to_site_id\n,inventory_item_id\n,quantity_invoiced\n,quantity_credited\n,quantity_ordered\n,unit_selling_price\n,unit_standard_price\n,accounted_amount\n,account_type\n,item_type\n,code_combination_id\n,unit_of_measure\n,uom_code\n)\n\nselect  \n\t\t\t\t dimP.DimProductKey\n\t\t\t\t,dimC.DimCustomerKey\n\t\t\t\t,dimD.DimDateKey\n\t\t\t\t,gcc.segment1\n\t\t\t\t,gcc.segment3\n\t\t\t\t,gcc.segment4\n\t\t\t\t,rcta.ship_to_customer_id\n\t\t\t\t,rcta.bill_to_customer_id\n\t\t\t\t,coalesce(rcta.ship_to_customer_id, rcta.bill_to_customer_id) as customer_id\n\t\t\t\t,rcta.customer_trx_id\n\t\t\t\t,rcta.shipment_id\n\t\t\t\t/* This is not a scalar subquery, hence it won't return the correct values or any values at all in TSQL */\n\t\t\t\t,ps.party_site_number as ship_to_site_id\n\t\t\t\t,rctla.inventory_item_id\n\t\t\t\t,rctla.quantity_invoiced\n\t\t\t\t,rctla.quantity_credited\n\t\t\t\t,rctla.quantity_ordered\n\t\t\t\t,rctla.unit_selling_price\n\t\t\t\t,rctla.unit_standard_price\n\t\t\t\t,coalesce(try_cast(acctd_amount as float),0) * CASE WHEN gcc.account_type IN ('A', 'E') THEN -1 ELSE 1 END as accounted_amount \n\t\t\t\t,gcc.account_type\n\t\t\t\t,msi.item_type\n\t\t\t\t,gcc.code_combination_id\n\t\t\t\t,c_uom_name.unit_of_measure\n\t\t\t\t,c_uom_name.uom_code\n\n--\t\t\t\t,row_number() over (partition by rcta.CUSTOMER_TRX_ID, rctla.CUSTOMER_TRX_LINE_ID order by (select null)) as seq\nfrom\t\t\tstg.ra_cust_trx_line_gl_dist_all as rctlgd\nleft join\t\tstg.ra_customer_trx_lines_all as rctla\non\t\t\t\trctlgd.customer_trx_line_id = rctla.customer_trx_line_id\nleft join\t\tstg.ra_customer_trx_all as rcta\non\t\t\t\trctla.customer_trx_id = rcta.customer_trx_id\nleft join\t\tstg.ra_cust_trx_types_all as rctta\non\t\t\t\trcta.cust_trx_type_id = rctta.cust_trx_type_id\n\t\tand\t\trcta.org_id = rctta.org_id\nleft join\t\tstg.ra_batch_sources_all as rbsa \non\t\t\t\trcta.batch_source_id = rbsa.batch_source_id\n\t\tand\t\trcta.org_id = rbsa.org_id\nleft join\t\tstg.gl_code_combinations as gcc\non\t\t\t\trctlgd.code_combination_id = gcc.code_combination_id\n--left join\t\tgl_sets_of_books as gsob\n--on\t\t\t\tgjh.ledger_id = gsob.set_of_books_id\n--left join\t\tgl_ledgers as gl\n--on\t\t\t\tgsob.set_of_books_id = gl.ledger_id\nleft join\t\tstg.mtl_system_items_b as msi\non\t\t\t\trctla.inventory_item_id = msi.inventory_item_id\nleft join\t\tstg.mtl_uom_conversions as c_uom_name\non\t\t\t\tc_uom_name.uom_code = coalesce(rctla.uom_code, msi.primary_uom_code)\n\n-- Identify the customer\nleft join\t\tstg.hz_cust_site_uses_all as csu\non\t\t\t\tcsu.SITE_USE_ID = rcta.SHIP_TO_SITE_USE_ID\n--on\t\t\t\tcsu.site_use_id = ol.ship_to_org_id\nleft join\t\tstg.hz_cust_acct_sites_all as cas\non\t\t\t\tcas.cust_acct_site_id = csu.cust_acct_site_id\nleft join\t\tstg.hz_cust_accounts as ca\non\t\t\t\tca.cust_account_id = cas.cust_account_id \nleft join\t\tstg.hz_party_sites as ps\non\t\t\t\tps.party_site_id = cas.party_site_id\n\n/* Join Dims */\nleft join dimProduct as dimP\non\t\t\tmsi.inventory_item_id = dimP.inventory_item_id\n\tand\t\tmsi.organization_id = dimP.organization_id\n\nleft join\tdimCustomer as dimC\non\t\t\tps.party_site_id = dimC.party_site_id\n\tand\t\tcsu.site_use_id = dimC.site_use_id\n\nleft join\tdimDate as dimD\non\t\t\tcast(rcta.TRX_DATE as date) = dimD.Full_Date_Alternate_Key\n\n where 1=1\n--)\n\n/*\n--select\t*\n--into\tFactSales\n--from\tfact_first_try\n-- where\tseq = 1\n*/",
+								"type": "Expression"
+							}
+						}
+					]
+				}
+			}
+		],
+		"annotations": []
+	}
+}
