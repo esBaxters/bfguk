@@ -1,0 +1,24 @@
+{
+  "name": "ARCHIVE_FND_LOOKUP_VALUES",
+  "properties": {
+    "linkedServiceName": {
+      "referenceName": "BFG_AZURE_STORAGE",
+      "type": "LinkedServiceReference"
+    },
+    "annotations": [],
+    "type": "DelimitedText",
+    "typeProperties": {
+      "location": {
+        "type": "AzureBlobStorageLocation",
+        "folderPath": "bfguk_erp_prod/schemas/APPLSYS",
+        "container": "archive"
+      },
+      "columnDelimiter": "|",
+      "compressionCodec": "gzip",
+      "escapeChar": "\\",
+      "firstRowAsHeader": true,
+      "quoteChar": "\""
+    },
+    "schema": []
+  }
+}

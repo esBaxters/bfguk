@@ -1,0 +1,16 @@
+{
+	"name": "OE_ORDER_LINES_ALL",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "BFG_SQL_DB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "tt",
+			"table": "tt"
+		}
+	}
+}

@@ -1,0 +1,28 @@
+{
+  "name": "ADLS_HZ_CUST_SITE_USES_ALL",
+  "properties": {
+    "linkedServiceName": {
+      "referenceName": "BFG_AZURE_STORAGE",
+      "type": "LinkedServiceReference"
+    },
+    "annotations": [],
+    "type": "DelimitedText",
+    "typeProperties": {
+      "location": {
+        "type": "AzureBlobStorageLocation",
+        "fileName": {
+          "value": "@concat('HZ_CUST_SITE_USES_ALL_', utcnow('yyyyMMddhhmmss'))",
+          "type": "Expression"
+        },
+        "folderPath": "bfguk_erp_prod/schemas/AR/HZ_CUST_SITE_USES_ALL",
+        "container": "raw"
+      },
+      "columnDelimiter": "|",
+      "compressionCodec": "gzip",
+      "escapeChar": "\\",
+      "firstRowAsHeader": true,
+      "quoteChar": "\""
+    },
+    "schema": []
+  }
+}

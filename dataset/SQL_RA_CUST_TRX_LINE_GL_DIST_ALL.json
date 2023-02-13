@@ -1,0 +1,16 @@
+{
+	"name": "SQL_RA_CUST_TRX_LINE_GL_DIST_ALL",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "BFG_SQL_DB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "stg",
+			"table": "RA_CUST_TRX_LINE_GL_DIST_ALL"
+		}
+	}
+}

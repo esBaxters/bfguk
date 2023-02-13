@@ -1,0 +1,28 @@
+{
+  "name": "ADLS_STG_HZ_PARTIES",
+  "properties": {
+    "linkedServiceName": {
+      "referenceName": "BFG_AZURE_STORAGE",
+      "type": "LinkedServiceReference"
+    },
+    "annotations": [],
+    "type": "DelimitedText",
+    "typeProperties": {
+      "location": {
+        "type": "AzureBlobStorageLocation",
+        "fileName": {
+          "value": "@Concat('HZ_PARTIES_', utcnow('yyyyMMddhhmmss'))",
+          "type": "Expression"
+        },
+        "folderPath": "bfguk_erp_prod/schemas/AR/HZ_PARTIES",
+        "container": "raw"
+      },
+      "columnDelimiter": "|",
+      "compressionCodec": "gzip",
+      "escapeChar": "\\",
+      "firstRowAsHeader": true,
+      "quoteChar": "\""
+    },
+    "schema": []
+  }
+}

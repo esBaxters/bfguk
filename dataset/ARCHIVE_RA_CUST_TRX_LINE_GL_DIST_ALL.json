@@ -1,0 +1,24 @@
+{
+  "name": "ARCHIVE_RA_CUST_TRX_LINE_GL_DIST_ALL",
+  "properties": {
+    "linkedServiceName": {
+      "referenceName": "BFG_AZURE_STORAGE",
+      "type": "LinkedServiceReference"
+    },
+    "annotations": [],
+    "type": "DelimitedText",
+    "typeProperties": {
+      "location": {
+        "type": "AzureBlobStorageLocation",
+        "folderPath": "bfguk_erp_prod/schemas/AR/RA_CUST_TRX_LINE_GL_DIST_ALL",
+        "container": "archive"
+      },
+      "columnDelimiter": "|",
+      "compressionCodec": "gzip",
+      "escapeChar": "\\",
+      "firstRowAsHeader": true,
+      "quoteChar": "\""
+    },
+    "schema": []
+  }
+}

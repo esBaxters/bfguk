@@ -1,0 +1,16 @@
+{
+	"name": "SQL_OE_ORDER_HEADERS_ALL",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "BFG_SQL_DB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "stg",
+			"table": "OE_ORDER_HEADERS_ALL"
+		}
+	}
+}

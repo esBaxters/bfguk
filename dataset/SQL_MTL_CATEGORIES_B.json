@@ -1,0 +1,16 @@
+{
+	"name": "SQL_MTL_CATEGORIES_B",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "BFG_SQL_DB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "stg",
+			"table": "MTL_CATEGORIES_B"
+		}
+	}
+}

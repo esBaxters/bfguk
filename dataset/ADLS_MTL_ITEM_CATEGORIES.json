@@ -1,0 +1,28 @@
+{
+  "name": "ADLS_MTL_ITEM_CATEGORIES",
+  "properties": {
+    "linkedServiceName": {
+      "referenceName": "BFG_AZURE_STORAGE",
+      "type": "LinkedServiceReference"
+    },
+    "annotations": [],
+    "type": "DelimitedText",
+    "typeProperties": {
+      "location": {
+        "type": "AzureBlobStorageLocation",
+        "fileName": {
+          "value": "@concat('MTL_ITEM_CATEGORIES_', utcnow('yyyyMMddhhmmss'))",
+          "type": "Expression"
+        },
+        "folderPath": "bfguk_erp_prod/schemas/INV/MTL_ITEM_CATEGORIES",
+        "container": "raw"
+      },
+      "columnDelimiter": "|",
+      "compressionCodec": "gzip",
+      "escapeChar": "\\",
+      "firstRowAsHeader": true,
+      "quoteChar": "\""
+    },
+    "schema": []
+  }
+}

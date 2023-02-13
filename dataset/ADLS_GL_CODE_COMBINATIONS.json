@@ -1,0 +1,28 @@
+{
+  "name": "ADLS_GL_CODE_COMBINATIONS",
+  "properties": {
+    "linkedServiceName": {
+      "referenceName": "BFG_AZURE_STORAGE",
+      "type": "LinkedServiceReference"
+    },
+    "annotations": [],
+    "type": "DelimitedText",
+    "typeProperties": {
+      "location": {
+        "type": "AzureBlobStorageLocation",
+        "fileName": {
+          "value": "@concat('GL_CODE_COMBINATIONS_', utcnow('yyyyMMddhhmmss'))",
+          "type": "Expression"
+        },
+        "folderPath": "bfguk_erp_prod/schemas/GL/GL_CODE_COMBINATIONS",
+        "container": "raw"
+      },
+      "columnDelimiter": "|",
+      "compressionCodec": "gzip",
+      "escapeChar": "\\",
+      "firstRowAsHeader": true,
+      "quoteChar": "\""
+    },
+    "schema": []
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "BFG-ORACLE-DB-IR",
+  "properties": {
+    "type": "SelfHosted"
+  }
+}

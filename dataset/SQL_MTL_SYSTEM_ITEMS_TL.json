@@ -1,0 +1,16 @@
+{
+	"name": "SQL_MTL_SYSTEM_ITEMS_TL",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "BFG_SQL_DB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "stg",
+			"table": "MTL_SYSTEM_ITEMS_TL"
+		}
+	}
+}

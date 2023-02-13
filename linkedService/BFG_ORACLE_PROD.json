@@ -1,0 +1,16 @@
+{
+  "name": "BFG_ORACLE_PROD",
+  "type": "Microsoft.DataFactory/factories/linkedservices",
+  "properties": {
+    "annotations": [],
+    "type": "Oracle",
+    "typeProperties": {
+      "connectionString": "host=10.95.2.20;port=1521;sid=baxprod1;user id=bolinf",
+      "encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJhNWQyMjFkZS04OWFkLTQ0ODctYjE0My0zZjlmNmZmNDNhZjciLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+    },
+    "connectVia": {
+      "referenceName": "BFG-ORACLE-DB-IR",
+      "type": "IntegrationRuntimeReference"
+    }
+  }
+}

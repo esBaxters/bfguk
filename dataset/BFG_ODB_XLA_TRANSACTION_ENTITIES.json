@@ -1,0 +1,16 @@
+{
+  "name": "BFG_ODB_XLA_TRANSACTION_ENTITIES",
+  "properties": {
+    "linkedServiceName": {
+      "referenceName": "BFG_ORACLE_PROD",
+      "type": "LinkedServiceReference"
+    },
+    "annotations": [],
+    "type": "OracleTable",
+    "schema": [],
+    "typeProperties": {
+      "schema": "XLA",
+      "table": "XLA_TRANSACTION_ENTITIES"
+    }
+  }
+}

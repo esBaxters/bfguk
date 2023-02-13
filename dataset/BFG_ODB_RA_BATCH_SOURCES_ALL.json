@@ -1,0 +1,16 @@
+{
+  "name": "BFG_ODB_RA_BATCH_SOURCES_ALL",
+  "properties": {
+    "linkedServiceName": {
+      "referenceName": "BFG_ORACLE_PROD",
+      "type": "LinkedServiceReference"
+    },
+    "annotations": [],
+    "type": "OracleTable",
+    "schema": [],
+    "typeProperties": {
+      "schema": "AR",
+      "table": "RA_BATCH_SOURCES_ALL"
+    }
+  }
+}

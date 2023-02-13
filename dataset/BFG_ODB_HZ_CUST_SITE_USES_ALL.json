@@ -1,0 +1,16 @@
+{
+  "name": "BFG_ODB_HZ_CUST_SITE_USES_ALL",
+  "properties": {
+    "linkedServiceName": {
+      "referenceName": "BFG_ORACLE_PROD",
+      "type": "LinkedServiceReference"
+    },
+    "annotations": [],
+    "type": "OracleTable",
+    "schema": [],
+    "typeProperties": {
+      "schema": "AR",
+      "table": "HZ_CUST_SITE_USES_ALL"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+	"name": "BFG-SQL-DB-IR",
+	"properties": {
+		"type": "Managed",
+		"description": "Baxter Food Group Integration Runtime to SQL Database",
+		"typeProperties": {
+			"computeProperties": {
+				"location": "UK South",
+				"dataFlowProperties": {
+					"computeType": "General",
+					"coreCount": 8,
+					"timeToLive": 10,
+					"cleanup": false
+				}
+			}
+		}
+	}
+}

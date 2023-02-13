@@ -1,0 +1,41 @@
+{
+  "name": "WATERMARK",
+  "properties": {
+    "linkedServiceName": {
+      "referenceName": "BFG_SQL_DB",
+      "type": "LinkedServiceReference"
+    },
+    "annotations": [],
+    "type": "AzureSqlTable",
+    "schema": [
+      {
+        "name": "OwnerName",
+        "type": "varchar"
+      },
+      {
+        "name": "TableName",
+        "type": "varchar"
+      },
+      {
+        "name": "WatermarkDatetime",
+        "type": "datetime",
+        "precision": 23,
+        "scale": 3
+      },
+      {
+        "name": "UpdatedAt",
+        "type": "datetime2",
+        "scale": 7
+      },
+      {
+        "name": "MaxDateTime2",
+        "type": "datetime2",
+        "scale": 7
+      }
+    ],
+    "typeProperties": {
+      "schema": "dbo",
+      "table": "WATERMARK"
+    }
+  }
+}

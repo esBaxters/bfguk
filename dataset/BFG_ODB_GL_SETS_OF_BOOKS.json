@@ -1,0 +1,16 @@
+{
+  "name": "BFG_ODB_GL_SETS_OF_BOOKS",
+  "properties": {
+    "linkedServiceName": {
+      "referenceName": "BFG_ORACLE_PROD",
+      "type": "LinkedServiceReference"
+    },
+    "annotations": [],
+    "type": "OracleTable",
+    "schema": [],
+    "typeProperties": {
+      "schema": "APPS",
+      "table": "GL_SETS_OF_BOOKS"
+    }
+  }
+}

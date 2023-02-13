@@ -1,0 +1,16 @@
+{
+	"name": "SQL_HZ_CUST_ACCOUNTS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "BFG_SQL_DB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "stg",
+			"table": "HZ_CUST_ACCOUNTS"
+		}
+	}
+}

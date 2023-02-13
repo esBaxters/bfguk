@@ -1,0 +1,15 @@
+{
+  "name": "BFG_AZURE_STORAGE",
+  "properties": {
+    "annotations": [],
+    "type": "AzureBlobStorage",
+    "typeProperties": {
+      "serviceEndpoint": "https://salesorderbfg.blob.core.windows.net",
+      "accountKind": "StorageV2"
+    },
+    "connectVia": {
+      "referenceName": "BFG-AZURE_STORAGE-IR",
+      "type": "IntegrationRuntimeReference"
+    }
+  }
+}

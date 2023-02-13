@@ -1,0 +1,16 @@
+{
+  "name": "BFG_ODB_IC_ITEM_MST_B",
+  "properties": {
+    "linkedServiceName": {
+      "referenceName": "BFG_ORACLE_PROD",
+      "type": "LinkedServiceReference"
+    },
+    "annotations": [],
+    "type": "OracleTable",
+    "schema": [],
+    "typeProperties": {
+      "schema": "GMI",
+      "table": "IC_ITEM_MST_B"
+    }
+  }
+}

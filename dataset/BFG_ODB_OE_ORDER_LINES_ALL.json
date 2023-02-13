@@ -1,0 +1,16 @@
+{
+  "name": "BFG_ODB_OE_ORDER_LINES_ALL",
+  "properties": {
+    "linkedServiceName": {
+      "referenceName": "BFG_ORACLE_PROD",
+      "type": "LinkedServiceReference"
+    },
+    "annotations": [],
+    "type": "OracleTable",
+    "schema": [],
+    "typeProperties": {
+      "schema": "ONT",
+      "table": "OE_ORDER_LINES_ALL"
+    }
+  }
+}

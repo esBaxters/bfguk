@@ -1,0 +1,16 @@
+{
+	"name": "SQL_XLA_TRANSACTION_ENTITIES",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "BFG_SQL_DB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "stg",
+			"table": "XLA_TRANSACTION_ENTITIES"
+		}
+	}
+}

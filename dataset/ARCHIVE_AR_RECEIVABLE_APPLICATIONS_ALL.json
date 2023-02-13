@@ -1,0 +1,23 @@
+{
+  "name": "ARCHIVE_AR_RECEIVABLE_APPLICATIONS_ALL",
+  "properties": {
+    "linkedServiceName": {
+      "referenceName": "BFG_AZURE_STORAGE",
+      "type": "LinkedServiceReference"
+    },
+    "annotations": [],
+    "type": "DelimitedText",
+    "typeProperties": {
+      "location": {
+        "type": "AzureBlobStorageLocation",
+        "folderPath": "bfguk_erp_prod/schemas/AR/AR_RECEIVABLE_APPLICATIONS_ALL",
+        "container": "archive"
+      },
+      "columnDelimiter": "|",
+      "compressionCodec": "gzip",
+      "escapeChar": "\\",
+      "quoteChar": "\""
+    },
+    "schema": []
+  }
+}
