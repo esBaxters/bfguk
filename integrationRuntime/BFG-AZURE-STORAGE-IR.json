@@ -1,5 +1,5 @@
 {
-	"name": "BFG-SQL-DB-IR",
+	"name": "BFG-AZURE-STORAGE-IR",
 	"properties": {
 		"type": "Managed",
 		"typeProperties": {
