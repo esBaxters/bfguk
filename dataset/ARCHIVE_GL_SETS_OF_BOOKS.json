@@ -1,8 +1,8 @@
 {
-  "name": "ARCHIVE_GL_SETS_OF_BOOKS",
+  "name": "archive_gl_sets_of_books",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "BFG_AZURE_STORAGE",
+      "referenceName": "bfg_azure_storage",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
@@ -10,7 +10,7 @@
     "typeProperties": {
       "location": {
         "type": "AzureBlobStorageLocation",
-        "folderPath": "bfguk_erp_prod/schemas/GL/GL_SETS_OF_BOOKS",
+        "folderPath": "bfguk_erp_prod/schemas/gl/gl_sets_of_books",
         "container": "archive"
       },
       "columnDelimiter": "|",

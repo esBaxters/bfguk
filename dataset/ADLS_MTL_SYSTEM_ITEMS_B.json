@@ -1,8 +1,8 @@
 {
-  "name": "ADLS_MTL_SYSTEM_ITEMS_B",
+  "name": "adls_mtl_system_items_b",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "BFG_AZURE_STORAGE",
+      "referenceName": "bfg_azure_storage",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
@@ -11,10 +11,10 @@
       "location": {
         "type": "AzureBlobStorageLocation",
         "fileName": {
-          "value": "@concat('MTL_SYSTEM_ITEMS_B_', utcnow('yyyyMMddhhmmss'))",
+          "value": "@concat('mtl_system_items_b_', utcnow('yyyyMMddhhmmss'))",
           "type": "Expression"
         },
-        "folderPath": "bfguk_erp_prod/schemas/INV/MTL_SYSTEM_ITEMS_B",
+        "folderPath": "bfguk_erp_prod/schemas/inv/mtl_system_items_b",
         "container": "raw"
       },
       "columnDelimiter": "|",

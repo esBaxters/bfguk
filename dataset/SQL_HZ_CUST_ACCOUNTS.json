@@ -1,16 +1,16 @@
 {
-	"name": "SQL_HZ_CUST_ACCOUNTS",
-	"properties": {
-		"linkedServiceName": {
-			"referenceName": "BFG_SQL_DB",
-			"type": "LinkedServiceReference"
-		},
-		"annotations": [],
-		"type": "AzureSqlTable",
-		"schema": [],
-		"typeProperties": {
-			"schema": "stg",
-			"table": "HZ_CUST_ACCOUNTS"
-		}
-	}
+  "name": "sql_hz_cust_accounts",
+  "properties": {
+    "linkedServiceName": {
+      "referenceName": "bfg_sql_db",
+      "type": "LinkedServiceReference"
+    },
+    "annotations": [],
+    "type": "AzureSqlTable",
+    "schema": [],
+    "typeProperties": {
+      "schema": "stg",
+      "table": "hz_cust_accounts"
+    }
+  }
 }

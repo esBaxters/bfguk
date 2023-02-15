@@ -1,16 +1,16 @@
 {
-	"name": "SQL_RA_CUSTOMER_TRX_LINES_ALL",
-	"properties": {
-		"linkedServiceName": {
-			"referenceName": "BFG_SQL_DB",
-			"type": "LinkedServiceReference"
-		},
-		"annotations": [],
-		"type": "AzureSqlTable",
-		"schema": [],
-		"typeProperties": {
-			"schema": "stg",
-			"table": "RA_CUSTOMER_TRX_LINES_ALL"
-		}
-	}
+  "name": "sql_ra_customer_trx_lines_all",
+  "properties": {
+    "linkedServiceName": {
+      "referenceName": "bfg_sql_db",
+      "type": "LinkedServiceReference"
+    },
+    "annotations": [],
+    "type": "AzureSqlTable",
+    "schema": [],
+    "typeProperties": {
+      "schema": "stg",
+      "table": "ra_customer_trx_lines_all"
+    }
+  }
 }

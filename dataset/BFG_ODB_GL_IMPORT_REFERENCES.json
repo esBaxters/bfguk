@@ -1,16 +1,16 @@
 {
-  "name": "BFG_ODB_GL_IMPORT_REFERENCES",
+  "name": "bfg_odb_gl_import_references",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "BFG_ORACLE_PROD",
+      "referenceName": "bfg_oracle_prod",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
     "type": "OracleTable",
     "schema": [],
     "typeProperties": {
-      "schema": "GL",
-      "table": "GL_IMPORT_REFERENCES"
+      "schema": "gl",
+      "table": "gl_import_references"
     }
   }
 }

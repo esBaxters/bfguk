@@ -1,8 +1,8 @@
 {
-  "name": "ADLS_GL_JE_LINES",
+  "name": "adls_gl_je_lines",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "BFG_AZURE_STORAGE",
+      "referenceName": "bfg_azure_storage",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
@@ -11,10 +11,10 @@
       "location": {
         "type": "AzureBlobStorageLocation",
         "fileName": {
-          "value": "@concat('GL_JE_LINES_', utcnow('yyyyMMddhhmmss'))",
+          "value": "@concat('gl_je_lines_', utcnow('yyyyMMddhhmmss'))",
           "type": "Expression"
         },
-        "folderPath": "bfguk_erp_prod/schemas/GL/GL_JE_LINES",
+        "folderPath": "bfguk_erp_prod/schemas/gl/gl_je_lines",
         "container": "raw"
       },
       "columnDelimiter": "|",

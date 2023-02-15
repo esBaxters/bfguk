@@ -1,8 +1,8 @@
 {
-  "name": "ARCHIVE_HZ_CUST_ACCT_SITES_ALL",
+  "name": "archive_hz_cust_acct_sites_all",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "BFG_AZURE_STORAGE",
+      "referenceName": "bfg_azure_storage",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
@@ -10,7 +10,7 @@
     "typeProperties": {
       "location": {
         "type": "AzureBlobStorageLocation",
-        "folderPath": "bfguk_erp_prod/schemas/AR/HZ_CUST_ACCT_SITES_ALL",
+        "folderPath": "bfguk_erp_prod/schemas/ar/hz_cust_acct_sites_all",
         "container": "archive"
       },
       "columnDelimiter": "|",

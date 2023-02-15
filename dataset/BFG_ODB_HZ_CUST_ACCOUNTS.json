@@ -1,16 +1,16 @@
 {
-  "name": "BFG_ODB_HZ_CUST_ACCOUNTS",
+  "name": "bfg_odb_hz_cust_accounts",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "BFG_ORACLE_PROD",
+      "referenceName": "bfg_oracle_prod",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
     "type": "OracleTable",
     "schema": [],
     "typeProperties": {
-      "schema": "AR",
-      "table": "HZ_CUST_ACCOUNTS"
+      "schema": "ar",
+      "table": "hz_cust_accounts"
     }
   }
 }

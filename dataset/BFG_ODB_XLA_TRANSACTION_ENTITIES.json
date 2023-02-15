@@ -1,16 +1,16 @@
 {
-  "name": "BFG_ODB_XLA_TRANSACTION_ENTITIES",
+  "name": "bfg_odb_xla_transaction_entities",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "BFG_ORACLE_PROD",
+      "referenceName": "bfg_oracle_prod",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
     "type": "OracleTable",
     "schema": [],
     "typeProperties": {
-      "schema": "XLA",
-      "table": "XLA_TRANSACTION_ENTITIES"
+      "schema": "xla",
+      "table": "xla_transaction_entities"
     }
   }
 }

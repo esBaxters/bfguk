@@ -1,16 +1,16 @@
 {
-	"name": "SQL_GL_LEDGERS",
-	"properties": {
-		"linkedServiceName": {
-			"referenceName": "BFG_SQL_DB",
-			"type": "LinkedServiceReference"
-		},
-		"annotations": [],
-		"type": "AzureSqlTable",
-		"schema": [],
-		"typeProperties": {
-			"schema": "stg",
-			"table": "GL_LEDGERS"
-		}
-	}
+  "name": "sql_gl_ledgers",
+  "properties": {
+    "linkedServiceName": {
+      "referenceName": "bfg_sql_db",
+      "type": "LinkedServiceReference"
+    },
+    "annotations": [],
+    "type": "AzureSqlTable",
+    "schema": [],
+    "typeProperties": {
+      "schema": "stg",
+      "table": "gl_ledgers"
+    }
+  }
 }

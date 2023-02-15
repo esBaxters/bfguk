@@ -1,8 +1,8 @@
 {
-  "name": "ARCHIVE_AR_ADJUSTMENTS_ALL",
+  "name": "archive_ar_adjustments_all",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "BFG_AZURE_STORAGE",
+      "referenceName": "bfg_azure_storage",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
@@ -10,7 +10,7 @@
     "typeProperties": {
       "location": {
         "type": "AzureBlobStorageLocation",
-        "folderPath": "bfguk_erp_prod/schemas/AR/AR_ADJUSTMENTS_ALL",
+        "folderPath": "bfguk_erp_prod/schemas/ar/ar_adjustments_all",
         "container": "archive"
       },
       "columnDelimiter": "|",

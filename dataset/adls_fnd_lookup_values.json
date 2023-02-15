@@ -1,8 +1,8 @@
 {
-  "name": "ADLS_AR_CASH_RECEIPTS_ALL",
+  "name": "adls_fnd_lookup_values",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "BFG_AZURE_STORAGE",
+      "referenceName": "bfg_azure_storage",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
@@ -11,10 +11,10 @@
       "location": {
         "type": "AzureBlobStorageLocation",
         "fileName": {
-          "value": "@concat('AR_CASH_RECEIPTS_ALL_', utcnow('yyyyMMddhhmmss'))",
+          "value": "@concat('fnd_lookup_values_', utcnow('yyyyMMddhhmmss'))",
           "type": "Expression"
         },
-        "folderPath": "bfguk_erp_prod/schemas/AR/AR_CASH_RECEIPTS_ALL",
+        "folderPath": "bfguk_erp_prod/schemas/applsys",
         "container": "raw"
       },
       "columnDelimiter": "|",

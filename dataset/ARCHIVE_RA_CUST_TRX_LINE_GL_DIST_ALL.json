@@ -1,8 +1,8 @@
 {
-  "name": "ARCHIVE_RA_CUST_TRX_LINE_GL_DIST_ALL",
+  "name": "archive_ra_cust_trx_line_gl_dist_all",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "BFG_AZURE_STORAGE",
+      "referenceName": "bfg_azure_storage",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
@@ -10,7 +10,7 @@
     "typeProperties": {
       "location": {
         "type": "AzureBlobStorageLocation",
-        "folderPath": "bfguk_erp_prod/schemas/AR/RA_CUST_TRX_LINE_GL_DIST_ALL",
+        "folderPath": "bfguk_erp_prod/schemas/ar/ra_cust_trx_line_gl_dist_all",
         "container": "archive"
       },
       "columnDelimiter": "|",

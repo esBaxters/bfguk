@@ -1,8 +1,8 @@
 {
-  "name": "ADLS_FND_LOOKUP_VALUES",
+  "name": "adls_ar_adjustments_all",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "BFG_AZURE_STORAGE",
+      "referenceName": "bfg_azure_storage",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
@@ -11,10 +11,10 @@
       "location": {
         "type": "AzureBlobStorageLocation",
         "fileName": {
-          "value": "@concat('FND_LOOKUP_VALUES_', utcnow('yyyyMMddhhmmss'))",
+          "value": "@concat('ar_adjustments_all_', utcnow('yyyyMMddhhmmss'))",
           "type": "Expression"
         },
-        "folderPath": "bfguk_erp_prod/schemas/APPLSYS",
+        "folderPath": "bfguk_erp_prod/schemas/ar/ar_adjustments_all",
         "container": "raw"
       },
       "columnDelimiter": "|",

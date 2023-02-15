@@ -1,8 +1,8 @@
 {
-  "name": "ADLS_STG_HZ_LOCATIONS",
+  "name": "adls_stg_hz_locations",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "BFG_AZURE_STORAGE",
+      "referenceName": "bfg_azure_storage",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
@@ -11,10 +11,10 @@
       "location": {
         "type": "AzureBlobStorageLocation",
         "fileName": {
-          "value": "@concat('HZ_LOCATIONS_', utcnow('yyyyMMddhhmmss'))",
+          "value": "@concat('hz_locations_', utcnow('yyyyMMddhhmmss'))",
           "type": "Expression"
         },
-        "folderPath": "bfguk_erp_prod/schemas/AR/HZ_LOCATIONS",
+        "folderPath": "bfguk_erp_prod/schemas/ar/hz_locations",
         "container": "raw"
       },
       "columnDelimiter": "|",

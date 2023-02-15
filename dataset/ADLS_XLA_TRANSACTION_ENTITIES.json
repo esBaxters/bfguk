@@ -1,8 +1,8 @@
 {
-  "name": "ADLS_XLA_TRANSACTION_ENTITIES",
+  "name": "adls_xla_transaction_entities",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "BFG_AZURE_STORAGE",
+      "referenceName": "bfg_azure_storage",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
@@ -11,10 +11,10 @@
       "location": {
         "type": "AzureBlobStorageLocation",
         "fileName": {
-          "value": "@concat('XLA_TRANSACTION_ENTITIES_', utcnow('yyyyMMddhhmmss'))",
+          "value": "@concat('xla_transaction_entities_', utcnow('yyyyMMddhhmmss'))",
           "type": "Expression"
         },
-        "folderPath": "bfguk_erp_prod/schemas/XLA/XLA_TRANSACTION_ENTITIES",
+        "folderPath": "bfguk_erp_prod/schemas/xla/xla_transaction_entities",
         "container": "raw"
       },
       "columnDelimiter": "|",

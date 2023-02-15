@@ -1,16 +1,16 @@
 {
-	"name": "SQL_MTL_SYSTEM_ITEMS_B",
-	"properties": {
-		"linkedServiceName": {
-			"referenceName": "BFG_SQL_DB",
-			"type": "LinkedServiceReference"
-		},
-		"annotations": [],
-		"type": "AzureSqlTable",
-		"schema": [],
-		"typeProperties": {
-			"schema": "stg",
-			"table": "MTL_SYSTEM_ITEMS_B"
-		}
-	}
+  "name": "sql_mtl_system_items_b",
+  "properties": {
+    "linkedServiceName": {
+      "referenceName": "bfg_sql_db",
+      "type": "LinkedServiceReference"
+    },
+    "annotations": [],
+    "type": "AzureSqlTable",
+    "schema": [],
+    "typeProperties": {
+      "schema": "stg",
+      "table": "mtl_system_items_b"
+    }
+  }
 }

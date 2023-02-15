@@ -1,8 +1,8 @@
 {
-	"name": "SQL_GL_CODE_COMBINATIONS",
+	"name": "sql_gl_code_combinations",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "BFG_SQL_DB",
+			"referenceName": "bfg_sql_db",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
@@ -10,7 +10,7 @@
 		"schema": [],
 		"typeProperties": {
 			"schema": "stg",
-			"table": "GL_CODE_COMBINATIONS"
+			"table": "gl_code_combinations"
 		}
 	}
 }

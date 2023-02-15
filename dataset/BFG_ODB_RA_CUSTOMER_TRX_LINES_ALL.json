@@ -1,16 +1,16 @@
 {
-  "name": "BFG_ODB_RA_CUSTOMER_TRX_LINES_ALL",
+  "name": "bfg_odb_ra_customer_trx_lines_all",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "BFG_ORACLE_PROD",
+      "referenceName": "bfg_oracle_prod",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
     "type": "OracleTable",
     "schema": [],
     "typeProperties": {
-      "schema": "AR",
-      "table": "RA_CUSTOMER_TRX_LINES_ALL"
+      "schema": "ar",
+      "table": "ra_customer_trx_lines_all"
     }
   }
 }

@@ -1,16 +1,16 @@
 {
-	"name": "SQL_RA_BATCH_SOURCES_ALL",
-	"properties": {
-		"linkedServiceName": {
-			"referenceName": "BFG_SQL_DB",
-			"type": "LinkedServiceReference"
-		},
-		"annotations": [],
-		"type": "AzureSqlTable",
-		"schema": [],
-		"typeProperties": {
-			"schema": "stg",
-			"table": "RA_BATCH_SOURCES_ALL"
-		}
-	}
+  "name": "sql_ra_batch_sources_all",
+  "properties": {
+    "linkedServiceName": {
+      "referenceName": "bfg_sql_db",
+      "type": "LinkedServiceReference"
+    },
+    "annotations": [],
+    "type": "AzureSqlTable",
+    "schema": [],
+    "typeProperties": {
+      "schema": "stg",
+      "table": "ra_batch_sources_all"
+    }
+  }
 }

@@ -1,8 +1,8 @@
 {
-  "name": "ADLS_HZ_CUST_ACCT_SITES_ALL",
+  "name": "adls_hz_cust_acct_sites_all",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "BFG_AZURE_STORAGE",
+      "referenceName": "bfg_azure_storage",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
@@ -11,10 +11,10 @@
       "location": {
         "type": "AzureBlobStorageLocation",
         "fileName": {
-          "value": "@concat('HZ_CUST_ACCT_SITES_ALL_', utcnow('yyyyMMddhhmmss'))",
+          "value": "@concat('hz_cust_acct_sites_all_', utcnow('yyyyMMddhhmmss'))",
           "type": "Expression"
         },
-        "folderPath": "bfguk_erp_prod/schemas/AR/HZ_CUST_ACCT_SITES_ALL",
+        "folderPath": "bfguk_erp_prod/schemas/ar/hz_cust_acct_sites_all",
         "container": "raw"
       },
       "columnDelimiter": "|",

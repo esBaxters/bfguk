@@ -1,8 +1,8 @@
 {
-  "name": "ARCHIVE_HZ_RELATIONSHIPS",
+  "name": "archive_hz_relationships",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "BFG_AZURE_STORAGE",
+      "referenceName": "bfg_azure_storage",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
@@ -10,7 +10,7 @@
     "typeProperties": {
       "location": {
         "type": "AzureBlobStorageLocation",
-        "folderPath": "bfguk_erp_prod/schemas/AR/HZ_RELATIONSHIPS",
+        "folderPath": "bfguk_erp_prod/schemas/ar/hz_relationships",
         "container": "archive"
       },
       "columnDelimiter": "|",

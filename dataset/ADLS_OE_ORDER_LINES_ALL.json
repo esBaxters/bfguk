@@ -1,8 +1,8 @@
 {
-  "name": "ADLS_OE_ORDER_LINES_ALL",
+  "name": "adls_oe_order_lines_all",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "BFG_AZURE_STORAGE",
+      "referenceName": "bfg_azure_storage",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
@@ -11,10 +11,10 @@
       "location": {
         "type": "AzureBlobStorageLocation",
         "fileName": {
-          "value": "@concat('OE_ORDER_LINES_ALL_', utcnow('yyyyMMddhhmmss'))",
+          "value": "@concat('oe_order_lines_all_', utcnow('yyyyMMddhhmmss'))",
           "type": "Expression"
         },
-        "folderPath": "bfguk_erp_prod/schemas/ONT/OE_ORDER_LINES_ALL",
+        "folderPath": "bfguk_erp_prod/schemas/ont/oe_order_lines_all",
         "container": "raw"
       },
       "columnDelimiter": "|",

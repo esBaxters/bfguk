@@ -1,8 +1,8 @@
 {
-  "name": "ADLS_XLA_EVENTS",
+  "name": "adls_xla_events",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "BFG_AZURE_STORAGE",
+      "referenceName": "bfg_azure_storage",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
@@ -11,10 +11,10 @@
       "location": {
         "type": "AzureBlobStorageLocation",
         "fileName": {
-          "value": "@concat('XLA_EVENTS_', utcnow('yyyyMMddhhmmss'))",
+          "value": "@concat('xla_events_', utcnow('yyyyMMddhhmmss'))",
           "type": "Expression"
         },
-        "folderPath": "bfguk_erp_prod/schemas/XLA/XLA_EVENTS",
+        "folderPath": "bfguk_erp_prod/schemas/xla/xla_events",
         "container": "raw"
       },
       "columnDelimiter": "|",

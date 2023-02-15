@@ -1,8 +1,8 @@
 {
-  "name": "ADLS_GL_CODE_COMBINATIONS",
+  "name": "adls_ar_cash_receipts_all",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "BFG_AZURE_STORAGE",
+      "referenceName": "bfg_azure_storage",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
@@ -11,10 +11,10 @@
       "location": {
         "type": "AzureBlobStorageLocation",
         "fileName": {
-          "value": "@concat('GL_CODE_COMBINATIONS_', utcnow('yyyyMMddhhmmss'))",
+          "value": "@concat('ar_cash_receipts_all_', utcnow('yyyyMMddhhmmss'))",
           "type": "Expression"
         },
-        "folderPath": "bfguk_erp_prod/schemas/GL/GL_CODE_COMBINATIONS",
+        "folderPath": "bfguk_erp_prod/schemas/ar/ar_cash_receipts_all",
         "container": "raw"
       },
       "columnDelimiter": "|",

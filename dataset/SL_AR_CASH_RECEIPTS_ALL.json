@@ -1,16 +1,16 @@
 {
-	"name": "SL_AR_CASH_RECEIPTS_ALL",
-	"properties": {
-		"linkedServiceName": {
-			"referenceName": "BFG_SQL_DB",
-			"type": "LinkedServiceReference"
-		},
-		"annotations": [],
-		"type": "AzureSqlTable",
-		"schema": [],
-		"typeProperties": {
-			"schema": "stg",
-			"table": "AR_CASH_RECEIPTS_ALL"
-		}
-	}
+  "name": "sl_ar_cash_receipts_all",
+  "properties": {
+    "linkedServiceName": {
+      "referenceName": "bfg_sql_db",
+      "type": "LinkedServiceReference"
+    },
+    "annotations": [],
+    "type": "AzureSqlTable",
+    "schema": [],
+    "typeProperties": {
+      "schema": "stg",
+      "table": "ar_cash_receipts_all"
+    }
+  }
 }

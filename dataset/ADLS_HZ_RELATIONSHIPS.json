@@ -1,8 +1,8 @@
 {
-  "name": "ADLS_HZ_RELATIONSHIPS",
+  "name": "adls_hz_relationships",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "BFG_AZURE_STORAGE",
+      "referenceName": "bfg_azure_storage",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
@@ -11,10 +11,10 @@
       "location": {
         "type": "AzureBlobStorageLocation",
         "fileName": {
-          "value": "@concat('HZ_RELATIONSHIPS_', utcnow('yyyyMMddhhmmss'))",
+          "value": "@concat('hz_relationships_', utcnow('yyyyMMddhhmmss'))",
           "type": "Expression"
         },
-        "folderPath": "bfguk_erp_prod/schemas/AR/HZ_RELATIONSHIPS",
+        "folderPath": "bfguk_erp_prod/schemas/ar/hz_relationships",
         "container": "raw"
       },
       "columnDelimiter": "|",

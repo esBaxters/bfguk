@@ -1,8 +1,8 @@
 {
-  "name": "ARCHIVE_RA_CUSTOMER_TRX_ALL",
+  "name": "archive_ra_customer_trx_all",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "BFG_AZURE_STORAGE",
+      "referenceName": "bfg_azure_storage",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
@@ -10,7 +10,7 @@
     "typeProperties": {
       "location": {
         "type": "AzureBlobStorageLocation",
-        "folderPath": "bfguk_erp_prod/schemas/AR/RA_CUSTOMER_TRX_ALL",
+        "folderPath": "bfguk_erp_prod/schemas/ar/ra_customer_trx_all",
         "container": "archive"
       },
       "columnDelimiter": "|",

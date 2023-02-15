@@ -1,8 +1,8 @@
 {
-  "name": "ARCHIVE_IC_ITEM_MST_B",
+  "name": "archive_ic_item_mst_b",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "BFG_AZURE_STORAGE",
+      "referenceName": "bfg_azure_storage",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
@@ -10,7 +10,7 @@
     "typeProperties": {
       "location": {
         "type": "AzureBlobStorageLocation",
-        "folderPath": "bfguk_erp_prod/schemas/GMI/IC_ITEM_MST_B",
+        "folderPath": "bfguk_erp_prod/schemas/gmi/ic_item_mst_b",
         "container": "archive"
       },
       "columnDelimiter": "|",

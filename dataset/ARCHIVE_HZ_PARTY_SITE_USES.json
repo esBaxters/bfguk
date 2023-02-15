@@ -1,8 +1,8 @@
 {
-  "name": "ARCHIVE_HZ_PARTY_SITE_USES",
+  "name": "archive_hz_party_site_uses",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "BFG_AZURE_STORAGE",
+      "referenceName": "bfg_azure_storage",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
@@ -10,7 +10,7 @@
     "typeProperties": {
       "location": {
         "type": "AzureBlobStorageLocation",
-        "folderPath": "bfguk_erp_prod/schemas/AR/HZ_PARTY_SITE_USES",
+        "folderPath": "bfguk_erp_prod/schemas/ar/hz_party_site_uses",
         "container": "archive"
       },
       "columnDelimiter": "|",

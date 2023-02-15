@@ -1,16 +1,16 @@
 {
-	"name": "SQL_MTL_ITEM_CATEGORIES",
-	"properties": {
-		"linkedServiceName": {
-			"referenceName": "BFG_SQL_DB",
-			"type": "LinkedServiceReference"
-		},
-		"annotations": [],
-		"type": "AzureSqlTable",
-		"schema": [],
-		"typeProperties": {
-			"schema": "stg",
-			"table": "MTL_ITEM_CATEGORIES"
-		}
-	}
+  "name": "sql_mtl_item_categories",
+  "properties": {
+    "linkedServiceName": {
+      "referenceName": "bfg_sql_db",
+      "type": "LinkedServiceReference"
+    },
+    "annotations": [],
+    "type": "AzureSqlTable",
+    "schema": [],
+    "typeProperties": {
+      "schema": "stg",
+      "table": "mtl_item_categories"
+    }
+  }
 }

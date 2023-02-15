@@ -1,8 +1,8 @@
 {
-  "name": "ARCHIVE_HZ_PARTIES",
+  "name": "archive_hz_parties",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "BFG_AZURE_STORAGE",
+      "referenceName": "bfg_azure_storage",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
@@ -10,7 +10,7 @@
     "typeProperties": {
       "location": {
         "type": "AzureBlobStorageLocation",
-        "folderPath": "bfguk_erp_prod/schemas/AR/HZ_PARTIES",
+        "folderPath": "bfguk_erp_prod/schemas/ar/hz_parties",
         "container": "archive"
       },
       "columnDelimiter": "|",

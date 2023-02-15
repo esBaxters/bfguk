@@ -1,16 +1,16 @@
 {
-	"name": "SQL_HZ_CUST_ACCT_SITES_ALL",
-	"properties": {
-		"linkedServiceName": {
-			"referenceName": "BFG_SQL_DB",
-			"type": "LinkedServiceReference"
-		},
-		"annotations": [],
-		"type": "AzureSqlTable",
-		"schema": [],
-		"typeProperties": {
-			"schema": "stg",
-			"table": "HZ_CUST_ACCT_SITES_ALL"
-		}
-	}
+  "name": "sql_hz_cust_acct_sites_all",
+  "properties": {
+    "linkedServiceName": {
+      "referenceName": "bfg_sql_db",
+      "type": "LinkedServiceReference"
+    },
+    "annotations": [],
+    "type": "AzureSqlTable",
+    "schema": [],
+    "typeProperties": {
+      "schema": "stg",
+      "table": "hz_cust_acct_sites_all"
+    }
+  }
 }

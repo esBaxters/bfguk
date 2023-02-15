@@ -1,8 +1,8 @@
 {
-  "name": "ADLS_ODB_IC_ITEM_MST_B",
+  "name": "adls_odb_ic_item_mst_b",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "BFG_AZURE_STORAGE",
+      "referenceName": "bfg_azure_storage",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
@@ -11,10 +11,10 @@
       "location": {
         "type": "AzureBlobStorageLocation",
         "fileName": {
-          "value": "@concat('IC_ITEM_MST_B_', utcnow('yyyyMMddhhmmss'))",
+          "value": "@concat('ic_item_mst_b_', utcnow('yyyyMMddhhmmss'))",
           "type": "Expression"
         },
-        "folderPath": "bfguk_erp_prod/schemas/GMI/IC_ITEM_MST_B",
+        "folderPath": "bfguk_erp_prod/schemas/gmi/ic_item_mst_b",
         "container": "raw"
       },
       "columnDelimiter": "|",

@@ -1,16 +1,16 @@
 {
-  "name": "BFG_ODB_XLA_DISTRIBUTION_LINKS",
+  "name": "bfg_odb_xla_distribution_links",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "BFG_ORACLE_PROD",
+      "referenceName": "bfg_oracle_prod",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
     "type": "OracleTable",
     "schema": [],
     "typeProperties": {
-      "schema": "XLA",
-      "table": "XLA_DISTRIBUTION_LINKS"
+      "schema": "xla",
+      "table": "xla_distribution_links"
     }
   }
 }

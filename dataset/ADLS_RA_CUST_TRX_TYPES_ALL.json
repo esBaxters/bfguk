@@ -1,8 +1,8 @@
 {
-  "name": "ADLS_RA_CUST_TRX_TYPES_ALL",
+  "name": "adls_ra_cust_trx_types_all",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "BFG_AZURE_STORAGE",
+      "referenceName": "bfg_azure_storage",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
@@ -11,10 +11,10 @@
       "location": {
         "type": "AzureBlobStorageLocation",
         "fileName": {
-          "value": "@concat('RA_CUST_TRX_TYPES_ALL_', utcnow('yyyyMMddhhmmss'))",
+          "value": "@concat('ra_cust_trx_types_all_', utcnow('yyyyMMddhhmmss'))",
           "type": "Expression"
         },
-        "folderPath": "bfguk_erp_prod/schemas/AR/RA_CUST_TRX_TYPES_ALL",
+        "folderPath": "bfguk_erp_prod/schemas/ar/ra_cust_trx_types_all",
         "container": "raw"
       },
       "columnDelimiter": "|",

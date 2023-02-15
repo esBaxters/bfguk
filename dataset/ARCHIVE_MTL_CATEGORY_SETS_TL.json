@@ -1,8 +1,8 @@
 {
-  "name": "ARCHIVE_MTL_CATEGORY_SETS_TL",
+  "name": "archive_mtl_category_sets_tl",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "BFG_AZURE_STORAGE",
+      "referenceName": "bfg_azure_storage",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
@@ -10,7 +10,7 @@
     "typeProperties": {
       "location": {
         "type": "AzureBlobStorageLocation",
-        "folderPath": "bfguk_erp_prod/schemas/INV/MTL_CATEGORY_SETS_TL",
+        "folderPath": "bfguk_erp_prod/schemas/inv/mtl_category_sets_tl",
         "container": "archive"
       },
       "columnDelimiter": "|",

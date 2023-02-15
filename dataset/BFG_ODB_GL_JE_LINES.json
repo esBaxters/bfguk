@@ -1,16 +1,16 @@
 {
-  "name": "BFG_ODB_GL_JE_LINES",
+  "name": "bfg_odb_gl_je_lines",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "BFG_ORACLE_PROD",
+      "referenceName": "bfg_oracle_prod",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
     "type": "OracleTable",
     "schema": [],
     "typeProperties": {
-      "schema": "GL",
-      "table": "GL_JE_LINES"
+      "schema": "gl",
+      "table": "gl_je_lines"
     }
   }
 }
