@@ -1,16 +1,16 @@
 {
-  "name": "bfg_odb_xla_ae_headers",
+  "name": "BFG_ODB_XLA_AE_HEADERS",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "bfg_oracle_prod",
+      "referenceName": "BFG_ORACLE_PROD",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
     "type": "OracleTable",
     "schema": [],
     "typeProperties": {
-      "schema": "xla",
-      "table": "xla_ae_headers"
+      "schema": "XLA",
+      "table": "XLA_AE_HEADERS"
     }
   }
 }

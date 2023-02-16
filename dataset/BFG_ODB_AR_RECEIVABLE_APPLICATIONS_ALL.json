@@ -1,16 +1,16 @@
 {
-  "name": "bfg_odb_ar_receivable_applications_all",
+  "name": "BFG_ODB_AR_RECEIVABLE_APPLICATIONS_ALL",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "bfg_oracle_prod",
+      "referenceName": "BFG_ORACLE_PROD",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
     "type": "OracleTable",
     "schema": [],
     "typeProperties": {
-      "schema": "ar",
-      "table": "ar_receivable_applications_all"
+      "schema": "AR",
+      "table": "AR_RECEIVABLE_APPLICATIONS_ALL"
     }
   }
 }

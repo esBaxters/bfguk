@@ -1,5 +1,5 @@
 {
-  "name": "adls_gl_code_combinations",
+  "name": "ADLS_GL_IMPORT_REFERENCES",
   "properties": {
     "linkedServiceName": {
       "referenceName": "BFG_AZURE_STORAGE",
@@ -11,10 +11,10 @@
       "location": {
         "type": "AzureBlobStorageLocation",
         "fileName": {
-          "value": "@concat('gl_code_combinations_', utcnow('yyyyMMddhhmmss'))",
+          "value": "@concat('GL_IMPORT_REFERENCES_', utcnow('yyyyMMddhhmmss'))",
           "type": "Expression"
         },
-        "folderPath": "bfguk_erp_prod/schemas/gl/gl_code_combinations",
+        "folderPath": "bfguk_erp_prod/schemas/GL/GL_IMPORT_REFERENCES",
         "container": "raw"
       },
       "columnDelimiter": "|",

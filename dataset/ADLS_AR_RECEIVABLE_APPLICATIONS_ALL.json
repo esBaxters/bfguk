@@ -1,5 +1,5 @@
 {
-  "name": "adls_ar_receivable_applications_all",
+  "name": "ADLS_AR_RECEIVABLE_APPLICATIONS_ALL",
   "properties": {
     "linkedServiceName": {
       "referenceName": "BFG_AZURE_STORAGE",
@@ -11,10 +11,10 @@
       "location": {
         "type": "AzureBlobStorageLocation",
         "fileName": {
-          "value": "@concat('ar_receivable_applications_all_', utcnow('yyyyMMddhhmmss'))",
+          "value": "@concat('AR_RECEIVABLE_APPLICATIONS_ALL_', utcnow('yyyyMMddhhmmss'))",
           "type": "Expression"
         },
-        "folderPath": "bfguk_erp_prod/schemas/ar/ar_receivable_applications_all",
+        "folderPath": "bfguk_erp_prod/schemas/AR/AR_RECEIVABLE_APPLICATIONS_ALL",
         "container": "raw"
       },
       "columnDelimiter": "|",

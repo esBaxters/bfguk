@@ -1,16 +1,16 @@
 {
-  "name": "bfg_odb_mtl_item_categories",
+  "name": "BFG_ODB_MTL_ITEM_CATEGORIES",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "bfg_oracle_prod",
+      "referenceName": "BFG_ORACLE_PROD",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
     "type": "OracleTable",
     "schema": [],
     "typeProperties": {
-      "schema": "inv",
-      "table": "mtl_item_categories"
+      "schema": "INV",
+      "table": "MTL_ITEM_CATEGORIES"
     }
   }
 }

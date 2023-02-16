@@ -1,8 +1,8 @@
 {
-  "name": "adls_gl_ledgers",
+  "name": "ADLS_GL_LEDGERS",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "bfg_azure_storage",
+      "referenceName": "BFG_AZURE_STORAGE",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
@@ -11,10 +11,10 @@
       "location": {
         "type": "AzureBlobStorageLocation",
         "fileName": {
-          "value": "@concat('gl_ledgers_', utcnow('yyyyMMddhhmmss'))",
+          "value": "@concat('GL_LEDGERS_', utcnow('yyyyMMddhhmmss'))",
           "type": "Expression"
         },
-        "folderPath": "bfguk_erp_prod/schemas/gl/gl_ledgers",
+        "folderPath": "bfguk_erp_prod/schemas/GL/GL_LEDGERS",
         "container": "raw"
       },
       "columnDelimiter": "|",

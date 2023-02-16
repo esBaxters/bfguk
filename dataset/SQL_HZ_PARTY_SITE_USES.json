@@ -1,16 +1,16 @@
 {
-  "name": "sql_hz_party_site_uses",
-  "properties": {
-    "linkedServiceName": {
-      "referenceName": "bfg_sql_db",
-      "type": "LinkedServiceReference"
-    },
-    "annotations": [],
-    "type": "AzureSqlTable",
-    "schema": [],
-    "typeProperties": {
-      "schema": "stg",
-      "table": "hz_party_site_uses"
-    }
-  }
+	"name": "SQL_HZ_PARTY_SITE_USES",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "BFG_SQL_DB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "stg",
+			"table": "HZ_PARTY_SITE_USES"
+		}
+	}
 }

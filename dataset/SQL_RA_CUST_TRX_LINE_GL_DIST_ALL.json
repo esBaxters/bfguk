@@ -1,16 +1,16 @@
 {
-  "name": "sql_ra_cust_trx_line_gl_dist_all",
-  "properties": {
-    "linkedServiceName": {
-      "referenceName": "bfg_sql_db",
-      "type": "LinkedServiceReference"
-    },
-    "annotations": [],
-    "type": "AzureSqlTable",
-    "schema": [],
-    "typeProperties": {
-      "schema": "stg",
-      "table": "ra_cust_trx_line_gl_dist_all"
-    }
-  }
+	"name": "SQL_RA_CUST_TRX_LINE_GL_DIST_ALL",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "BFG_SQL_DB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "stg",
+			"table": "RA_CUST_TRX_LINE_GL_DIST_ALL"
+		}
+	}
 }

@@ -1,16 +1,16 @@
 {
-  "name": "sql_oe_order_lines_all",
-  "properties": {
-    "linkedServiceName": {
-      "referenceName": "bfg_sql_db",
-      "type": "LinkedServiceReference"
-    },
-    "annotations": [],
-    "type": "AzureSqlTable",
-    "schema": [],
-    "typeProperties": {
-      "schema": "stg",
-      "table": "oe_order_lines_all"
-    }
-  }
+	"name": "SQL_OE_ORDER_LINES_ALL",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "BFG_SQL_DB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "stg",
+			"table": "OE_ORDER_LINES_ALL"
+		}
+	}
 }

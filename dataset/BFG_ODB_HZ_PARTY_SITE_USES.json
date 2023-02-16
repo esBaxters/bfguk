@@ -1,16 +1,16 @@
 {
-  "name": "bfg_odb_hz_party_site_uses",
+  "name": "BFG_ODB_HZ_PARTY_SITE_USES",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "bfg_oracle_prod",
+      "referenceName": "BFG_ORACLE_PROD",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
     "type": "OracleTable",
     "schema": [],
     "typeProperties": {
-      "schema": "ar",
-      "table": "hz_party_site_uses"
+      "schema": "AR",
+      "table": "HZ_PARTY_SITE_USES"
     }
   }
 }

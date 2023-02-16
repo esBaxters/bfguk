@@ -1,8 +1,8 @@
 {
-  "name": "adls_gl_sets_of_books",
+  "name": "ADLS_GL_SETS_OF_BOOKS",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "bfg_azure_storage",
+      "referenceName": "BFG_AZURE_STORAGE",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
@@ -11,10 +11,10 @@
       "location": {
         "type": "AzureBlobStorageLocation",
         "fileName": {
-          "value": "@concat('gl_sets_of_books_', utcnow('yyyyMMddhhmmss'))",
+          "value": "@concat('GL_SETS_OF_BOOKS_', utcnow('yyyyMMddhhmmss'))",
           "type": "Expression"
         },
-        "folderPath": "bfguk_erp_prod/schemas/gl/gl_sets_of_books",
+        "folderPath": "bfguk_erp_prod/schemas/GL/GL_SETS_OF_BOOKS",
         "container": "raw"
       },
       "columnDelimiter": "|",

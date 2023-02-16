@@ -1,16 +1,16 @@
 {
-  "name": "sql_mtl_uom_conversions",
-  "properties": {
-    "linkedServiceName": {
-      "referenceName": "bfg_sql_db",
-      "type": "LinkedServiceReference"
-    },
-    "annotations": [],
-    "type": "AzureSqlTable",
-    "schema": [],
-    "typeProperties": {
-      "schema": "stg",
-      "table": "mtl_uom_conversions"
-    }
-  }
+	"name": "SQL_MTL_UOM_CONVERSIONS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "BFG_SQL_DB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "stg",
+			"table": "MTL_UOM_CONVERSIONS"
+		}
+	}
 }

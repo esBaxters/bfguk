@@ -1,16 +1,16 @@
 {
-  "name": "bfg_odb_hz_cust_acct_sites_all",
+  "name": "BFG_ODB_HZ_CUST_ACCT_SITES_ALL",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "bfg_oracle_prod",
+      "referenceName": "BFG_ORACLE_PROD",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
     "type": "OracleTable",
     "schema": [],
     "typeProperties": {
-      "schema": "ar",
-      "table": "hz_cust_acct_sites_all"
+      "schema": "AR",
+      "table": "HZ_CUST_ACCT_SITES_ALL"
     }
   }
 }

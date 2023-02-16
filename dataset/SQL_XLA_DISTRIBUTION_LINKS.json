@@ -1,16 +1,16 @@
 {
-  "name": "sql_xla_distribution_links",
-  "properties": {
-    "linkedServiceName": {
-      "referenceName": "bfg_sql_db",
-      "type": "LinkedServiceReference"
-    },
-    "annotations": [],
-    "type": "AzureSqlTable",
-    "schema": [],
-    "typeProperties": {
-      "schema": "stg",
-      "table": "xla_distribution_links"
-    }
-  }
+	"name": "SQL_XLA_DISTRIBUTION_LINKS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "BFG_SQL_DB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "stg",
+			"table": "XLA_DISTRIBUTION_LINKS"
+		}
+	}
 }

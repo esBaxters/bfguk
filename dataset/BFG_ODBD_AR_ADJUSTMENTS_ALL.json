@@ -1,16 +1,16 @@
 {
-  "name": "bfg_odbd_ar_adjustments_all",
+  "name": "BFG_ODBD_AR_ADJUSTMENTS_ALL",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "bfg_oracle_prod",
+      "referenceName": "BFG_ORACLE_PROD",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
     "type": "OracleTable",
     "schema": [],
     "typeProperties": {
-      "schema": "ar",
-      "table": "ar_adjustments_all"
+      "schema": "AR",
+      "table": "AR_ADJUSTMENTS_ALL"
     }
   }
 }

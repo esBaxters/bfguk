@@ -1,8 +1,8 @@
 {
-  "name": "adls_gl_je_headers",
+  "name": "ADLS_GL_JE_HEADERS",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "bfg_azure_storage",
+      "referenceName": "BFG_AZURE_STORAGE",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
@@ -11,10 +11,10 @@
       "location": {
         "type": "AzureBlobStorageLocation",
         "fileName": {
-          "value": "@concat('gl_je_headers_', utcnow('yyyyMMddhhmmss'))",
+          "value": "@concat('GL_JE_HEADERS_', utcnow('yyyyMMddhhmmss'))",
           "type": "Expression"
         },
-        "folderPath": "bfguk_erp_prod/schemas/gl/gl_je_headers",
+        "folderPath": "bfguk_erp_prod/schemas/GL/GL_JE_HEADERS",
         "container": "raw"
       },
       "columnDelimiter": "|",

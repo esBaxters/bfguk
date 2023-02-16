@@ -1,8 +1,8 @@
 {
-  "name": "archive_mtl_uom_conversions",
+  "name": "ARCHIVE_MTL_UOM_CONVERSIONS",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "bfg_azure_storage",
+      "referenceName": "BFG_AZURE_STORAGE",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
@@ -10,7 +10,7 @@
     "typeProperties": {
       "location": {
         "type": "AzureBlobStorageLocation",
-        "folderPath": "bfguk_erp_prod/schemas/inv/mtl_uom_conversions",
+        "folderPath": "bfguk_erp_prod/schemas/INV/MTL_UOM_CONVERSIONS",
         "container": "archive"
       },
       "columnDelimiter": "|",

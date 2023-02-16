@@ -1,8 +1,8 @@
 {
-  "name": "adls_xla_distribution_links",
+  "name": "ADLS_XLA_DISTRIBUTION_LINKS",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "bfg_azure_storage",
+      "referenceName": "BFG_AZURE_STORAGE",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
@@ -11,10 +11,10 @@
       "location": {
         "type": "AzureBlobStorageLocation",
         "fileName": {
-          "value": "@concat('xla_distribution_links_', utcnow('yyyyMMddhhmmss'))",
+          "value": "@concat('XLA_DISTRIBUTION_LINKS_', utcnow('yyyyMMddhhmmss'))",
           "type": "Expression"
         },
-        "folderPath": "bfguk_erp_prod/schemas/xla/xla_distribution_links",
+        "folderPath": "bfguk_erp_prod/schemas/XLA/XLA_DISTRIBUTION_LINKS",
         "container": "raw"
       },
       "columnDelimiter": "|",

@@ -1,8 +1,8 @@
 {
-  "name": "adls_stg_hz_parties",
+  "name": "ADLS_STG_HZ_PARTIES",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "bfg_azure_storage",
+      "referenceName": "BFG_AZURE_STORAGE",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
@@ -11,10 +11,10 @@
       "location": {
         "type": "AzureBlobStorageLocation",
         "fileName": {
-          "value": "@Concat('hz_parties_', utcnow('yyyyMMddhhmmss'))",
+          "value": "@Concat('HZ_PARTIES_', utcnow('yyyyMMddhhmmss'))",
           "type": "Expression"
         },
-        "folderPath": "bfguk_erp_prod/schemas/ar/hz_parties",
+        "folderPath": "bfguk_erp_prod/schemas/AR/HZ_PARTIES",
         "container": "raw"
       },
       "columnDelimiter": "|",

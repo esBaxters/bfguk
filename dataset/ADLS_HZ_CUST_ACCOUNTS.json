@@ -1,8 +1,8 @@
 {
-  "name": "adls_hz_cust_accounts",
+  "name": "ADLS_HZ_CUST_ACCOUNTS",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "bfg_azure_storage",
+      "referenceName": "BFG_AZURE_STORAGE",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
@@ -11,10 +11,10 @@
       "location": {
         "type": "AzureBlobStorageLocation",
         "fileName": {
-          "value": "@Concat('hz_cust_accounts_', utcnow('yyyyMMddhhmmss'))",
+          "value": "@Concat('HZ_CUST_ACCOUNTS_', utcnow('yyyyMMddhhmmss'))",
           "type": "Expression"
         },
-        "folderPath": "bfguk_erp_prod/schemas/ar/hz_cust_accounts",
+        "folderPath": "bfguk_erp_prod/schemas/AR/HZ_CUST_ACCOUNTS",
         "container": "raw"
       },
       "columnDelimiter": "|",

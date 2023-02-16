@@ -1,8 +1,8 @@
 {
-  "name": "archive_mtl_system_items_tl",
+  "name": "ARCHIVE_MTL_SYSTEM_ITEMS_TL",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "bfg_azure_storage",
+      "referenceName": "BFG_AZURE_STORAGE",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
@@ -10,7 +10,7 @@
     "typeProperties": {
       "location": {
         "type": "AzureBlobStorageLocation",
-        "folderPath": "bfguk_erp_prod/schemas/inv/mtl_system_items_tl",
+        "folderPath": "bfguk_erp_prod/schemas/INV/MTL_SYSTEM_ITEMS_TL",
         "container": "archive"
       },
       "columnDelimiter": "|",

@@ -1,16 +1,16 @@
 {
-  "name": "bfg_fnd_lookup_values",
+  "name": "BFG_FND_LOOKUP_VALUES",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "bfg_oracle_prod",
+      "referenceName": "BFG_ORACLE_PROD",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
     "type": "OracleTable",
     "schema": [],
     "typeProperties": {
-      "schema": "applsys",
-      "table": "fnd_lookup_values"
+      "schema": "APPLSYS",
+      "table": "FND_LOOKUP_VALUES"
     }
   }
 }

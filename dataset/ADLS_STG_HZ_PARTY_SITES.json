@@ -1,8 +1,8 @@
 {
-  "name": "adls_stg_hz_party_sites",
+  "name": "ADLS_STG_HZ_PARTY_SITES",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "bfg_azure_storage",
+      "referenceName": "BFG_AZURE_STORAGE",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
@@ -11,10 +11,10 @@
       "location": {
         "type": "AzureBlobStorageLocation",
         "fileName": {
-          "value": "@concat('hz_party_sites_', utcnow('yyyyMMddhhmmss'))",
+          "value": "@concat('HZ_PARTY_SITES_', utcnow('yyyyMMddhhmmss'))",
           "type": "Expression"
         },
-        "folderPath": "bfguk_erp_prod/schemas/ar/hz_party_sites",
+        "folderPath": "bfguk_erp_prod/schemas/AR/HZ_PARTY_SITES",
         "container": "raw"
       },
       "columnDelimiter": "|",

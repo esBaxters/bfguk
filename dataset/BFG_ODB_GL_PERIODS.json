@@ -1,16 +1,16 @@
 {
-  "name": "bfg_odb_gl_periods",
+  "name": "BFG_ODB_GL_PERIODS",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "bfg_oracle_prod",
+      "referenceName": "BFG_ORACLE_PROD",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
     "type": "OracleTable",
     "schema": [],
     "typeProperties": {
-      "schema": "gl",
-      "table": "gl_periods"
+      "schema": "GL",
+      "table": "GL_PERIODS"
     }
   }
 }

@@ -1,8 +1,8 @@
 {
-	"name": "sql_oe_order_headers_all",
+	"name": "SQL_OE_ORDER_HEADERS_ALL",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "bfg_sql_db",
+			"referenceName": "BFG_SQL_DB",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
@@ -10,7 +10,7 @@
 		"schema": [],
 		"typeProperties": {
 			"schema": "stg",
-			"table": "oe_order_headers_all"
+			"table": "OE_ORDER_HEADERS_ALL"
 		}
 	}
 }

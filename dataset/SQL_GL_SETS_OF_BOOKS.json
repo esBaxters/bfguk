@@ -1,16 +1,16 @@
 {
-  "name": "sql_gl_sets_of_books",
-  "properties": {
-    "linkedServiceName": {
-      "referenceName": "bfg_sql_db",
-      "type": "LinkedServiceReference"
-    },
-    "annotations": [],
-    "type": "AzureSqlTable",
-    "schema": [],
-    "typeProperties": {
-      "schema": "stg",
-      "table": "gl_sets_of_books"
-    }
-  }
+	"name": "SQL_GL_SETS_OF_BOOKS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "BFG_SQL_DB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "stg",
+			"table": "GL_SETS_OF_BOOKS"
+		}
+	}
 }

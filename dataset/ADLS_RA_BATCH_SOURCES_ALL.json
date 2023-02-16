@@ -1,8 +1,8 @@
 {
-  "name": "adls_ra_batch_sources_all",
+  "name": "ADLS_RA_BATCH_SOURCES_ALL",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "bfg_azure_storage",
+      "referenceName": "BFG_AZURE_STORAGE",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
@@ -11,10 +11,10 @@
       "location": {
         "type": "AzureBlobStorageLocation",
         "fileName": {
-          "value": "@concat('ra_batch_sources_all_', utcnow('yyyyMMddhhmmss'))",
+          "value": "@concat('RA_BATCH_SOURCES_ALL_', utcnow('yyyyMMddhhmmss'))",
           "type": "Expression"
         },
-        "folderPath": "bfguk_erp_prod/schemas/ar/ra_batch_sources_all",
+        "folderPath": "bfguk_erp_prod/schemas/AR/RA_BATCH_SOURCES_ALL",
         "container": "raw"
       },
       "columnDelimiter": "|",

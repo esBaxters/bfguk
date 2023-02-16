@@ -1,16 +1,16 @@
 {
-  "name": "bfg_odb_xla_events",
+  "name": "BFG_ODB_XLA_EVENTS",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "bfg_oracle_prod",
+      "referenceName": "BFG_ORACLE_PROD",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
     "type": "OracleTable",
     "schema": [],
     "typeProperties": {
-      "schema": "xla",
-      "table": "xla_events"
+      "schema": "XLA",
+      "table": "XLA_EVENTS"
     }
   }
 }

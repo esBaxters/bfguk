@@ -1,16 +1,16 @@
 {
-  "name": "bfg_odb_hz_locations",
+  "name": "BFG_ODB_HZ_LOCATIONS",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "bfg_oracle_prod",
+      "referenceName": "BFG_ORACLE_PROD",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
     "type": "OracleTable",
     "schema": [],
     "typeProperties": {
-      "schema": "ar",
-      "table": "hz_locations"
+      "schema": "AR",
+      "table": "HZ_LOCATIONS"
     }
   }
 }

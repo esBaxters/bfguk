@@ -1,8 +1,8 @@
 {
-  "name": "archive_fnd_lookup_values",
+  "name": "ARCHIVE_FND_LOOKUP_VALUES",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "bfg_azure_storage",
+      "referenceName": "BFG_AZURE_STORAGE",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
@@ -10,7 +10,7 @@
     "typeProperties": {
       "location": {
         "type": "AzureBlobStorageLocation",
-        "folderPath": "bfguk_erp_prod/schemas/applsys",
+        "folderPath": "bfguk_erp_prod/schemas/APPLSYS",
         "container": "archive"
       },
       "columnDelimiter": "|",

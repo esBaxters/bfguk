@@ -1,781 +1,781 @@
 {
-  "name": "bfg_asdl_ra_customer_trx_all",
+  "name": "BFG_ASQL_RA_CUSTOMER_TRX_ALL",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "bfg_sql_db",
+      "referenceName": "BFG_SQL_DB",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
     "type": "AzureSqlTable",
     "schema": [
       {
-        "name": "customer_trx_id",
+        "name": "CUSTOMER_TRX_ID",
         "type": "nvarchar"
       },
       {
-        "name": "last_update_date",
+        "name": "LAST_UPDATE_DATE",
         "type": "nvarchar"
       },
       {
-        "name": "last_updated_by",
+        "name": "LAST_UPDATED_BY",
         "type": "nvarchar"
       },
       {
-        "name": "creation_date",
+        "name": "CREATION_DATE",
         "type": "nvarchar"
       },
       {
-        "name": "created_by",
+        "name": "CREATED_BY",
         "type": "nvarchar"
       },
       {
-        "name": "last_update_login",
+        "name": "LAST_UPDATE_LOGIN",
         "type": "nvarchar"
       },
       {
-        "name": "trx_number",
+        "name": "TRX_NUMBER",
         "type": "nvarchar"
       },
       {
-        "name": "cust_trx_type_id",
+        "name": "CUST_TRX_TYPE_ID",
         "type": "nvarchar"
       },
       {
-        "name": "trx_date",
+        "name": "TRX_DATE",
         "type": "nvarchar"
       },
       {
-        "name": "set_of_books_id",
+        "name": "SET_OF_BOOKS_ID",
         "type": "nvarchar"
       },
       {
-        "name": "bill_to_contact_id",
+        "name": "BILL_TO_CONTACT_ID",
         "type": "nvarchar"
       },
       {
-        "name": "batch_id",
+        "name": "BATCH_ID",
         "type": "nvarchar"
       },
       {
-        "name": "batch_source_id",
+        "name": "BATCH_SOURCE_ID",
         "type": "nvarchar"
       },
       {
-        "name": "reason_code",
+        "name": "REASON_CODE",
         "type": "nvarchar"
       },
       {
-        "name": "sold_to_customer_id",
+        "name": "SOLD_TO_CUSTOMER_ID",
         "type": "nvarchar"
       },
       {
-        "name": "sold_to_contact_id",
+        "name": "SOLD_TO_CONTACT_ID",
         "type": "nvarchar"
       },
       {
-        "name": "sold_to_site_use_id",
+        "name": "SOLD_TO_SITE_USE_ID",
         "type": "nvarchar"
       },
       {
-        "name": "bill_to_customer_id",
+        "name": "BILL_TO_CUSTOMER_ID",
         "type": "nvarchar"
       },
       {
-        "name": "bill_to_site_use_id",
+        "name": "BILL_TO_SITE_USE_ID",
         "type": "nvarchar"
       },
       {
-        "name": "ship_to_customer_id",
+        "name": "SHIP_TO_CUSTOMER_ID",
         "type": "nvarchar"
       },
       {
-        "name": "ship_to_contact_id",
+        "name": "SHIP_TO_CONTACT_ID",
         "type": "nvarchar"
       },
       {
-        "name": "ship_to_site_use_id",
+        "name": "SHIP_TO_SITE_USE_ID",
         "type": "nvarchar"
       },
       {
-        "name": "shipment_id",
+        "name": "SHIPMENT_ID",
         "type": "nvarchar"
       },
       {
-        "name": "remit_to_address_id",
+        "name": "REMIT_TO_ADDRESS_ID",
         "type": "nvarchar"
       },
       {
-        "name": "term_id",
+        "name": "TERM_ID",
         "type": "nvarchar"
       },
       {
-        "name": "term_due_date",
+        "name": "TERM_DUE_DATE",
         "type": "nvarchar"
       },
       {
-        "name": "previous_customer_trx_id",
+        "name": "PREVIOUS_CUSTOMER_TRX_ID",
         "type": "nvarchar"
       },
       {
-        "name": "primary_salesrep_id",
+        "name": "PRIMARY_SALESREP_ID",
         "type": "nvarchar"
       },
       {
-        "name": "printing_original_date",
+        "name": "PRINTING_ORIGINAL_DATE",
         "type": "nvarchar"
       },
       {
-        "name": "printing_last_printed",
+        "name": "PRINTING_LAST_PRINTED",
         "type": "nvarchar"
       },
       {
-        "name": "printing_option",
+        "name": "PRINTING_OPTION",
         "type": "nvarchar"
       },
       {
-        "name": "printing_count",
+        "name": "PRINTING_COUNT",
         "type": "nvarchar"
       },
       {
-        "name": "printing_pending",
+        "name": "PRINTING_PENDING",
         "type": "nvarchar"
       },
       {
-        "name": "purchase_order",
+        "name": "PURCHASE_ORDER",
         "type": "nvarchar"
       },
       {
-        "name": "purchase_order_revision",
+        "name": "PURCHASE_ORDER_REVISION",
         "type": "nvarchar"
       },
       {
-        "name": "purchase_order_date",
+        "name": "PURCHASE_ORDER_DATE",
         "type": "nvarchar"
       },
       {
-        "name": "customer_reference",
+        "name": "CUSTOMER_REFERENCE",
         "type": "nvarchar"
       },
       {
-        "name": "customer_reference_date",
+        "name": "CUSTOMER_REFERENCE_DATE",
         "type": "nvarchar"
       },
       {
-        "name": "comments",
+        "name": "COMMENTS",
         "type": "nvarchar"
       },
       {
-        "name": "internal_notes",
+        "name": "INTERNAL_NOTES",
         "type": "nvarchar"
       },
       {
-        "name": "exchange_rate_type",
+        "name": "EXCHANGE_RATE_TYPE",
         "type": "nvarchar"
       },
       {
-        "name": "exchange_date",
+        "name": "EXCHANGE_DATE",
         "type": "nvarchar"
       },
       {
-        "name": "exchange_rate",
+        "name": "EXCHANGE_RATE",
         "type": "nvarchar"
       },
       {
-        "name": "territory_id",
+        "name": "TERRITORY_ID",
         "type": "nvarchar"
       },
       {
-        "name": "invoice_currency_code",
+        "name": "INVOICE_CURRENCY_CODE",
         "type": "nvarchar"
       },
       {
-        "name": "initial_customer_trx_id",
+        "name": "INITIAL_CUSTOMER_TRX_ID",
         "type": "nvarchar"
       },
       {
-        "name": "agreement_id",
+        "name": "AGREEMENT_ID",
         "type": "nvarchar"
       },
       {
-        "name": "end_date_commitment",
+        "name": "END_DATE_COMMITMENT",
         "type": "nvarchar"
       },
       {
-        "name": "start_date_commitment",
+        "name": "START_DATE_COMMITMENT",
         "type": "nvarchar"
       },
       {
-        "name": "last_printed_sequence_num",
+        "name": "LAST_PRINTED_SEQUENCE_NUM",
         "type": "nvarchar"
       },
       {
-        "name": "attribute_category",
+        "name": "ATTRIBUTE_CATEGORY",
         "type": "nvarchar"
       },
       {
-        "name": "attribute1",
+        "name": "ATTRIBUTE1",
         "type": "nvarchar"
       },
       {
-        "name": "attribute2",
+        "name": "ATTRIBUTE2",
         "type": "nvarchar"
       },
       {
-        "name": "attribute3",
+        "name": "ATTRIBUTE3",
         "type": "nvarchar"
       },
       {
-        "name": "attribute4",
+        "name": "ATTRIBUTE4",
         "type": "nvarchar"
       },
       {
-        "name": "attribute5",
+        "name": "ATTRIBUTE5",
         "type": "nvarchar"
       },
       {
-        "name": "attribute6",
+        "name": "ATTRIBUTE6",
         "type": "nvarchar"
       },
       {
-        "name": "attribute7",
+        "name": "ATTRIBUTE7",
         "type": "nvarchar"
       },
       {
-        "name": "attribute8",
+        "name": "ATTRIBUTE8",
         "type": "nvarchar"
       },
       {
-        "name": "attribute9",
+        "name": "ATTRIBUTE9",
         "type": "nvarchar"
       },
       {
-        "name": "attribute10",
+        "name": "ATTRIBUTE10",
         "type": "nvarchar"
       },
       {
-        "name": "orig_system_batch_name",
+        "name": "ORIG_SYSTEM_BATCH_NAME",
         "type": "nvarchar"
       },
       {
-        "name": "post_request_id",
+        "name": "POST_REQUEST_ID",
         "type": "nvarchar"
       },
       {
-        "name": "request_id",
+        "name": "REQUEST_ID",
         "type": "nvarchar"
       },
       {
-        "name": "program_application_id",
+        "name": "PROGRAM_APPLICATION_ID",
         "type": "nvarchar"
       },
       {
-        "name": "program_id",
+        "name": "PROGRAM_ID",
         "type": "nvarchar"
       },
       {
-        "name": "program_update_date",
+        "name": "PROGRAM_UPDATE_DATE",
         "type": "nvarchar"
       },
       {
-        "name": "finance_charges",
+        "name": "FINANCE_CHARGES",
         "type": "nvarchar"
       },
       {
-        "name": "complete_flag",
+        "name": "COMPLETE_FLAG",
         "type": "nvarchar"
       },
       {
-        "name": "posting_control_id",
+        "name": "POSTING_CONTROL_ID",
         "type": "nvarchar"
       },
       {
-        "name": "bill_to_address_id",
+        "name": "BILL_TO_ADDRESS_ID",
         "type": "nvarchar"
       },
       {
-        "name": "ra_post_loop_number",
+        "name": "RA_POST_LOOP_NUMBER",
         "type": "nvarchar"
       },
       {
-        "name": "ship_to_address_id",
+        "name": "SHIP_TO_ADDRESS_ID",
         "type": "nvarchar"
       },
       {
-        "name": "credit_method_for_rules",
+        "name": "CREDIT_METHOD_FOR_RULES",
         "type": "nvarchar"
       },
       {
-        "name": "credit_method_for_installments",
+        "name": "CREDIT_METHOD_FOR_INSTALLMENTS",
         "type": "nvarchar"
       },
       {
-        "name": "receipt_method_id",
+        "name": "RECEIPT_METHOD_ID",
         "type": "nvarchar"
       },
       {
-        "name": "attribute11",
+        "name": "ATTRIBUTE11",
         "type": "nvarchar"
       },
       {
-        "name": "attribute12",
+        "name": "ATTRIBUTE12",
         "type": "nvarchar"
       },
       {
-        "name": "attribute13",
+        "name": "ATTRIBUTE13",
         "type": "nvarchar"
       },
       {
-        "name": "attribute14",
+        "name": "ATTRIBUTE14",
         "type": "nvarchar"
       },
       {
-        "name": "attribute15",
+        "name": "ATTRIBUTE15",
         "type": "nvarchar"
       },
       {
-        "name": "related_customer_trx_id",
+        "name": "RELATED_CUSTOMER_TRX_ID",
         "type": "nvarchar"
       },
       {
-        "name": "invoicing_rule_id",
+        "name": "INVOICING_RULE_ID",
         "type": "nvarchar"
       },
       {
-        "name": "ship_via",
+        "name": "SHIP_VIA",
         "type": "nvarchar"
       },
       {
-        "name": "ship_date_actual",
+        "name": "SHIP_DATE_ACTUAL",
         "type": "nvarchar"
       },
       {
-        "name": "waybill_number",
+        "name": "WAYBILL_NUMBER",
         "type": "nvarchar"
       },
       {
-        "name": "fob_point",
+        "name": "FOB_POINT",
         "type": "nvarchar"
       },
       {
-        "name": "customer_bank_account_id",
+        "name": "CUSTOMER_BANK_ACCOUNT_ID",
         "type": "nvarchar"
       },
       {
-        "name": "interface_header_attribute1",
+        "name": "INTERFACE_HEADER_ATTRIBUTE1",
         "type": "nvarchar"
       },
       {
-        "name": "interface_header_attribute2",
+        "name": "INTERFACE_HEADER_ATTRIBUTE2",
         "type": "nvarchar"
       },
       {
-        "name": "interface_header_attribute3",
+        "name": "INTERFACE_HEADER_ATTRIBUTE3",
         "type": "nvarchar"
       },
       {
-        "name": "interface_header_attribute4",
+        "name": "INTERFACE_HEADER_ATTRIBUTE4",
         "type": "nvarchar"
       },
       {
-        "name": "interface_header_attribute5",
+        "name": "INTERFACE_HEADER_ATTRIBUTE5",
         "type": "nvarchar"
       },
       {
-        "name": "interface_header_attribute6",
+        "name": "INTERFACE_HEADER_ATTRIBUTE6",
         "type": "nvarchar"
       },
       {
-        "name": "interface_header_attribute7",
+        "name": "INTERFACE_HEADER_ATTRIBUTE7",
         "type": "nvarchar"
       },
       {
-        "name": "interface_header_attribute8",
+        "name": "INTERFACE_HEADER_ATTRIBUTE8",
         "type": "nvarchar"
       },
       {
-        "name": "interface_header_context",
+        "name": "INTERFACE_HEADER_CONTEXT",
         "type": "nvarchar"
       },
       {
-        "name": "default_ussgl_trx_code_context",
+        "name": "DEFAULT_USSGL_TRX_CODE_CONTEXT",
         "type": "nvarchar"
       },
       {
-        "name": "interface_header_attribute10",
+        "name": "INTERFACE_HEADER_ATTRIBUTE10",
         "type": "nvarchar"
       },
       {
-        "name": "interface_header_attribute11",
+        "name": "INTERFACE_HEADER_ATTRIBUTE11",
         "type": "nvarchar"
       },
       {
-        "name": "interface_header_attribute12",
+        "name": "INTERFACE_HEADER_ATTRIBUTE12",
         "type": "nvarchar"
       },
       {
-        "name": "interface_header_attribute13",
+        "name": "INTERFACE_HEADER_ATTRIBUTE13",
         "type": "nvarchar"
       },
       {
-        "name": "interface_header_attribute14",
+        "name": "INTERFACE_HEADER_ATTRIBUTE14",
         "type": "nvarchar"
       },
       {
-        "name": "interface_header_attribute15",
+        "name": "INTERFACE_HEADER_ATTRIBUTE15",
         "type": "nvarchar"
       },
       {
-        "name": "interface_header_attribute9",
+        "name": "INTERFACE_HEADER_ATTRIBUTE9",
         "type": "nvarchar"
       },
       {
-        "name": "default_ussgl_transaction_code",
+        "name": "DEFAULT_USSGL_TRANSACTION_CODE",
         "type": "nvarchar"
       },
       {
-        "name": "recurred_from_trx_number",
+        "name": "RECURRED_FROM_TRX_NUMBER",
         "type": "nvarchar"
       },
       {
-        "name": "status_trx",
+        "name": "STATUS_TRX",
         "type": "nvarchar"
       },
       {
-        "name": "doc_sequence_id",
+        "name": "DOC_SEQUENCE_ID",
         "type": "nvarchar"
       },
       {
-        "name": "doc_sequence_value",
+        "name": "DOC_SEQUENCE_VALUE",
         "type": "nvarchar"
       },
       {
-        "name": "paying_customer_id",
+        "name": "PAYING_CUSTOMER_ID",
         "type": "nvarchar"
       },
       {
-        "name": "paying_site_use_id",
+        "name": "PAYING_SITE_USE_ID",
         "type": "nvarchar"
       },
       {
-        "name": "related_batch_source_id",
+        "name": "RELATED_BATCH_SOURCE_ID",
         "type": "nvarchar"
       },
       {
-        "name": "default_tax_exempt_flag",
+        "name": "DEFAULT_TAX_EXEMPT_FLAG",
         "type": "nvarchar"
       },
       {
-        "name": "created_from",
+        "name": "CREATED_FROM",
         "type": "nvarchar"
       },
       {
-        "name": "org_id",
+        "name": "ORG_ID",
         "type": "nvarchar"
       },
       {
-        "name": "wh_update_date",
+        "name": "WH_UPDATE_DATE",
         "type": "nvarchar"
       },
       {
-        "name": "global_attribute1",
+        "name": "GLOBAL_ATTRIBUTE1",
         "type": "nvarchar"
       },
       {
-        "name": "global_attribute2",
+        "name": "GLOBAL_ATTRIBUTE2",
         "type": "nvarchar"
       },
       {
-        "name": "global_attribute3",
+        "name": "GLOBAL_ATTRIBUTE3",
         "type": "nvarchar"
       },
       {
-        "name": "global_attribute4",
+        "name": "GLOBAL_ATTRIBUTE4",
         "type": "nvarchar"
       },
       {
-        "name": "global_attribute5",
+        "name": "GLOBAL_ATTRIBUTE5",
         "type": "nvarchar"
       },
       {
-        "name": "global_attribute6",
+        "name": "GLOBAL_ATTRIBUTE6",
         "type": "nvarchar"
       },
       {
-        "name": "global_attribute7",
+        "name": "GLOBAL_ATTRIBUTE7",
         "type": "nvarchar"
       },
       {
-        "name": "global_attribute8",
+        "name": "GLOBAL_ATTRIBUTE8",
         "type": "nvarchar"
       },
       {
-        "name": "global_attribute9",
+        "name": "GLOBAL_ATTRIBUTE9",
         "type": "nvarchar"
       },
       {
-        "name": "global_attribute10",
+        "name": "GLOBAL_ATTRIBUTE10",
         "type": "nvarchar"
       },
       {
-        "name": "global_attribute11",
+        "name": "GLOBAL_ATTRIBUTE11",
         "type": "nvarchar"
       },
       {
-        "name": "global_attribute12",
+        "name": "GLOBAL_ATTRIBUTE12",
         "type": "nvarchar"
       },
       {
-        "name": "global_attribute13",
+        "name": "GLOBAL_ATTRIBUTE13",
         "type": "nvarchar"
       },
       {
-        "name": "global_attribute14",
+        "name": "GLOBAL_ATTRIBUTE14",
         "type": "nvarchar"
       },
       {
-        "name": "global_attribute15",
+        "name": "GLOBAL_ATTRIBUTE15",
         "type": "nvarchar"
       },
       {
-        "name": "global_attribute16",
+        "name": "GLOBAL_ATTRIBUTE16",
         "type": "nvarchar"
       },
       {
-        "name": "global_attribute17",
+        "name": "GLOBAL_ATTRIBUTE17",
         "type": "nvarchar"
       },
       {
-        "name": "global_attribute18",
+        "name": "GLOBAL_ATTRIBUTE18",
         "type": "nvarchar"
       },
       {
-        "name": "global_attribute19",
+        "name": "GLOBAL_ATTRIBUTE19",
         "type": "nvarchar"
       },
       {
-        "name": "global_attribute20",
+        "name": "GLOBAL_ATTRIBUTE20",
         "type": "nvarchar"
       },
       {
-        "name": "global_attribute21",
+        "name": "GLOBAL_ATTRIBUTE21",
         "type": "nvarchar"
       },
       {
-        "name": "global_attribute22",
+        "name": "GLOBAL_ATTRIBUTE22",
         "type": "nvarchar"
       },
       {
-        "name": "global_attribute23",
+        "name": "GLOBAL_ATTRIBUTE23",
         "type": "nvarchar"
       },
       {
-        "name": "global_attribute24",
+        "name": "GLOBAL_ATTRIBUTE24",
         "type": "nvarchar"
       },
       {
-        "name": "global_attribute25",
+        "name": "GLOBAL_ATTRIBUTE25",
         "type": "nvarchar"
       },
       {
-        "name": "global_attribute26",
+        "name": "GLOBAL_ATTRIBUTE26",
         "type": "nvarchar"
       },
       {
-        "name": "global_attribute27",
+        "name": "GLOBAL_ATTRIBUTE27",
         "type": "nvarchar"
       },
       {
-        "name": "global_attribute28",
+        "name": "GLOBAL_ATTRIBUTE28",
         "type": "nvarchar"
       },
       {
-        "name": "global_attribute29",
+        "name": "GLOBAL_ATTRIBUTE29",
         "type": "nvarchar"
       },
       {
-        "name": "global_attribute30",
+        "name": "GLOBAL_ATTRIBUTE30",
         "type": "nvarchar"
       },
       {
-        "name": "global_attribute_category",
+        "name": "GLOBAL_ATTRIBUTE_CATEGORY",
         "type": "nvarchar"
       },
       {
-        "name": "edi_processed_flag",
+        "name": "EDI_PROCESSED_FLAG",
         "type": "nvarchar"
       },
       {
-        "name": "edi_processed_status",
+        "name": "EDI_PROCESSED_STATUS",
         "type": "nvarchar"
       },
       {
-        "name": "mrc_exchange_rate_type",
+        "name": "MRC_EXCHANGE_RATE_TYPE",
         "type": "nvarchar"
       },
       {
-        "name": "mrc_exchange_date",
+        "name": "MRC_EXCHANGE_DATE",
         "type": "nvarchar"
       },
       {
-        "name": "mrc_exchange_rate",
+        "name": "MRC_EXCHANGE_RATE",
         "type": "nvarchar"
       },
       {
-        "name": "payment_server_order_num",
+        "name": "PAYMENT_SERVER_ORDER_NUM",
         "type": "nvarchar"
       },
       {
-        "name": "approval_code",
+        "name": "APPROVAL_CODE",
         "type": "nvarchar"
       },
       {
-        "name": "address_verification_code",
+        "name": "ADDRESS_VERIFICATION_CODE",
         "type": "nvarchar"
       },
       {
-        "name": "old_trx_number",
+        "name": "OLD_TRX_NUMBER",
         "type": "nvarchar"
       },
       {
-        "name": "br_amount",
+        "name": "BR_AMOUNT",
         "type": "nvarchar"
       },
       {
-        "name": "br_unpaid_flag",
+        "name": "BR_UNPAID_FLAG",
         "type": "nvarchar"
       },
       {
-        "name": "br_on_hold_flag",
+        "name": "BR_ON_HOLD_FLAG",
         "type": "nvarchar"
       },
       {
-        "name": "drawee_id",
+        "name": "DRAWEE_ID",
         "type": "nvarchar"
       },
       {
-        "name": "drawee_contact_id",
+        "name": "DRAWEE_CONTACT_ID",
         "type": "nvarchar"
       },
       {
-        "name": "drawee_site_use_id",
+        "name": "DRAWEE_SITE_USE_ID",
         "type": "nvarchar"
       },
       {
-        "name": "remittance_bank_account_id",
+        "name": "REMITTANCE_BANK_ACCOUNT_ID",
         "type": "nvarchar"
       },
       {
-        "name": "override_remit_account_flag",
+        "name": "OVERRIDE_REMIT_ACCOUNT_FLAG",
         "type": "nvarchar"
       },
       {
-        "name": "drawee_bank_account_id",
+        "name": "DRAWEE_BANK_ACCOUNT_ID",
         "type": "nvarchar"
       },
       {
-        "name": "special_instructions",
+        "name": "SPECIAL_INSTRUCTIONS",
         "type": "nvarchar"
       },
       {
-        "name": "remittance_batch_id",
+        "name": "REMITTANCE_BATCH_ID",
         "type": "nvarchar"
       },
       {
-        "name": "prepayment_flag",
+        "name": "PREPAYMENT_FLAG",
         "type": "nvarchar"
       },
       {
-        "name": "ct_reference",
+        "name": "CT_REFERENCE",
         "type": "nvarchar"
       },
       {
-        "name": "contract_id",
+        "name": "CONTRACT_ID",
         "type": "nvarchar"
       },
       {
-        "name": "bill_template_id",
+        "name": "BILL_TEMPLATE_ID",
         "type": "nvarchar"
       },
       {
-        "name": "reversed_cash_receipt_id",
+        "name": "REVERSED_CASH_RECEIPT_ID",
         "type": "nvarchar"
       },
       {
-        "name": "cc_error_code",
+        "name": "CC_ERROR_CODE",
         "type": "nvarchar"
       },
       {
-        "name": "cc_error_text",
+        "name": "CC_ERROR_TEXT",
         "type": "nvarchar"
       },
       {
-        "name": "cc_error_flag",
+        "name": "CC_ERROR_FLAG",
         "type": "nvarchar"
       },
       {
-        "name": "upgrade_method",
+        "name": "UPGRADE_METHOD",
         "type": "nvarchar"
       },
       {
-        "name": "legal_entity_id",
+        "name": "LEGAL_ENTITY_ID",
         "type": "nvarchar"
       },
       {
-        "name": "remit_bank_acct_use_id",
+        "name": "REMIT_BANK_ACCT_USE_ID",
         "type": "nvarchar"
       },
       {
-        "name": "payment_trxn_extension_id",
+        "name": "PAYMENT_TRXN_EXTENSION_ID",
         "type": "nvarchar"
       },
       {
-        "name": "ax_accounted_flag",
+        "name": "AX_ACCOUNTED_FLAG",
         "type": "nvarchar"
       },
       {
-        "name": "application_id",
+        "name": "APPLICATION_ID",
         "type": "nvarchar"
       },
       {
-        "name": "payment_attributes",
+        "name": "PAYMENT_ATTRIBUTES",
         "type": "nvarchar"
       },
       {
-        "name": "billing_date",
+        "name": "BILLING_DATE",
         "type": "nvarchar"
       },
       {
-        "name": "interest_header_id",
+        "name": "INTEREST_HEADER_ID",
         "type": "nvarchar"
       },
       {
-        "name": "late_charges_assessed",
+        "name": "LATE_CHARGES_ASSESSED",
         "type": "nvarchar"
       },
       {
-        "name": "rev_rec_application",
+        "name": "REV_REC_APPLICATION",
         "type": "nvarchar"
       },
       {
-        "name": "document_type_id",
+        "name": "DOCUMENT_TYPE_ID",
         "type": "nvarchar"
       },
       {
-        "name": "document_creation_date",
+        "name": "DOCUMENT_CREATION_DATE",
         "type": "nvarchar"
       },
       {
-        "name": "src_invoicing_rule_id",
+        "name": "SRC_INVOICING_RULE_ID",
         "type": "nvarchar"
       },
       {
-        "name": "billing_ext_request",
+        "name": "BILLING_EXT_REQUEST",
         "type": "nvarchar"
       }
     ],
     "typeProperties": {
       "schema": "stg",
-      "table": "ra_customer_trx_all"
+      "table": "RA_CUSTOMER_TRX_ALL"
     }
   }
 }

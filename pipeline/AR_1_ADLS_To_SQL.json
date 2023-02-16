@@ -1,9 +1,9 @@
 {
-	"name": "ar_1_adls_to_sql",
+	"name": "AR_1_ADLS_To_SQL",
 	"properties": {
 		"activities": [
 			{
-				"name": "copy ar_receivable_applications_all to sql",
+				"name": "Copy AR_RECEIVABLE_APPLICATIONS_ALL To SQL",
 				"type": "Copy",
 				"dependsOn": [
 					{
@@ -51,10 +51,10 @@
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
 							"modifiedDatetimeStart": {
-								"value": "@activity('Lookup Generic File Timestamp').output.FirstRow.watermark_datetime",
+								"value": "@activity('Lookup Generic File Timestamp').output.FirstRow.WatermarkDatetime",
 								"type": "Expression"
 							},
-							"wildcardFolderPath": "oracle_erp/baxdevus/schemas/ar/ar_receivable_applications_all",
+							"wildcardFolderPath": "oracle_erp/baxdevus/schemas/AR/AR_RECEIVABLE_APPLICATIONS_ALL",
 							"wildcardFileName": "*",
 							"enablePartitionDiscovery": false
 						},
@@ -65,7 +65,7 @@
 					"sink": {
 						"type": "AzureSqlSink",
 						"preCopyScript": {
-							"value": "begin try\ntruncate table [stg].[ar_receivable_applications_all]\nend try\nbegin catch \nselect null\nend catch",
+							"value": "begin try\ntruncate table [stg].[AR_RECEIVABLE_APPLICATIONS_ALL]\nend try\nbegin catch \nselect null\nend catch",
 							"type": "Expression"
 						},
 						"writeBehavior": "insert",
@@ -79,636 +79,636 @@
 						"mappings": [
 							{
 								"source": {
-									"name": "receivable_application_id",
+									"name": "RECEIVABLE_APPLICATION_ID",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "receivable_application_id",
+									"name": "RECEIVABLE_APPLICATION_ID",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "last_updated_by",
+									"name": "LAST_UPDATED_BY",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "last_updated_by",
+									"name": "LAST_UPDATED_BY",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "last_update_date",
+									"name": "LAST_UPDATE_DATE",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "last_update_date",
+									"name": "LAST_UPDATE_DATE",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "created_by",
+									"name": "CREATED_BY",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "created_by",
+									"name": "CREATED_BY",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "creation_date",
+									"name": "CREATION_DATE",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "creation_date",
+									"name": "CREATION_DATE",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "amount_applied",
+									"name": "AMOUNT_APPLIED",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "amount_applied",
+									"name": "AMOUNT_APPLIED",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "amount_applied_FROM",
+									"name": "AMOUNT_APPLIED_FROM",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "amount_applied_FROM",
+									"name": "AMOUNT_APPLIED_FROM",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "trans_to_receipt_rate",
+									"name": "TRANS_TO_RECEIPT_RATE",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "trans_to_receipt_rate",
+									"name": "TRANS_TO_RECEIPT_RATE",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "gl_date",
+									"name": "GL_DATE",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "gl_date",
+									"name": "GL_DATE",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "code_combination_id",
+									"name": "CODE_COMBINATION_ID",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "code_combination_id",
+									"name": "CODE_COMBINATION_ID",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "set_of_books_id",
+									"name": "SET_OF_BOOKS_ID",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "set_of_books_id",
+									"name": "SET_OF_BOOKS_ID",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "display",
+									"name": "DISPLAY",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "display",
+									"name": "DISPLAY",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "apply_date",
+									"name": "APPLY_DATE",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "apply_date",
+									"name": "APPLY_DATE",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "application_type",
+									"name": "APPLICATION_TYPE",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "application_type",
+									"name": "APPLICATION_TYPE",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "status",
+									"name": "STATUS",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "status",
+									"name": "STATUS",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "payment_schedule_id",
+									"name": "PAYMENT_SCHEDULE_ID",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "payment_schedule_id",
+									"name": "PAYMENT_SCHEDULE_ID",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "last_update_login",
+									"name": "LAST_UPDATE_LOGIN",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "last_update_login",
+									"name": "LAST_UPDATE_LOGIN",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "cash_receipt_id",
+									"name": "CASH_RECEIPT_ID",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "cash_receipt_id",
+									"name": "CASH_RECEIPT_ID",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "applied_customer_trx_id",
+									"name": "APPLIED_CUSTOMER_TRX_ID",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "applied_customer_trx_id",
+									"name": "APPLIED_CUSTOMER_TRX_ID",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "applied_customer_trx_line_id",
+									"name": "APPLIED_CUSTOMER_TRX_LINE_ID",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "applied_customer_trx_line_id",
+									"name": "APPLIED_CUSTOMER_TRX_LINE_ID",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "applied_payment_schedule_id",
+									"name": "APPLIED_PAYMENT_SCHEDULE_ID",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "applied_payment_schedule_id",
+									"name": "APPLIED_PAYMENT_SCHEDULE_ID",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "customer_trx_id",
+									"name": "CUSTOMER_TRX_ID",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "customer_trx_id",
+									"name": "CUSTOMER_TRX_ID",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "line_applied",
+									"name": "LINE_APPLIED",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "line_applied",
+									"name": "LINE_APPLIED",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "tax_applied",
+									"name": "TAX_APPLIED",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "tax_applied",
+									"name": "TAX_APPLIED",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "freight_applied",
+									"name": "FREIGHT_APPLIED",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "freight_applied",
+									"name": "FREIGHT_APPLIED",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "receivables_charges_applied",
+									"name": "RECEIVABLES_CHARGES_APPLIED",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "receivables_charges_applied",
+									"name": "RECEIVABLES_CHARGES_APPLIED",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "earned_discount_taken",
+									"name": "EARNED_DISCOUNT_TAKEN",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "earned_discount_taken",
+									"name": "EARNED_DISCOUNT_TAKEN",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "unearned_discount_taken",
+									"name": "UNEARNED_DISCOUNT_TAKEN",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "unearned_discount_taken",
+									"name": "UNEARNED_DISCOUNT_TAKEN",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "days_late",
+									"name": "DAYS_LATE",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "days_late",
+									"name": "DAYS_LATE",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "application_rule",
+									"name": "APPLICATION_RULE",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "application_rule",
+									"name": "APPLICATION_RULE",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "gl_posted_date",
+									"name": "GL_POSTED_DATE",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "gl_posted_date",
+									"name": "GL_POSTED_DATE",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "comments",
+									"name": "COMMENTS",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "comments",
+									"name": "COMMENTS",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute_category",
+									"name": "ATTRIBUTE_CATEGORY",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute_category",
+									"name": "ATTRIBUTE_CATEGORY",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute1",
+									"name": "ATTRIBUTE1",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute1",
+									"name": "ATTRIBUTE1",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute2",
+									"name": "ATTRIBUTE2",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute2",
+									"name": "ATTRIBUTE2",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute3",
+									"name": "ATTRIBUTE3",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute3",
+									"name": "ATTRIBUTE3",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute4",
+									"name": "ATTRIBUTE4",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute4",
+									"name": "ATTRIBUTE4",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute5",
+									"name": "ATTRIBUTE5",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute5",
+									"name": "ATTRIBUTE5",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute6",
+									"name": "ATTRIBUTE6",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute6",
+									"name": "ATTRIBUTE6",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute7",
+									"name": "ATTRIBUTE7",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute7",
+									"name": "ATTRIBUTE7",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute8",
+									"name": "ATTRIBUTE8",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute8",
+									"name": "ATTRIBUTE8",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute9",
+									"name": "ATTRIBUTE9",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute9",
+									"name": "ATTRIBUTE9",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute10",
+									"name": "ATTRIBUTE10",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute10",
+									"name": "ATTRIBUTE10",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "postable",
+									"name": "POSTABLE",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "postable",
+									"name": "POSTABLE",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "posting_control_id",
+									"name": "POSTING_CONTROL_ID",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "posting_control_id",
+									"name": "POSTING_CONTROL_ID",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "acctd_amount_applied_from",
+									"name": "ACCTD_AMOUNT_APPLIED_FROM",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "acctd_amount_applied_from",
+									"name": "ACCTD_AMOUNT_APPLIED_FROM",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "acctd_amount_applied_to",
+									"name": "ACCTD_AMOUNT_APPLIED_TO",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "acctd_amount_applied_to",
+									"name": "ACCTD_AMOUNT_APPLIED_TO",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "acctd_earned_discount_taken",
+									"name": "ACCTD_EARNED_DISCOUNT_TAKEN",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "acctd_earned_discount_taken",
+									"name": "ACCTD_EARNED_DISCOUNT_TAKEN",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute11",
+									"name": "ATTRIBUTE11",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute11",
+									"name": "ATTRIBUTE11",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute12",
+									"name": "ATTRIBUTE12",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute12",
+									"name": "ATTRIBUTE12",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute13",
+									"name": "ATTRIBUTE13",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute13",
+									"name": "ATTRIBUTE13",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute14",
+									"name": "ATTRIBUTE14",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute14",
+									"name": "ATTRIBUTE14",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute15",
+									"name": "ATTRIBUTE15",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute15",
+									"name": "ATTRIBUTE15",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -823,12 +823,12 @@
 							},
 							{
 								"source": {
-									"name": "ACCTD_unearned_discount_taken",
+									"name": "ACCTD_UNEARNED_DISCOUNT_TAKEN",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "ACCTD_unearned_discount_taken",
+									"name": "ACCTD_UNEARNED_DISCOUNT_TAKEN",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -883,96 +883,96 @@
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute1",
+									"name": "GLOBAL_ATTRIBUTE1",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute1",
+									"name": "GLOBAL_ATTRIBUTE1",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute2",
+									"name": "GLOBAL_ATTRIBUTE2",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute2",
+									"name": "GLOBAL_ATTRIBUTE2",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute3",
+									"name": "GLOBAL_ATTRIBUTE3",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute3",
+									"name": "GLOBAL_ATTRIBUTE3",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute4",
+									"name": "GLOBAL_ATTRIBUTE4",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute4",
+									"name": "GLOBAL_ATTRIBUTE4",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute5",
+									"name": "GLOBAL_ATTRIBUTE5",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute5",
+									"name": "GLOBAL_ATTRIBUTE5",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute6",
+									"name": "GLOBAL_ATTRIBUTE6",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute6",
+									"name": "GLOBAL_ATTRIBUTE6",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute7",
+									"name": "GLOBAL_ATTRIBUTE7",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute7",
+									"name": "GLOBAL_ATTRIBUTE7",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute8",
+									"name": "GLOBAL_ATTRIBUTE8",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute8",
+									"name": "GLOBAL_ATTRIBUTE8",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -991,144 +991,144 @@
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute10",
+									"name": "GLOBAL_ATTRIBUTE10",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute10",
+									"name": "GLOBAL_ATTRIBUTE10",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute11",
+									"name": "GLOBAL_ATTRIBUTE11",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute11",
+									"name": "GLOBAL_ATTRIBUTE11",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute12",
+									"name": "GLOBAL_ATTRIBUTE12",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute12",
+									"name": "GLOBAL_ATTRIBUTE12",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute13",
+									"name": "GLOBAL_ATTRIBUTE13",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute13",
+									"name": "GLOBAL_ATTRIBUTE13",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute14",
+									"name": "GLOBAL_ATTRIBUTE14",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute14",
+									"name": "GLOBAL_ATTRIBUTE14",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute15",
+									"name": "GLOBAL_ATTRIBUTE15",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute15",
+									"name": "GLOBAL_ATTRIBUTE15",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute16",
+									"name": "GLOBAL_ATTRIBUTE16",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute16",
+									"name": "GLOBAL_ATTRIBUTE16",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute17",
+									"name": "GLOBAL_ATTRIBUTE17",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute17",
+									"name": "GLOBAL_ATTRIBUTE17",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute18",
+									"name": "GLOBAL_ATTRIBUTE18",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute18",
+									"name": "GLOBAL_ATTRIBUTE18",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute19",
+									"name": "GLOBAL_ATTRIBUTE19",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute19",
+									"name": "GLOBAL_ATTRIBUTE19",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute20",
+									"name": "GLOBAL_ATTRIBUTE20",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute20",
+									"name": "GLOBAL_ATTRIBUTE20",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute_category",
+									"name": "GLOBAL_ATTRIBUTE_CATEGORY",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute_category",
+									"name": "GLOBAL_ATTRIBUTE_CATEGORY",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -1291,84 +1291,84 @@
 							},
 							{
 								"source": {
-									"name": "MRC_amount_applied",
+									"name": "MRC_AMOUNT_APPLIED",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "MRC_amount_applied",
+									"name": "MRC_AMOUNT_APPLIED",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "MRC_amount_applied_FROM",
+									"name": "MRC_AMOUNT_APPLIED_FROM",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "MRC_amount_applied_FROM",
+									"name": "MRC_AMOUNT_APPLIED_FROM",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "MRC_display",
+									"name": "MRC_DISPLAY",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "MRC_display",
+									"name": "MRC_DISPLAY",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "MRC_status",
+									"name": "MRC_STATUS",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "MRC_status",
+									"name": "MRC_STATUS",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "MRC_payment_schedule_id",
+									"name": "MRC_PAYMENT_SCHEDULE_ID",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "MRC_payment_schedule_id",
+									"name": "MRC_PAYMENT_SCHEDULE_ID",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "MRC_cash_receipt_id",
+									"name": "MRC_CASH_RECEIPT_ID",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "MRC_cash_receipt_id",
+									"name": "MRC_CASH_RECEIPT_ID",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "MRC_gl_posted_date",
+									"name": "MRC_GL_POSTED_DATE",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "MRC_gl_posted_date",
+									"name": "MRC_GL_POSTED_DATE",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -1387,24 +1387,24 @@
 							},
 							{
 								"source": {
-									"name": "MRC_acctd_amount_applied_from",
+									"name": "MRC_ACCTD_AMOUNT_APPLIED_FROM",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "MRC_acctd_amount_applied_from",
+									"name": "MRC_ACCTD_AMOUNT_APPLIED_FROM",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "MRC_acctd_amount_applied_to",
+									"name": "MRC_ACCTD_AMOUNT_APPLIED_TO",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "MRC_acctd_amount_applied_to",
+									"name": "MRC_ACCTD_AMOUNT_APPLIED_TO",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -1471,12 +1471,12 @@
 							},
 							{
 								"source": {
-									"name": "LINK_TO_customer_trx_id",
+									"name": "LINK_TO_CUSTOMER_TRX_ID",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "LINK_TO_customer_trx_id",
+									"name": "LINK_TO_CUSTOMER_TRX_ID",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -1519,12 +1519,12 @@
 							},
 							{
 								"source": {
-									"name": "CHARGEBACK_customer_trx_id",
+									"name": "CHARGEBACK_CUSTOMER_TRX_ID",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "CHARGEBACK_customer_trx_id",
+									"name": "CHARGEBACK_CUSTOMER_TRX_ID",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -1752,13 +1752,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "ADLS_ar_receivable_applications_all",
+						"referenceName": "ADLS_AR_RECEIVABLE_APPLICATIONS_ALL",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "SQL_ar_receivable_applications_all",
+						"referenceName": "SQL_AR_RECEIVABLE_APPLICATIONS_ALL",
 						"type": "DatasetReference"
 					}
 				]
@@ -1768,7 +1768,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Copy ar_receivable_applications_all To SQL",
+						"activity": "Copy AR_RECEIVABLE_APPLICATIONS_ALL To SQL",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -1812,10 +1812,10 @@
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
 							"modifiedDatetimeStart": {
-								"value": "@activity('Lookup Generic File Timestamp').output.FirstRow.watermark_datetime",
+								"value": "@activity('Lookup Generic File Timestamp').output.FirstRow.WatermarkDatetime",
 								"type": "Expression"
 							},
-							"wildcardFolderPath": "oracle_erp/baxdevus/schemas/ar/HZ_CUST_ACCOUNTS",
+							"wildcardFolderPath": "oracle_erp/baxdevus/schemas/AR/HZ_CUST_ACCOUNTS",
 							"wildcardFileName": "*",
 							"enablePartitionDiscovery": false
 						},
@@ -1864,12 +1864,12 @@
 							},
 							{
 								"source": {
-									"name": "last_update_date",
+									"name": "LAST_UPDATE_DATE",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "last_update_date",
+									"name": "LAST_UPDATE_DATE",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -1888,48 +1888,48 @@
 							},
 							{
 								"source": {
-									"name": "last_updated_by",
+									"name": "LAST_UPDATED_BY",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "last_updated_by",
+									"name": "LAST_UPDATED_BY",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "creation_date",
+									"name": "CREATION_DATE",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "creation_date",
+									"name": "CREATION_DATE",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "created_by",
+									"name": "CREATED_BY",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "created_by",
+									"name": "CREATED_BY",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "last_update_login",
+									"name": "LAST_UPDATE_LOGIN",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "last_update_login",
+									"name": "LAST_UPDATE_LOGIN",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -1996,360 +1996,360 @@
 							},
 							{
 								"source": {
-									"name": "attribute_category",
+									"name": "ATTRIBUTE_CATEGORY",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute_category",
+									"name": "ATTRIBUTE_CATEGORY",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute1",
+									"name": "ATTRIBUTE1",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute1",
+									"name": "ATTRIBUTE1",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute2",
+									"name": "ATTRIBUTE2",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute2",
+									"name": "ATTRIBUTE2",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute3",
+									"name": "ATTRIBUTE3",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute3",
+									"name": "ATTRIBUTE3",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute4",
+									"name": "ATTRIBUTE4",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute4",
+									"name": "ATTRIBUTE4",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute5",
+									"name": "ATTRIBUTE5",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute5",
+									"name": "ATTRIBUTE5",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute6",
+									"name": "ATTRIBUTE6",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute6",
+									"name": "ATTRIBUTE6",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute7",
+									"name": "ATTRIBUTE7",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute7",
+									"name": "ATTRIBUTE7",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute8",
+									"name": "ATTRIBUTE8",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute8",
+									"name": "ATTRIBUTE8",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute9",
+									"name": "ATTRIBUTE9",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute9",
+									"name": "ATTRIBUTE9",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute10",
+									"name": "ATTRIBUTE10",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute10",
+									"name": "ATTRIBUTE10",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute11",
+									"name": "ATTRIBUTE11",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute11",
+									"name": "ATTRIBUTE11",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute12",
+									"name": "ATTRIBUTE12",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute12",
+									"name": "ATTRIBUTE12",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute13",
+									"name": "ATTRIBUTE13",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute13",
+									"name": "ATTRIBUTE13",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute14",
+									"name": "ATTRIBUTE14",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute14",
+									"name": "ATTRIBUTE14",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute15",
+									"name": "ATTRIBUTE15",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute15",
+									"name": "ATTRIBUTE15",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute16",
+									"name": "ATTRIBUTE16",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute16",
+									"name": "ATTRIBUTE16",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute17",
+									"name": "ATTRIBUTE17",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute17",
+									"name": "ATTRIBUTE17",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute18",
+									"name": "ATTRIBUTE18",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute18",
+									"name": "ATTRIBUTE18",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute19",
+									"name": "ATTRIBUTE19",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute19",
+									"name": "ATTRIBUTE19",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute20",
+									"name": "ATTRIBUTE20",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute20",
+									"name": "ATTRIBUTE20",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute_category",
+									"name": "GLOBAL_ATTRIBUTE_CATEGORY",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute_category",
+									"name": "GLOBAL_ATTRIBUTE_CATEGORY",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute1",
+									"name": "GLOBAL_ATTRIBUTE1",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute1",
+									"name": "GLOBAL_ATTRIBUTE1",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute2",
+									"name": "GLOBAL_ATTRIBUTE2",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute2",
+									"name": "GLOBAL_ATTRIBUTE2",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute3",
+									"name": "GLOBAL_ATTRIBUTE3",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute3",
+									"name": "GLOBAL_ATTRIBUTE3",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute4",
+									"name": "GLOBAL_ATTRIBUTE4",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute4",
+									"name": "GLOBAL_ATTRIBUTE4",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute5",
+									"name": "GLOBAL_ATTRIBUTE5",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute5",
+									"name": "GLOBAL_ATTRIBUTE5",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute6",
+									"name": "GLOBAL_ATTRIBUTE6",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute6",
+									"name": "GLOBAL_ATTRIBUTE6",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute7",
+									"name": "GLOBAL_ATTRIBUTE7",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute7",
+									"name": "GLOBAL_ATTRIBUTE7",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute8",
+									"name": "GLOBAL_ATTRIBUTE8",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute8",
+									"name": "GLOBAL_ATTRIBUTE8",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -2368,132 +2368,132 @@
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute10",
+									"name": "GLOBAL_ATTRIBUTE10",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute10",
+									"name": "GLOBAL_ATTRIBUTE10",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute11",
+									"name": "GLOBAL_ATTRIBUTE11",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute11",
+									"name": "GLOBAL_ATTRIBUTE11",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute12",
+									"name": "GLOBAL_ATTRIBUTE12",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute12",
+									"name": "GLOBAL_ATTRIBUTE12",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute13",
+									"name": "GLOBAL_ATTRIBUTE13",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute13",
+									"name": "GLOBAL_ATTRIBUTE13",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute14",
+									"name": "GLOBAL_ATTRIBUTE14",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute14",
+									"name": "GLOBAL_ATTRIBUTE14",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute15",
+									"name": "GLOBAL_ATTRIBUTE15",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute15",
+									"name": "GLOBAL_ATTRIBUTE15",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute16",
+									"name": "GLOBAL_ATTRIBUTE16",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute16",
+									"name": "GLOBAL_ATTRIBUTE16",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute17",
+									"name": "GLOBAL_ATTRIBUTE17",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute17",
+									"name": "GLOBAL_ATTRIBUTE17",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute18",
+									"name": "GLOBAL_ATTRIBUTE18",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute18",
+									"name": "GLOBAL_ATTRIBUTE18",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute19",
+									"name": "GLOBAL_ATTRIBUTE19",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute19",
+									"name": "GLOBAL_ATTRIBUTE19",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute20",
+									"name": "GLOBAL_ATTRIBUTE20",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute20",
+									"name": "GLOBAL_ATTRIBUTE20",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -2512,12 +2512,12 @@
 							},
 							{
 								"source": {
-									"name": "status",
+									"name": "STATUS",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "status",
+									"name": "STATUS",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -3028,12 +3028,12 @@
 							},
 							{
 								"source": {
-									"name": "ACCT_LIFE_CYCLE_status",
+									"name": "ACCT_LIFE_CYCLE_STATUS",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "ACCT_LIFE_CYCLE_status",
+									"name": "ACCT_LIFE_CYCLE_STATUS",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -3172,12 +3172,12 @@
 							},
 							{
 								"source": {
-									"name": "comments",
+									"name": "COMMENTS",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "comments",
+									"name": "COMMENTS",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -3352,12 +3352,12 @@
 							},
 							{
 								"source": {
-									"name": "status_UPDATE_DATE",
+									"name": "STATUS_UPDATE_DATE",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "status_UPDATE_DATE",
+									"name": "STATUS_UPDATE_DATE",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -3424,12 +3424,12 @@
 							},
 							{
 								"source": {
-									"name": "created_by_MODULE",
+									"name": "CREATED_BY_MODULE",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "created_by_MODULE",
+									"name": "CREATED_BY_MODULE",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -3561,7 +3561,7 @@
 				]
 			},
 			{
-				"name": "Copy hz_cust_acct_sites_all To SQL",
+				"name": "Copy HZ_CUST_ACCT_SITES_ALL To SQL",
 				"type": "Copy",
 				"dependsOn": [
 					{
@@ -3609,10 +3609,10 @@
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
 							"modifiedDatetimeStart": {
-								"value": "@activity('Lookup Generic File Timestamp').output.FirstRow.watermark_datetime",
+								"value": "@activity('Lookup Generic File Timestamp').output.FirstRow.WatermarkDatetime",
 								"type": "Expression"
 							},
-							"wildcardFolderPath": "oracle_erp/baxdevus/schemas/ar/hz_cust_acct_sites_all",
+							"wildcardFolderPath": "oracle_erp/baxdevus/schemas/AR/HZ_CUST_ACCT_SITES_ALL",
 							"wildcardFileName": "*",
 							"enablePartitionDiscovery": false
 						},
@@ -3623,7 +3623,7 @@
 					"sink": {
 						"type": "AzureSqlSink",
 						"preCopyScript": {
-							"value": "begin try\ntruncate table [stg].[hz_cust_acct_sites_all]\nend try\nbegin catch \nselect null\nend catch",
+							"value": "begin try\ntruncate table [stg].[HZ_CUST_ACCT_SITES_ALL]\nend try\nbegin catch \nselect null\nend catch",
 							"type": "Expression"
 						},
 						"writeBehavior": "insert",
@@ -3673,60 +3673,60 @@
 							},
 							{
 								"source": {
-									"name": "last_update_date",
+									"name": "LAST_UPDATE_DATE",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "last_update_date",
+									"name": "LAST_UPDATE_DATE",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "last_updated_by",
+									"name": "LAST_UPDATED_BY",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "last_updated_by",
+									"name": "LAST_UPDATED_BY",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "creation_date",
+									"name": "CREATION_DATE",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "creation_date",
+									"name": "CREATION_DATE",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "created_by",
+									"name": "CREATED_BY",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "created_by",
+									"name": "CREATED_BY",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "last_update_login",
+									"name": "LAST_UPDATE_LOGIN",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "last_update_login",
+									"name": "LAST_UPDATE_LOGIN",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -3793,360 +3793,360 @@
 							},
 							{
 								"source": {
-									"name": "attribute_category",
+									"name": "ATTRIBUTE_CATEGORY",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute_category",
+									"name": "ATTRIBUTE_CATEGORY",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute1",
+									"name": "ATTRIBUTE1",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute1",
+									"name": "ATTRIBUTE1",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute2",
+									"name": "ATTRIBUTE2",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute2",
+									"name": "ATTRIBUTE2",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute3",
+									"name": "ATTRIBUTE3",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute3",
+									"name": "ATTRIBUTE3",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute4",
+									"name": "ATTRIBUTE4",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute4",
+									"name": "ATTRIBUTE4",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute5",
+									"name": "ATTRIBUTE5",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute5",
+									"name": "ATTRIBUTE5",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute6",
+									"name": "ATTRIBUTE6",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute6",
+									"name": "ATTRIBUTE6",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute7",
+									"name": "ATTRIBUTE7",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute7",
+									"name": "ATTRIBUTE7",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute8",
+									"name": "ATTRIBUTE8",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute8",
+									"name": "ATTRIBUTE8",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute9",
+									"name": "ATTRIBUTE9",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute9",
+									"name": "ATTRIBUTE9",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute10",
+									"name": "ATTRIBUTE10",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute10",
+									"name": "ATTRIBUTE10",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute11",
+									"name": "ATTRIBUTE11",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute11",
+									"name": "ATTRIBUTE11",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute12",
+									"name": "ATTRIBUTE12",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute12",
+									"name": "ATTRIBUTE12",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute13",
+									"name": "ATTRIBUTE13",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute13",
+									"name": "ATTRIBUTE13",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute14",
+									"name": "ATTRIBUTE14",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute14",
+									"name": "ATTRIBUTE14",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute15",
+									"name": "ATTRIBUTE15",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute15",
+									"name": "ATTRIBUTE15",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute16",
+									"name": "ATTRIBUTE16",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute16",
+									"name": "ATTRIBUTE16",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute17",
+									"name": "ATTRIBUTE17",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute17",
+									"name": "ATTRIBUTE17",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute18",
+									"name": "ATTRIBUTE18",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute18",
+									"name": "ATTRIBUTE18",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute19",
+									"name": "ATTRIBUTE19",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute19",
+									"name": "ATTRIBUTE19",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute20",
+									"name": "ATTRIBUTE20",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute20",
+									"name": "ATTRIBUTE20",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute_category",
+									"name": "GLOBAL_ATTRIBUTE_CATEGORY",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute_category",
+									"name": "GLOBAL_ATTRIBUTE_CATEGORY",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute1",
+									"name": "GLOBAL_ATTRIBUTE1",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute1",
+									"name": "GLOBAL_ATTRIBUTE1",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute2",
+									"name": "GLOBAL_ATTRIBUTE2",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute2",
+									"name": "GLOBAL_ATTRIBUTE2",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute3",
+									"name": "GLOBAL_ATTRIBUTE3",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute3",
+									"name": "GLOBAL_ATTRIBUTE3",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute4",
+									"name": "GLOBAL_ATTRIBUTE4",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute4",
+									"name": "GLOBAL_ATTRIBUTE4",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute5",
+									"name": "GLOBAL_ATTRIBUTE5",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute5",
+									"name": "GLOBAL_ATTRIBUTE5",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute6",
+									"name": "GLOBAL_ATTRIBUTE6",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute6",
+									"name": "GLOBAL_ATTRIBUTE6",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute7",
+									"name": "GLOBAL_ATTRIBUTE7",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute7",
+									"name": "GLOBAL_ATTRIBUTE7",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute8",
+									"name": "GLOBAL_ATTRIBUTE8",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute8",
+									"name": "GLOBAL_ATTRIBUTE8",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -4165,132 +4165,132 @@
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute10",
+									"name": "GLOBAL_ATTRIBUTE10",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute10",
+									"name": "GLOBAL_ATTRIBUTE10",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute11",
+									"name": "GLOBAL_ATTRIBUTE11",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute11",
+									"name": "GLOBAL_ATTRIBUTE11",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute12",
+									"name": "GLOBAL_ATTRIBUTE12",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute12",
+									"name": "GLOBAL_ATTRIBUTE12",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute13",
+									"name": "GLOBAL_ATTRIBUTE13",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute13",
+									"name": "GLOBAL_ATTRIBUTE13",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute14",
+									"name": "GLOBAL_ATTRIBUTE14",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute14",
+									"name": "GLOBAL_ATTRIBUTE14",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute15",
+									"name": "GLOBAL_ATTRIBUTE15",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute15",
+									"name": "GLOBAL_ATTRIBUTE15",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute16",
+									"name": "GLOBAL_ATTRIBUTE16",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute16",
+									"name": "GLOBAL_ATTRIBUTE16",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute17",
+									"name": "GLOBAL_ATTRIBUTE17",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute17",
+									"name": "GLOBAL_ATTRIBUTE17",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute18",
+									"name": "GLOBAL_ATTRIBUTE18",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute18",
+									"name": "GLOBAL_ATTRIBUTE18",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute19",
+									"name": "GLOBAL_ATTRIBUTE19",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute19",
+									"name": "GLOBAL_ATTRIBUTE19",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute20",
+									"name": "GLOBAL_ATTRIBUTE20",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute20",
+									"name": "GLOBAL_ATTRIBUTE20",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -4309,12 +4309,12 @@
 							},
 							{
 								"source": {
-									"name": "status",
+									"name": "STATUS",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "status",
+									"name": "STATUS",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -4525,12 +4525,12 @@
 							},
 							{
 								"source": {
-									"name": "created_by_MODULE",
+									"name": "CREATED_BY_MODULE",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "created_by_MODULE",
+									"name": "CREATED_BY_MODULE",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -4590,13 +4590,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "ADLS_hz_cust_acct_sites_all",
+						"referenceName": "ADLS_HZ_CUST_ACCT_SITES_ALL",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "SQL_hz_cust_acct_sites_all",
+						"referenceName": "SQL_HZ_CUST_ACCT_SITES_ALL",
 						"type": "DatasetReference"
 					}
 				]
@@ -4606,7 +4606,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Copy hz_cust_acct_sites_all To SQL",
+						"activity": "Copy HZ_CUST_ACCT_SITES_ALL To SQL",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -4650,10 +4650,10 @@
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
 							"modifiedDatetimeStart": {
-								"value": "@activity('Lookup Generic File Timestamp').output.FirstRow.watermark_datetime",
+								"value": "@activity('Lookup Generic File Timestamp').output.FirstRow.WatermarkDatetime",
 								"type": "Expression"
 							},
-							"wildcardFolderPath": "oracle_erp/baxdevus/schemas/ar/HZ_CUST_SITE_USES_ALL",
+							"wildcardFolderPath": "oracle_erp/baxdevus/schemas/AR/HZ_CUST_SITE_USES_ALL",
 							"wildcardFileName": "*",
 							"enablePartitionDiscovery": false
 						},
@@ -4702,48 +4702,48 @@
 							},
 							{
 								"source": {
-									"name": "last_update_date",
+									"name": "LAST_UPDATE_DATE",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "last_update_date",
+									"name": "LAST_UPDATE_DATE",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "last_updated_by",
+									"name": "LAST_UPDATED_BY",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "last_updated_by",
+									"name": "LAST_UPDATED_BY",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "creation_date",
+									"name": "CREATION_DATE",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "creation_date",
+									"name": "CREATION_DATE",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "created_by",
+									"name": "CREATED_BY",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "created_by",
+									"name": "CREATED_BY",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -4774,12 +4774,12 @@
 							},
 							{
 								"source": {
-									"name": "status",
+									"name": "STATUS",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "status",
+									"name": "STATUS",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -4798,12 +4798,12 @@
 							},
 							{
 								"source": {
-									"name": "last_update_login",
+									"name": "LAST_UPDATE_LOGIN",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "last_update_login",
+									"name": "LAST_UPDATE_LOGIN",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -4978,132 +4978,132 @@
 							},
 							{
 								"source": {
-									"name": "attribute_category",
+									"name": "ATTRIBUTE_CATEGORY",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute_category",
+									"name": "ATTRIBUTE_CATEGORY",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute1",
+									"name": "ATTRIBUTE1",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute1",
+									"name": "ATTRIBUTE1",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute2",
+									"name": "ATTRIBUTE2",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute2",
+									"name": "ATTRIBUTE2",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute3",
+									"name": "ATTRIBUTE3",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute3",
+									"name": "ATTRIBUTE3",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute4",
+									"name": "ATTRIBUTE4",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute4",
+									"name": "ATTRIBUTE4",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute5",
+									"name": "ATTRIBUTE5",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute5",
+									"name": "ATTRIBUTE5",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute6",
+									"name": "ATTRIBUTE6",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute6",
+									"name": "ATTRIBUTE6",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute7",
+									"name": "ATTRIBUTE7",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute7",
+									"name": "ATTRIBUTE7",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute8",
+									"name": "ATTRIBUTE8",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute8",
+									"name": "ATTRIBUTE8",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute9",
+									"name": "ATTRIBUTE9",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute9",
+									"name": "ATTRIBUTE9",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute10",
+									"name": "ATTRIBUTE10",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute10",
+									"name": "ATTRIBUTE10",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -5194,180 +5194,180 @@
 							},
 							{
 								"source": {
-									"name": "attribute11",
+									"name": "ATTRIBUTE11",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute11",
+									"name": "ATTRIBUTE11",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute12",
+									"name": "ATTRIBUTE12",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute12",
+									"name": "ATTRIBUTE12",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute13",
+									"name": "ATTRIBUTE13",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute13",
+									"name": "ATTRIBUTE13",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute14",
+									"name": "ATTRIBUTE14",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute14",
+									"name": "ATTRIBUTE14",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute15",
+									"name": "ATTRIBUTE15",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute15",
+									"name": "ATTRIBUTE15",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute16",
+									"name": "ATTRIBUTE16",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute16",
+									"name": "ATTRIBUTE16",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute17",
+									"name": "ATTRIBUTE17",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute17",
+									"name": "ATTRIBUTE17",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute18",
+									"name": "ATTRIBUTE18",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute18",
+									"name": "ATTRIBUTE18",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute19",
+									"name": "ATTRIBUTE19",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute19",
+									"name": "ATTRIBUTE19",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute20",
+									"name": "ATTRIBUTE20",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute20",
+									"name": "ATTRIBUTE20",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute21",
+									"name": "ATTRIBUTE21",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute21",
+									"name": "ATTRIBUTE21",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute22",
+									"name": "ATTRIBUTE22",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute22",
+									"name": "ATTRIBUTE22",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute23",
+									"name": "ATTRIBUTE23",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute23",
+									"name": "ATTRIBUTE23",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute24",
+									"name": "ATTRIBUTE24",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute24",
+									"name": "ATTRIBUTE24",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute25",
+									"name": "ATTRIBUTE25",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute25",
+									"name": "ATTRIBUTE25",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -5482,96 +5482,96 @@
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute1",
+									"name": "GLOBAL_ATTRIBUTE1",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute1",
+									"name": "GLOBAL_ATTRIBUTE1",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute2",
+									"name": "GLOBAL_ATTRIBUTE2",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute2",
+									"name": "GLOBAL_ATTRIBUTE2",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute3",
+									"name": "GLOBAL_ATTRIBUTE3",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute3",
+									"name": "GLOBAL_ATTRIBUTE3",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute4",
+									"name": "GLOBAL_ATTRIBUTE4",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute4",
+									"name": "GLOBAL_ATTRIBUTE4",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute5",
+									"name": "GLOBAL_ATTRIBUTE5",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute5",
+									"name": "GLOBAL_ATTRIBUTE5",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute6",
+									"name": "GLOBAL_ATTRIBUTE6",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute6",
+									"name": "GLOBAL_ATTRIBUTE6",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute7",
+									"name": "GLOBAL_ATTRIBUTE7",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute7",
+									"name": "GLOBAL_ATTRIBUTE7",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute8",
+									"name": "GLOBAL_ATTRIBUTE8",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute8",
+									"name": "GLOBAL_ATTRIBUTE8",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -5590,144 +5590,144 @@
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute10",
+									"name": "GLOBAL_ATTRIBUTE10",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute10",
+									"name": "GLOBAL_ATTRIBUTE10",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute11",
+									"name": "GLOBAL_ATTRIBUTE11",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute11",
+									"name": "GLOBAL_ATTRIBUTE11",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute12",
+									"name": "GLOBAL_ATTRIBUTE12",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute12",
+									"name": "GLOBAL_ATTRIBUTE12",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute13",
+									"name": "GLOBAL_ATTRIBUTE13",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute13",
+									"name": "GLOBAL_ATTRIBUTE13",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute14",
+									"name": "GLOBAL_ATTRIBUTE14",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute14",
+									"name": "GLOBAL_ATTRIBUTE14",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute15",
+									"name": "GLOBAL_ATTRIBUTE15",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute15",
+									"name": "GLOBAL_ATTRIBUTE15",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute16",
+									"name": "GLOBAL_ATTRIBUTE16",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute16",
+									"name": "GLOBAL_ATTRIBUTE16",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute17",
+									"name": "GLOBAL_ATTRIBUTE17",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute17",
+									"name": "GLOBAL_ATTRIBUTE17",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute18",
+									"name": "GLOBAL_ATTRIBUTE18",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute18",
+									"name": "GLOBAL_ATTRIBUTE18",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute19",
+									"name": "GLOBAL_ATTRIBUTE19",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute19",
+									"name": "GLOBAL_ATTRIBUTE19",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute20",
+									"name": "GLOBAL_ATTRIBUTE20",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute20",
+									"name": "GLOBAL_ATTRIBUTE20",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute_category",
+									"name": "GLOBAL_ATTRIBUTE_CATEGORY",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute_category",
+									"name": "GLOBAL_ATTRIBUTE_CATEGORY",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -6058,12 +6058,12 @@
 							},
 							{
 								"source": {
-									"name": "created_by_MODULE",
+									"name": "CREATED_BY_MODULE",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "created_by_MODULE",
+									"name": "CREATED_BY_MODULE",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -6183,10 +6183,10 @@
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
 							"modifiedDatetimeStart": {
-								"value": "@activity('Lookup Generic File Timestamp').output.FirstRow.watermark_datetime",
+								"value": "@activity('Lookup Generic File Timestamp').output.FirstRow.WatermarkDatetime",
 								"type": "Expression"
 							},
-							"wildcardFolderPath": "oracle_erp/baxdevus/schemas/ar/HZ_LOCATIONS",
+							"wildcardFolderPath": "oracle_erp/baxdevus/schemas/AR/HZ_LOCATIONS",
 							"wildcardFileName": "*",
 							"enablePartitionDiscovery": false
 						},
@@ -6223,60 +6223,60 @@
 							},
 							{
 								"source": {
-									"name": "last_update_date",
+									"name": "LAST_UPDATE_DATE",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "last_update_date",
+									"name": "LAST_UPDATE_DATE",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "last_updated_by",
+									"name": "LAST_UPDATED_BY",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "last_updated_by",
+									"name": "LAST_UPDATED_BY",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "creation_date",
+									"name": "CREATION_DATE",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "creation_date",
+									"name": "CREATION_DATE",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "created_by",
+									"name": "CREATED_BY",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "created_by",
+									"name": "CREATED_BY",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "last_update_login",
+									"name": "LAST_UPDATE_LOGIN",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "last_update_login",
+									"name": "LAST_UPDATE_LOGIN",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -6343,360 +6343,360 @@
 							},
 							{
 								"source": {
-									"name": "attribute_category",
+									"name": "ATTRIBUTE_CATEGORY",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute_category",
+									"name": "ATTRIBUTE_CATEGORY",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute1",
+									"name": "ATTRIBUTE1",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute1",
+									"name": "ATTRIBUTE1",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute2",
+									"name": "ATTRIBUTE2",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute2",
+									"name": "ATTRIBUTE2",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute3",
+									"name": "ATTRIBUTE3",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute3",
+									"name": "ATTRIBUTE3",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute4",
+									"name": "ATTRIBUTE4",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute4",
+									"name": "ATTRIBUTE4",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute5",
+									"name": "ATTRIBUTE5",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute5",
+									"name": "ATTRIBUTE5",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute6",
+									"name": "ATTRIBUTE6",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute6",
+									"name": "ATTRIBUTE6",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute7",
+									"name": "ATTRIBUTE7",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute7",
+									"name": "ATTRIBUTE7",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute8",
+									"name": "ATTRIBUTE8",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute8",
+									"name": "ATTRIBUTE8",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute9",
+									"name": "ATTRIBUTE9",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute9",
+									"name": "ATTRIBUTE9",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute10",
+									"name": "ATTRIBUTE10",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute10",
+									"name": "ATTRIBUTE10",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute11",
+									"name": "ATTRIBUTE11",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute11",
+									"name": "ATTRIBUTE11",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute12",
+									"name": "ATTRIBUTE12",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute12",
+									"name": "ATTRIBUTE12",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute13",
+									"name": "ATTRIBUTE13",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute13",
+									"name": "ATTRIBUTE13",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute14",
+									"name": "ATTRIBUTE14",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute14",
+									"name": "ATTRIBUTE14",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute15",
+									"name": "ATTRIBUTE15",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute15",
+									"name": "ATTRIBUTE15",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute16",
+									"name": "ATTRIBUTE16",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute16",
+									"name": "ATTRIBUTE16",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute17",
+									"name": "ATTRIBUTE17",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute17",
+									"name": "ATTRIBUTE17",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute18",
+									"name": "ATTRIBUTE18",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute18",
+									"name": "ATTRIBUTE18",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute19",
+									"name": "ATTRIBUTE19",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute19",
+									"name": "ATTRIBUTE19",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute20",
+									"name": "ATTRIBUTE20",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute20",
+									"name": "ATTRIBUTE20",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute_category",
+									"name": "GLOBAL_ATTRIBUTE_CATEGORY",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute_category",
+									"name": "GLOBAL_ATTRIBUTE_CATEGORY",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute1",
+									"name": "GLOBAL_ATTRIBUTE1",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute1",
+									"name": "GLOBAL_ATTRIBUTE1",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute2",
+									"name": "GLOBAL_ATTRIBUTE2",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute2",
+									"name": "GLOBAL_ATTRIBUTE2",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute3",
+									"name": "GLOBAL_ATTRIBUTE3",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute3",
+									"name": "GLOBAL_ATTRIBUTE3",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute4",
+									"name": "GLOBAL_ATTRIBUTE4",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute4",
+									"name": "GLOBAL_ATTRIBUTE4",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute5",
+									"name": "GLOBAL_ATTRIBUTE5",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute5",
+									"name": "GLOBAL_ATTRIBUTE5",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute6",
+									"name": "GLOBAL_ATTRIBUTE6",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute6",
+									"name": "GLOBAL_ATTRIBUTE6",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute7",
+									"name": "GLOBAL_ATTRIBUTE7",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute7",
+									"name": "GLOBAL_ATTRIBUTE7",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute8",
+									"name": "GLOBAL_ATTRIBUTE8",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute8",
+									"name": "GLOBAL_ATTRIBUTE8",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -6715,132 +6715,132 @@
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute10",
+									"name": "GLOBAL_ATTRIBUTE10",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute10",
+									"name": "GLOBAL_ATTRIBUTE10",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute11",
+									"name": "GLOBAL_ATTRIBUTE11",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute11",
+									"name": "GLOBAL_ATTRIBUTE11",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute12",
+									"name": "GLOBAL_ATTRIBUTE12",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute12",
+									"name": "GLOBAL_ATTRIBUTE12",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute13",
+									"name": "GLOBAL_ATTRIBUTE13",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute13",
+									"name": "GLOBAL_ATTRIBUTE13",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute14",
+									"name": "GLOBAL_ATTRIBUTE14",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute14",
+									"name": "GLOBAL_ATTRIBUTE14",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute15",
+									"name": "GLOBAL_ATTRIBUTE15",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute15",
+									"name": "GLOBAL_ATTRIBUTE15",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute16",
+									"name": "GLOBAL_ATTRIBUTE16",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute16",
+									"name": "GLOBAL_ATTRIBUTE16",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute17",
+									"name": "GLOBAL_ATTRIBUTE17",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute17",
+									"name": "GLOBAL_ATTRIBUTE17",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute18",
+									"name": "GLOBAL_ATTRIBUTE18",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute18",
+									"name": "GLOBAL_ATTRIBUTE18",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute19",
+									"name": "GLOBAL_ATTRIBUTE19",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute19",
+									"name": "GLOBAL_ATTRIBUTE19",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute20",
+									"name": "GLOBAL_ATTRIBUTE20",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute20",
+									"name": "GLOBAL_ATTRIBUTE20",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -7363,12 +7363,12 @@
 							},
 							{
 								"source": {
-									"name": "LIFE_CYCLE_status",
+									"name": "LIFE_CYCLE_STATUS",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "LIFE_CYCLE_status",
+									"name": "LIFE_CYCLE_STATUS",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -7483,12 +7483,12 @@
 							},
 							{
 								"source": {
-									"name": "created_by_MODULE",
+									"name": "CREATED_BY_MODULE",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "created_by_MODULE",
+									"name": "CREATED_BY_MODULE",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -7519,12 +7519,12 @@
 							},
 							{
 								"source": {
-									"name": "GEOMETRY_status_CODE",
+									"name": "GEOMETRY_STATUS_CODE",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GEOMETRY_status_CODE",
+									"name": "GEOMETRY_STATUS_CODE",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -7543,12 +7543,12 @@
 							},
 							{
 								"source": {
-									"name": "VALIDATION_status_CODE",
+									"name": "VALIDATION_STATUS_CODE",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "VALIDATION_status_CODE",
+									"name": "VALIDATION_STATUS_CODE",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -7704,10 +7704,10 @@
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
 							"modifiedDatetimeStart": {
-								"value": "@activity('Lookup Generic File Timestamp').output.FirstRow.watermark_datetime",
+								"value": "@activity('Lookup Generic File Timestamp').output.FirstRow.WatermarkDatetime",
 								"type": "Expression"
 							},
-							"wildcardFolderPath": "oracle_erp/baxdevus/schemas/ar/HZ_PARTIES",
+							"wildcardFolderPath": "oracle_erp/baxdevus/schemas/AR/HZ_PARTIES",
 							"wildcardFileName": "*",
 							"enablePartitionDiscovery": false
 						},
@@ -7792,36 +7792,36 @@
 							},
 							{
 								"source": {
-									"name": "last_updated_by",
+									"name": "LAST_UPDATED_BY",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "last_updated_by",
+									"name": "LAST_UPDATED_BY",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "creation_date",
+									"name": "CREATION_DATE",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "creation_date",
+									"name": "CREATION_DATE",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "last_update_login",
+									"name": "LAST_UPDATE_LOGIN",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "last_update_login",
+									"name": "LAST_UPDATE_LOGIN",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -7852,24 +7852,24 @@
 							},
 							{
 								"source": {
-									"name": "created_by",
+									"name": "CREATED_BY",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "created_by",
+									"name": "CREATED_BY",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "last_update_date",
+									"name": "LAST_UPDATE_DATE",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "last_update_date",
+									"name": "LAST_UPDATE_DATE",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -7912,408 +7912,408 @@
 							},
 							{
 								"source": {
-									"name": "attribute_category",
+									"name": "ATTRIBUTE_CATEGORY",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute_category",
+									"name": "ATTRIBUTE_CATEGORY",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute1",
+									"name": "ATTRIBUTE1",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute1",
+									"name": "ATTRIBUTE1",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute2",
+									"name": "ATTRIBUTE2",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute2",
+									"name": "ATTRIBUTE2",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute3",
+									"name": "ATTRIBUTE3",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute3",
+									"name": "ATTRIBUTE3",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute4",
+									"name": "ATTRIBUTE4",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute4",
+									"name": "ATTRIBUTE4",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute5",
+									"name": "ATTRIBUTE5",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute5",
+									"name": "ATTRIBUTE5",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute6",
+									"name": "ATTRIBUTE6",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute6",
+									"name": "ATTRIBUTE6",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute7",
+									"name": "ATTRIBUTE7",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute7",
+									"name": "ATTRIBUTE7",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute8",
+									"name": "ATTRIBUTE8",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute8",
+									"name": "ATTRIBUTE8",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute9",
+									"name": "ATTRIBUTE9",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute9",
+									"name": "ATTRIBUTE9",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute10",
+									"name": "ATTRIBUTE10",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute10",
+									"name": "ATTRIBUTE10",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute11",
+									"name": "ATTRIBUTE11",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute11",
+									"name": "ATTRIBUTE11",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute12",
+									"name": "ATTRIBUTE12",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute12",
+									"name": "ATTRIBUTE12",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute13",
+									"name": "ATTRIBUTE13",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute13",
+									"name": "ATTRIBUTE13",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute14",
+									"name": "ATTRIBUTE14",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute14",
+									"name": "ATTRIBUTE14",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute15",
+									"name": "ATTRIBUTE15",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute15",
+									"name": "ATTRIBUTE15",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute16",
+									"name": "ATTRIBUTE16",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute16",
+									"name": "ATTRIBUTE16",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute17",
+									"name": "ATTRIBUTE17",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute17",
+									"name": "ATTRIBUTE17",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute18",
+									"name": "ATTRIBUTE18",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute18",
+									"name": "ATTRIBUTE18",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute19",
+									"name": "ATTRIBUTE19",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute19",
+									"name": "ATTRIBUTE19",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute20",
+									"name": "ATTRIBUTE20",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute20",
+									"name": "ATTRIBUTE20",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute21",
+									"name": "ATTRIBUTE21",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute21",
+									"name": "ATTRIBUTE21",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute22",
+									"name": "ATTRIBUTE22",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute22",
+									"name": "ATTRIBUTE22",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute23",
+									"name": "ATTRIBUTE23",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute23",
+									"name": "ATTRIBUTE23",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute24",
+									"name": "ATTRIBUTE24",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute24",
+									"name": "ATTRIBUTE24",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute_category",
+									"name": "GLOBAL_ATTRIBUTE_CATEGORY",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute_category",
+									"name": "GLOBAL_ATTRIBUTE_CATEGORY",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute1",
+									"name": "GLOBAL_ATTRIBUTE1",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute1",
+									"name": "GLOBAL_ATTRIBUTE1",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute2",
+									"name": "GLOBAL_ATTRIBUTE2",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute2",
+									"name": "GLOBAL_ATTRIBUTE2",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute4",
+									"name": "GLOBAL_ATTRIBUTE4",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute4",
+									"name": "GLOBAL_ATTRIBUTE4",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute3",
+									"name": "GLOBAL_ATTRIBUTE3",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute3",
+									"name": "GLOBAL_ATTRIBUTE3",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute5",
+									"name": "GLOBAL_ATTRIBUTE5",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute5",
+									"name": "GLOBAL_ATTRIBUTE5",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute6",
+									"name": "GLOBAL_ATTRIBUTE6",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute6",
+									"name": "GLOBAL_ATTRIBUTE6",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute7",
+									"name": "GLOBAL_ATTRIBUTE7",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute7",
+									"name": "GLOBAL_ATTRIBUTE7",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute8",
+									"name": "GLOBAL_ATTRIBUTE8",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute8",
+									"name": "GLOBAL_ATTRIBUTE8",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -8332,132 +8332,132 @@
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute10",
+									"name": "GLOBAL_ATTRIBUTE10",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute10",
+									"name": "GLOBAL_ATTRIBUTE10",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute11",
+									"name": "GLOBAL_ATTRIBUTE11",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute11",
+									"name": "GLOBAL_ATTRIBUTE11",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute12",
+									"name": "GLOBAL_ATTRIBUTE12",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute12",
+									"name": "GLOBAL_ATTRIBUTE12",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute13",
+									"name": "GLOBAL_ATTRIBUTE13",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute13",
+									"name": "GLOBAL_ATTRIBUTE13",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute14",
+									"name": "GLOBAL_ATTRIBUTE14",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute14",
+									"name": "GLOBAL_ATTRIBUTE14",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute15",
+									"name": "GLOBAL_ATTRIBUTE15",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute15",
+									"name": "GLOBAL_ATTRIBUTE15",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute16",
+									"name": "GLOBAL_ATTRIBUTE16",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute16",
+									"name": "GLOBAL_ATTRIBUTE16",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute17",
+									"name": "GLOBAL_ATTRIBUTE17",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute17",
+									"name": "GLOBAL_ATTRIBUTE17",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute18",
+									"name": "GLOBAL_ATTRIBUTE18",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute18",
+									"name": "GLOBAL_ATTRIBUTE18",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute19",
+									"name": "GLOBAL_ATTRIBUTE19",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute19",
+									"name": "GLOBAL_ATTRIBUTE19",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute20",
+									"name": "GLOBAL_ATTRIBUTE20",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute20",
+									"name": "GLOBAL_ATTRIBUTE20",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -8812,12 +8812,12 @@
 							},
 							{
 								"source": {
-									"name": "status",
+									"name": "STATUS",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "status",
+									"name": "STATUS",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -9196,12 +9196,12 @@
 							},
 							{
 								"source": {
-									"name": "created_by_MODULE",
+									"name": "CREATED_BY_MODULE",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "created_by_MODULE",
+									"name": "CREATED_BY_MODULE",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -9501,10 +9501,10 @@
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
 							"modifiedDatetimeStart": {
-								"value": "@activity('Lookup Generic File Timestamp').output.FirstRow.watermark_datetime",
+								"value": "@activity('Lookup Generic File Timestamp').output.FirstRow.WatermarkDatetime",
 								"type": "Expression"
 							},
-							"wildcardFolderPath": "oracle_erp/baxdevus/schemas/ar/HZ_PARTY_SITES",
+							"wildcardFolderPath": "oracle_erp/baxdevus/schemas/AR/HZ_PARTY_SITES",
 							"wildcardFileName": "*",
 							"enablePartitionDiscovery": false
 						},
@@ -9565,12 +9565,12 @@
 							},
 							{
 								"source": {
-									"name": "last_update_date",
+									"name": "LAST_UPDATE_DATE",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "last_update_date",
+									"name": "LAST_UPDATE_DATE",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -9589,48 +9589,48 @@
 							},
 							{
 								"source": {
-									"name": "last_updated_by",
+									"name": "LAST_UPDATED_BY",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "last_updated_by",
+									"name": "LAST_UPDATED_BY",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "creation_date",
+									"name": "CREATION_DATE",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "creation_date",
+									"name": "CREATION_DATE",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "created_by",
+									"name": "CREATED_BY",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "created_by",
+									"name": "CREATED_BY",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "last_update_login",
+									"name": "LAST_UPDATE_LOGIN",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "last_update_login",
+									"name": "LAST_UPDATE_LOGIN",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -9697,360 +9697,360 @@
 							},
 							{
 								"source": {
-									"name": "attribute_category",
+									"name": "ATTRIBUTE_CATEGORY",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute_category",
+									"name": "ATTRIBUTE_CATEGORY",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute1",
+									"name": "ATTRIBUTE1",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute1",
+									"name": "ATTRIBUTE1",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute2",
+									"name": "ATTRIBUTE2",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute2",
+									"name": "ATTRIBUTE2",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute3",
+									"name": "ATTRIBUTE3",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute3",
+									"name": "ATTRIBUTE3",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute4",
+									"name": "ATTRIBUTE4",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute4",
+									"name": "ATTRIBUTE4",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute5",
+									"name": "ATTRIBUTE5",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute5",
+									"name": "ATTRIBUTE5",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute6",
+									"name": "ATTRIBUTE6",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute6",
+									"name": "ATTRIBUTE6",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute7",
+									"name": "ATTRIBUTE7",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute7",
+									"name": "ATTRIBUTE7",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute8",
+									"name": "ATTRIBUTE8",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute8",
+									"name": "ATTRIBUTE8",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute9",
+									"name": "ATTRIBUTE9",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute9",
+									"name": "ATTRIBUTE9",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute10",
+									"name": "ATTRIBUTE10",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute10",
+									"name": "ATTRIBUTE10",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute11",
+									"name": "ATTRIBUTE11",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute11",
+									"name": "ATTRIBUTE11",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute12",
+									"name": "ATTRIBUTE12",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute12",
+									"name": "ATTRIBUTE12",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute13",
+									"name": "ATTRIBUTE13",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute13",
+									"name": "ATTRIBUTE13",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute14",
+									"name": "ATTRIBUTE14",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute14",
+									"name": "ATTRIBUTE14",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute15",
+									"name": "ATTRIBUTE15",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute15",
+									"name": "ATTRIBUTE15",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute16",
+									"name": "ATTRIBUTE16",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute16",
+									"name": "ATTRIBUTE16",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute17",
+									"name": "ATTRIBUTE17",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute17",
+									"name": "ATTRIBUTE17",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute18",
+									"name": "ATTRIBUTE18",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute18",
+									"name": "ATTRIBUTE18",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute19",
+									"name": "ATTRIBUTE19",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute19",
+									"name": "ATTRIBUTE19",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "attribute20",
+									"name": "ATTRIBUTE20",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "attribute20",
+									"name": "ATTRIBUTE20",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute_category",
+									"name": "GLOBAL_ATTRIBUTE_CATEGORY",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute_category",
+									"name": "GLOBAL_ATTRIBUTE_CATEGORY",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute1",
+									"name": "GLOBAL_ATTRIBUTE1",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute1",
+									"name": "GLOBAL_ATTRIBUTE1",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute2",
+									"name": "GLOBAL_ATTRIBUTE2",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute2",
+									"name": "GLOBAL_ATTRIBUTE2",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute3",
+									"name": "GLOBAL_ATTRIBUTE3",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute3",
+									"name": "GLOBAL_ATTRIBUTE3",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute4",
+									"name": "GLOBAL_ATTRIBUTE4",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute4",
+									"name": "GLOBAL_ATTRIBUTE4",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute5",
+									"name": "GLOBAL_ATTRIBUTE5",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute5",
+									"name": "GLOBAL_ATTRIBUTE5",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute6",
+									"name": "GLOBAL_ATTRIBUTE6",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute6",
+									"name": "GLOBAL_ATTRIBUTE6",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute7",
+									"name": "GLOBAL_ATTRIBUTE7",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute7",
+									"name": "GLOBAL_ATTRIBUTE7",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute8",
+									"name": "GLOBAL_ATTRIBUTE8",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute8",
+									"name": "GLOBAL_ATTRIBUTE8",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -10069,132 +10069,132 @@
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute10",
+									"name": "GLOBAL_ATTRIBUTE10",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute10",
+									"name": "GLOBAL_ATTRIBUTE10",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute11",
+									"name": "GLOBAL_ATTRIBUTE11",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute11",
+									"name": "GLOBAL_ATTRIBUTE11",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute12",
+									"name": "GLOBAL_ATTRIBUTE12",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute12",
+									"name": "GLOBAL_ATTRIBUTE12",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute13",
+									"name": "GLOBAL_ATTRIBUTE13",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute13",
+									"name": "GLOBAL_ATTRIBUTE13",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute14",
+									"name": "GLOBAL_ATTRIBUTE14",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute14",
+									"name": "GLOBAL_ATTRIBUTE14",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute15",
+									"name": "GLOBAL_ATTRIBUTE15",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute15",
+									"name": "GLOBAL_ATTRIBUTE15",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute16",
+									"name": "GLOBAL_ATTRIBUTE16",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute16",
+									"name": "GLOBAL_ATTRIBUTE16",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute17",
+									"name": "GLOBAL_ATTRIBUTE17",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute17",
+									"name": "GLOBAL_ATTRIBUTE17",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute18",
+									"name": "GLOBAL_ATTRIBUTE18",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute18",
+									"name": "GLOBAL_ATTRIBUTE18",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute19",
+									"name": "GLOBAL_ATTRIBUTE19",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute19",
+									"name": "GLOBAL_ATTRIBUTE19",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "GLOBAL_attribute20",
+									"name": "GLOBAL_ATTRIBUTE20",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GLOBAL_attribute20",
+									"name": "GLOBAL_ATTRIBUTE20",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -10321,12 +10321,12 @@
 							},
 							{
 								"source": {
-									"name": "status",
+									"name": "STATUS",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "status",
+									"name": "STATUS",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -10369,12 +10369,12 @@
 							},
 							{
 								"source": {
-									"name": "created_by_MODULE",
+									"name": "CREATED_BY_MODULE",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "created_by_MODULE",
+									"name": "CREATED_BY_MODULE",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -10517,9 +10517,9 @@
 							},
 							"type": "String"
 						},
-						"table_name": {
+						"TableName": {
 							"value": {
-								"value": "@variables('table_generic')",
+								"value": "@variables('Table_Generic')",
 								"type": "Expression"
 							},
 							"type": "String"
@@ -10547,14 +10547,14 @@
 					"source": {
 						"type": "AzureSqlSource",
 						"sqlReaderQuery": {
-							"value": "select watermark_datetime \nfrom [dbo].[watermark] \nwhere owner_name = '@{variables('adf_owner_name')}'\nand table_name = '@{variables('table_generic')}'",
+							"value": "select WatermarkDatetime \nfrom [dbo].[dwatermark] \nwhere owner_name = '@{variables('adf_owner_name')}'\nand TableName = '@{variables('Table_Generic')}'",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
 					"dataset": {
-						"referenceName": "watermark",
+						"referenceName": "dwatermark",
 						"type": "DatasetReference"
 					}
 				}
@@ -10563,15 +10563,15 @@
 		"variables": {
 			"adf_owner_name": {
 				"type": "String",
-				"defaultValue": "adf"
+				"defaultValue": "ADF"
 			},
-			"table_generic": {
+			"Table_Generic": {
 				"type": "String",
 				"defaultValue": "AR_1_TABLES"
 			},
-			"Table_ar_receivable_applications_all": {
+			"Table_AR_RECEIVABLE_APPLICATIONS_ALL": {
 				"type": "String",
-				"defaultValue": "ar_receivable_applications_all"
+				"defaultValue": "AR_RECEIVABLE_APPLICATIONS_ALL"
 			}
 		},
 		"annotations": []

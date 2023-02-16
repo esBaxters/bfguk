@@ -1,16 +1,16 @@
 {
-  "name": "bfg_odb_gl_ledgers",
+  "name": "BFG_ODB_GL_LEDGERS",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "bfg_oracle_prod",
+      "referenceName": "BFG_ORACLE_PROD",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
     "type": "OracleTable",
     "schema": [],
     "typeProperties": {
-      "schema": "gl",
-      "table": "gl_ledgers"
+      "schema": "GL",
+      "table": "GL_LEDGERS"
     }
   }
 }

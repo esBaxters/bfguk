@@ -1,41 +1,41 @@
 {
-  "name": "watermark",
+  "name": "WATERMARK",
   "properties": {
     "linkedServiceName": {
-      "referenceName": "bfg_sql_db",
+      "referenceName": "BFG_SQL_DB",
       "type": "LinkedServiceReference"
     },
     "annotations": [],
     "type": "AzureSqlTable",
     "schema": [
       {
-        "name": "owner_name",
+        "name": "OwnerName",
         "type": "varchar"
       },
       {
-        "name": "table_name",
+        "name": "TableName",
         "type": "varchar"
       },
       {
-        "name": "watermark_datetime",
+        "name": "WatermarkDatetime",
         "type": "datetime",
         "precision": 23,
         "scale": 3
       },
       {
-        "name": "updated_at",
+        "name": "UpdatedAt",
         "type": "datetime2",
         "scale": 7
       },
       {
-        "name": "max_datetime",
+        "name": "MaxDateTime2",
         "type": "datetime2",
         "scale": 7
       }
     ],
     "typeProperties": {
       "schema": "dbo",
-      "table": "watermark"
+      "table": "WATERMARK"
     }
   }
 }

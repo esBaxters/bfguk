@@ -1,16 +1,16 @@
 {
-  "name": "sql_ar_adjustments_all",
-  "properties": {
-    "linkedServiceName": {
-      "referenceName": "bfg_sql_db",
-      "type": "LinkedServiceReference"
-    },
-    "annotations": [],
-    "type": "AzureSqlTable",
-    "schema": [],
-    "typeProperties": {
-      "schema": "stg",
-      "table": "ar_adjustments_all"
-    }
-  }
+	"name": "SQL_AR_ADJUSTMENTS_ALL",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "BFG_SQL_DB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "stg",
+			"table": "AR_ADJUSTMENTS_ALL"
+		}
+	}
 }
