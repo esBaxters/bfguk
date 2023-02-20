@@ -26,27 +26,27 @@
 							"type": "AzureBlobStorageWriteSettings",
 							"metadata": [
 								{
-								  "name": "_M_TIMESTAMP",
-								  "value": {
-									"value": "@utcnow()",
-									"type": "Expression"
-								  }
+									"name": "_M_TIMESTAMP",
+									"value": {
+										"value": "@utcnow()",
+										"type": "Expression"
+									}
 								},
 								{
-								  "name": "_M_PIPELINE",
-								  "value": {
-									"value": "@pipeline().Pipeline",
-									"type": "Expression"
-								  }
+									"name": "_M_PIPELINE",
+									"value": {
+										"value": "@pipeline().Pipeline",
+										"type": "Expression"
+									}
 								},
 								{
-								  "name": "_M_DATETIME",
-								  "value": {
-									"value": "@formatDateTime(utcnow())",
-									"type": "Expression"
-								  }
+									"name": "_M_DATETIME",
+									"value": {
+										"value": "@formatDateTime(utcnow())",
+										"type": "Expression"
+									}
 								}
-							  ]
+							]
 						},
 						"formatSettings": {
 							"type": "DelimitedTextWriteSettings",
@@ -1429,8 +1429,7 @@
 					"sink": {
 						"type": "DelimitedTextSink",
 						"storeSettings": {
-							"type": "AzureBlobStorageWriteSettings",
-							"copyBehavior": "PreserveHierarchy"
+							"type": "AzureBlobStorageWriteSettings"
 						},
 						"formatSettings": {
 							"type": "DelimitedTextWriteSettings",
@@ -1457,7 +1456,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "IC_ITEM_MST_B_Archive",
+						"referenceName": "ARCHIVE_IC_ITEM_MST_B",
 						"type": "DatasetReference"
 					}
 				]
@@ -1488,7 +1487,7 @@
 					},
 					"logStorageSettings": {
 						"linkedServiceName": {
-							"referenceName": "BFG_Azure_Storage",
+							"referenceName": "BFG_AZURE_STORAGE",
 							"type": "LinkedServiceReference"
 						},
 						"path": "raw/oracle_erp/logging"

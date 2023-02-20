@@ -1,1177 +1,1182 @@
 {
-  "name": "BFG_APPLSYS_ODB_To_ADLS_And_SQL",
-  "properties": {
-    "activities": [
-      {
-        "name": "Copy FND_LOOKUP_VALUES To ADLS",
-        "type": "Copy",
-        "dependsOn": [],
-        "policy": {
-          "timeout": "7.00:00:00",
-          "retry": 0,
-          "retryIntervalInSeconds": 30,
-          "secureOutput": false,
-          "secureInput": false
-        },
-        "userProperties": [],
-        "typeProperties": {
-          "source": {
-            "type": "OracleSource",
-            "partitionOption": "None",
-            "queryTimeout": "02:00:00"
-          },
-          "sink": {
-            "type": "DelimitedTextSink",
-            "storeSettings": {
-              "type": "AzureBlobStorageWriteSettings",
-              "metadata": [
-                {
-                  "name": "_M_TIMESTAMP",
-                  "value": {
-                    "value": "@utcnow()",
-                    "type": "Expression"
-                  }
-                },
-                {
-                  "name": "_M_PIPELINE",
-                  "value": {
-                    "value": "@pipeline().Pipeline",
-                    "type": "Expression"
-                  }
-                },
-                {
-                  "name": "_M_DATETIME",
-                  "value": {
-                    "value": "@formatDateTime(utcnow())",
-                    "type": "Expression"
-                  }
-                }
-              ]
-            },
-            "formatSettings": {
-              "type": "DelimitedTextWriteSettings",
-              "quoteAllText": true,
-              "fileExtension": ".txt"
-            }
-          },
-          "enableStaging": false,
-          "translator": {
-            "type": "TabularTranslator",
-            "mappings": [
-              {
-                "source": {
-                  "name": "LOOKUP_TYPE",
-                  "type": "String"
-                },
-                "sink": {
-                  "name": "LOOKUP_TYPE",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "LANGUAGE",
-                  "type": "String"
-                },
-                "sink": {
-                  "name": "LANGUAGE",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "LOOKUP_CODE",
-                  "type": "String"
-                },
-                "sink": {
-                  "name": "LOOKUP_CODE",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "MEANING",
-                  "type": "String"
-                },
-                "sink": {
-                  "name": "MEANING",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "DESCRIPTION",
-                  "type": "String"
-                },
-                "sink": {
-                  "name": "DESCRIPTION",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "ENABLED_FLAG",
-                  "type": "String"
-                },
-                "sink": {
-                  "name": "ENABLED_FLAG",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "START_DATE_ACTIVE",
-                  "type": "DateTime"
-                },
-                "sink": {
-                  "name": "START_DATE_ACTIVE",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "END_DATE_ACTIVE",
-                  "type": "DateTime"
-                },
-                "sink": {
-                  "name": "END_DATE_ACTIVE",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "CREATED_BY",
-                  "type": "Decimal"
-                },
-                "sink": {
-                  "name": "CREATED_BY",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "CREATION_DATE",
-                  "type": "DateTime"
-                },
-                "sink": {
-                  "name": "CREATION_DATE",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "LAST_UPDATED_BY",
-                  "type": "Decimal"
-                },
-                "sink": {
-                  "name": "LAST_UPDATED_BY",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "LAST_UPDATE_LOGIN",
-                  "type": "Decimal"
-                },
-                "sink": {
-                  "name": "LAST_UPDATE_LOGIN",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "LAST_UPDATE_DATE",
-                  "type": "DateTime"
-                },
-                "sink": {
-                  "name": "LAST_UPDATE_DATE",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "SOURCE_LANG",
-                  "type": "String"
-                },
-                "sink": {
-                  "name": "SOURCE_LANG",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "SECURITY_GROUP_ID",
-                  "type": "Decimal"
-                },
-                "sink": {
-                  "name": "SECURITY_GROUP_ID",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "VIEW_APPLICATION_ID",
-                  "type": "Decimal"
-                },
-                "sink": {
-                  "name": "VIEW_APPLICATION_ID",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "TERRITORY_CODE",
-                  "type": "String"
-                },
-                "sink": {
-                  "name": "TERRITORY_CODE",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "ATTRIBUTE_CATEGORY",
-                  "type": "String"
-                },
-                "sink": {
-                  "name": "ATTRIBUTE_CATEGORY",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "ATTRIBUTE1",
-                  "type": "String"
-                },
-                "sink": {
-                  "name": "ATTRIBUTE1",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "ATTRIBUTE2",
-                  "type": "String"
-                },
-                "sink": {
-                  "name": "ATTRIBUTE2",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "ATTRIBUTE3",
-                  "type": "String"
-                },
-                "sink": {
-                  "name": "ATTRIBUTE3",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "ATTRIBUTE4",
-                  "type": "String"
-                },
-                "sink": {
-                  "name": "ATTRIBUTE4",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "ATTRIBUTE5",
-                  "type": "String"
-                },
-                "sink": {
-                  "name": "ATTRIBUTE5",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "ATTRIBUTE6",
-                  "type": "String"
-                },
-                "sink": {
-                  "name": "ATTRIBUTE6",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "ATTRIBUTE7",
-                  "type": "String"
-                },
-                "sink": {
-                  "name": "ATTRIBUTE7",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "ATTRIBUTE8",
-                  "type": "String"
-                },
-                "sink": {
-                  "name": "ATTRIBUTE8",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "ATTRIBUTE9",
-                  "type": "String"
-                },
-                "sink": {
-                  "name": "ATTRIBUTE9",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "ATTRIBUTE10",
-                  "type": "String"
-                },
-                "sink": {
-                  "name": "ATTRIBUTE10",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "ATTRIBUTE11",
-                  "type": "String"
-                },
-                "sink": {
-                  "name": "ATTRIBUTE11",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "ATTRIBUTE12",
-                  "type": "String"
-                },
-                "sink": {
-                  "name": "ATTRIBUTE12",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "ATTRIBUTE13",
-                  "type": "String"
-                },
-                "sink": {
-                  "name": "ATTRIBUTE13",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "ATTRIBUTE14",
-                  "type": "String"
-                },
-                "sink": {
-                  "name": "ATTRIBUTE14",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "ATTRIBUTE15",
-                  "type": "String"
-                },
-                "sink": {
-                  "name": "ATTRIBUTE15",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "TAG",
-                  "type": "String"
-                },
-                "sink": {
-                  "name": "TAG",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "LEAF_NODE",
-                  "type": "String"
-                },
-                "sink": {
-                  "name": "LEAF_NODE",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "ZD_EDITION_NAME",
-                  "type": "String"
-                },
-                "sink": {
-                  "name": "ZD_EDITION_NAME",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "ZD_SYNC",
-                  "type": "String"
-                },
-                "sink": {
-                  "name": "ZD_SYNC",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              }
-            ],
-            "typeConversion": true,
-            "typeConversionSettings": {
-              "allowDataTruncation": true,
-              "treatBooleanAsNumber": false
-            }
-          }
-        },
-        "inputs": [
-          {
-            "referenceName": "BFG_FND_LOOKUP_VALUES",
-            "type": "DatasetReference"
-          }
-        ],
-        "outputs": [
-          {
-            "referenceName": "ADLS_FND_LOOKUP_VALUES",
-            "type": "DatasetReference"
-          }
-        ]
-      },
-      {
-        "name": "Copy FND_LOOKUP_VAKUES To SQL",
-        "type": "Copy",
-        "dependsOn": [
-          {
-            "activity": "Copy FND_LOOKUP_VALUES To ADLS",
-            "dependencyConditions": ["Succeeded"]
-          }
-        ],
-        "policy": {
-          "timeout": "7.00:00:00",
-          "retry": 0,
-          "retryIntervalInSeconds": 30,
-          "secureOutput": false,
-          "secureInput": false
-        },
-        "userProperties": [],
-        "typeProperties": {
-          "source": {
-            "type": "DelimitedTextSource",
-            "additionalColumns": [
-              {
-                "name": "_M_TIMESTAMP",
-                "value": {
-                  "value": "@utcnow()",
-                  "type": "Expression"
-                }
-              },
-              {
-                "name": "_M_PIPELINE",
-                "value": {
-                  "value": "@pipeline().Pipeline",
-                  "type": "Expression"
-                }
-              },
-              {
-                "name": "_M_DATETIME",
-                "value": {
-                  "value": "@formatDateTime(utcnow())",
-                  "type": "Expression"
-                }
-              }
-            ],
-            "storeSettings": {
-              "type": "AzureBlobStorageReadSettings",
-              "recursive": true,
-              "modifiedDatetimeStart": {
-                "value": "@getPastTime(10, 'Minute', pipeline().TriggerTime)",
-                "type": "Expression"
-              },
-              "wildcardFolderPath": "bfguk_erp_prod/schemas/APPLSYS",
-              "wildcardFileName": "*",
-              "enablePartitionDiscovery": false
-            },
-            "formatSettings": {
-              "type": "DelimitedTextReadSettings"
-            }
-          },
-          "sink": {
-            "type": "AzureSqlSink",
-            "preCopyScript": {
-              "value": "begin try\ntruncate table stg.FND_LOOKUP_VALUES\nend try\nbegin catch \nselect null\nend catch",
-              "type": "Expression"
-            },
-            "writeBehavior": "insert",
-            "sqlWriterUseTableLock": false,
-            "tableOption": "autoCreate",
-            "disableMetricsCollection": false
-          },
-          "enableStaging": false,
-          "translator": {
-            "type": "TabularTranslator",
-            "mappings": [
-              {
-                "source": {
-                  "name": "LOOKUP_TYPE",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "LOOKUP_TYPE",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "LANGUAGE",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "LANGUAGE",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "LOOKUP_CODE",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "LOOKUP_CODE",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "MEANING",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "MEANING",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "DESCRIPTION",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "DESCRIPTION",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "ENABLED_FLAG",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "ENABLED_FLAG",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "START_DATE_ACTIVE",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "START_DATE_ACTIVE",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "END_DATE_ACTIVE",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "END_DATE_ACTIVE",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "CREATED_BY",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "CREATED_BY",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "CREATION_DATE",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "CREATION_DATE",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "LAST_UPDATED_BY",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "LAST_UPDATED_BY",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "LAST_UPDATE_LOGIN",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "LAST_UPDATE_LOGIN",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "LAST_UPDATE_DATE",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "LAST_UPDATE_DATE",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "SOURCE_LANG",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "SOURCE_LANG",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "SECURITY_GROUP_ID",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "SECURITY_GROUP_ID",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "VIEW_APPLICATION_ID",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "VIEW_APPLICATION_ID",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "TERRITORY_CODE",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "TERRITORY_CODE",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "ATTRIBUTE_CATEGORY",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "ATTRIBUTE_CATEGORY",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "ATTRIBUTE1",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "ATTRIBUTE1",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "ATTRIBUTE2",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "ATTRIBUTE2",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "ATTRIBUTE3",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "ATTRIBUTE3",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "ATTRIBUTE4",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "ATTRIBUTE4",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "ATTRIBUTE5",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "ATTRIBUTE5",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "ATTRIBUTE6",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "ATTRIBUTE6",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "ATTRIBUTE7",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "ATTRIBUTE7",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "ATTRIBUTE8",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "ATTRIBUTE8",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "ATTRIBUTE9",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "ATTRIBUTE9",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "ATTRIBUTE10",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "ATTRIBUTE10",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "ATTRIBUTE11",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "ATTRIBUTE11",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "ATTRIBUTE12",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "ATTRIBUTE12",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "ATTRIBUTE13",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "ATTRIBUTE13",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "ATTRIBUTE14",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "ATTRIBUTE14",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "ATTRIBUTE15",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "ATTRIBUTE15",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "TAG",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "TAG",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "LEAF_NODE",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "LEAF_NODE",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "ZD_EDITION_NAME",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "ZD_EDITION_NAME",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "ZD_SYNC",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "ZD_SYNC",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "_m_timestamp",
-                  "type": "String"
-                },
-                "sink": {
-                  "name": "_m_timestamp",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "_m_pipeline",
-                  "type": "String"
-                },
-                "sink": {
-                  "name": "_m_pipeline",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "_m_datetime",
-                  "type": "String"
-                },
-                "sink": {
-                  "name": "_m_datetime",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              }
-            ],
-            "typeConversion": true,
-            "typeConversionSettings": {
-              "allowDataTruncation": true,
-              "treatBooleanAsNumber": false
-            }
-          }
-        },
-        "inputs": [
-          {
-            "referenceName": "ADLS_FND_LOOKUP_VALUES",
-            "type": "DatasetReference"
-          }
-        ],
-        "outputs": [
-          {
-            "referenceName": "SQL_FND_LOOKUP_VALUES",
-            "type": "DatasetReference"
-          }
-        ]
-      },
-      {
-        "name": "Archive FND_LOOKUP_VALUES",
-        "type": "Copy",
-        "dependsOn": [
-          {
-            "activity": "Copy FND_LOOKUP_VAKUES To SQL",
-            "dependencyConditions": ["Succeeded"]
-          }
-        ],
-        "policy": {
-          "timeout": "7.00:00:00",
-          "retry": 0,
-          "retryIntervalInSeconds": 30,
-          "secureOutput": false,
-          "secureInput": false
-        },
-        "userProperties": [],
-        "typeProperties": {
-          "source": {
-            "type": "DelimitedTextSource",
-            "storeSettings": {
-              "type": "AzureBlobStorageReadSettings",
-              "recursive": true,
-              "modifiedDatetimeStart": "2022-05-01T00:00:00.000Z",
-              "modifiedDatetimeEnd": {
-                "value": "@pipeline().TriggerTime",
-                "type": "Expression"
-              },
-              "wildcardFolderPath": "bfguk_erp_prod/schemas/APPLSYS",
-              "wildcardFileName": "*",
-              "enablePartitionDiscovery": false
-            },
-            "formatSettings": {
-              "type": "DelimitedTextReadSettings"
-            }
-          },
-          "sink": {
-            "type": "DelimitedTextSink",
-            "storeSettings": {
-              "type": "AzureBlobStorageWriteSettings",
-              "copyBehavior": "PreserveHierarchy"
-            },
-            "formatSettings": {
-              "type": "DelimitedTextWriteSettings",
-              "quoteAllText": true,
-              "fileExtension": ".txt"
-            }
-          },
-          "enableStaging": false,
-          "translator": {
-            "type": "TabularTranslator",
-            "typeConversion": true,
-            "typeConversionSettings": {
-              "allowDataTruncation": true,
-              "treatBooleanAsNumber": false
-            }
-          }
-        },
-        "inputs": [
-          {
-            "referenceName": "ADLS_FND_LOOKUP_VALUES",
-            "type": "DatasetReference"
-          }
-        ],
-        "outputs": [
-          {
-            "referenceName": "FND_LOOKUP_VALUES_Archive",
-            "type": "DatasetReference"
-          }
-        ]
-      },
-      {
-        "name": "Delete FND_LOOKUP_VALUES",
-        "type": "Delete",
-        "dependsOn": [
-          {
-            "activity": "Archive FND_LOOKUP_VALUES",
-            "dependencyConditions": ["Succeeded"]
-          }
-        ],
-        "policy": {
-          "timeout": "7.00:00:00",
-          "retry": 0,
-          "retryIntervalInSeconds": 30,
-          "secureOutput": false,
-          "secureInput": false
-        },
-        "userProperties": [],
-        "typeProperties": {
-          "dataset": {
-            "referenceName": "ADLS_FND_LOOKUP_VALUES",
-            "type": "DatasetReference"
-          },
-          "logStorageSettings": {
-            "linkedServiceName": {
-              "referenceName": "BFG_Azure_Storage",
-              "type": "LinkedServiceReference"
-            },
-            "path": "raw/oracle_erp/logging"
-          },
-          "enableLogging": true,
-          "storeSettings": {
-            "type": "AzureBlobStorageReadSettings",
-            "recursive": true,
-            "modifiedDatetimeStart": "2022-05-01T00:00:00.000Z",
-            "modifiedDatetimeEnd": {
-              "value": "@pipeline().TriggerTime",
-              "type": "Expression"
-            },
-            "wildcardFileName": "*",
-            "enablePartitionDiscovery": false
-          }
-        }
-      }
-    ],
-    "annotations": []
-  }
+	"name": "BFG_APPLSYS_ODB_To_ADLS_And_SQL",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy FND_LOOKUP_VALUES To ADLS",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "OracleSource",
+						"partitionOption": "None",
+						"queryTimeout": "02:00:00"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings",
+							"metadata": [
+								{
+									"name": "_M_TIMESTAMP",
+									"value": {
+										"value": "@utcnow()",
+										"type": "Expression"
+									}
+								},
+								{
+									"name": "_M_PIPELINE",
+									"value": {
+										"value": "@pipeline().Pipeline",
+										"type": "Expression"
+									}
+								},
+								{
+									"name": "_M_DATETIME",
+									"value": {
+										"value": "@formatDateTime(utcnow())",
+										"type": "Expression"
+									}
+								}
+							]
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "LOOKUP_TYPE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "LOOKUP_TYPE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "LANGUAGE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "LANGUAGE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "LOOKUP_CODE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "LOOKUP_CODE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "MEANING",
+									"type": "String"
+								},
+								"sink": {
+									"name": "MEANING",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DESCRIPTION",
+									"type": "String"
+								},
+								"sink": {
+									"name": "DESCRIPTION",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ENABLED_FLAG",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ENABLED_FLAG",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "START_DATE_ACTIVE",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "START_DATE_ACTIVE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "END_DATE_ACTIVE",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "END_DATE_ACTIVE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CREATED_BY",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "CREATED_BY",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CREATION_DATE",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "CREATION_DATE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "LAST_UPDATED_BY",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "LAST_UPDATED_BY",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "LAST_UPDATE_LOGIN",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "LAST_UPDATE_LOGIN",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "LAST_UPDATE_DATE",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "LAST_UPDATE_DATE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SOURCE_LANG",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SOURCE_LANG",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SECURITY_GROUP_ID",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "SECURITY_GROUP_ID",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "VIEW_APPLICATION_ID",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "VIEW_APPLICATION_ID",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "TERRITORY_CODE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "TERRITORY_CODE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE_CATEGORY",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE_CATEGORY",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE4",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE4",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE5",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE5",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE6",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE6",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE7",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE7",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE8",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE8",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE9",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE9",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE10",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE10",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE11",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE11",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE12",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE12",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE13",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE13",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE14",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE14",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE15",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE15",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "TAG",
+									"type": "String"
+								},
+								"sink": {
+									"name": "TAG",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "LEAF_NODE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "LEAF_NODE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ZD_EDITION_NAME",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ZD_EDITION_NAME",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ZD_SYNC",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ZD_SYNC",
+									"type": "String",
+									"physicalType": "String"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "BFG_FND_LOOKUP_VALUES",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ADLS_FND_LOOKUP_VALUES",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Copy FND_LOOKUP_VAKUES To SQL",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copy FND_LOOKUP_VALUES To ADLS",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"additionalColumns": [
+							{
+								"name": "_M_TIMESTAMP",
+								"value": {
+									"value": "@utcnow()",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "_M_PIPELINE",
+								"value": {
+									"value": "@pipeline().Pipeline",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "_M_DATETIME",
+								"value": {
+									"value": "@formatDateTime(utcnow())",
+									"type": "Expression"
+								}
+							}
+						],
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"modifiedDatetimeStart": {
+								"value": "@getPastTime(10, 'Minute', pipeline().TriggerTime)",
+								"type": "Expression"
+							},
+							"wildcardFolderPath": "bfguk_erp_prod/schemas/APPLSYS",
+							"wildcardFileName": "*",
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"preCopyScript": {
+							"value": "begin try\ntruncate table stg.FND_LOOKUP_VALUES\nend try\nbegin catch \nselect null\nend catch",
+							"type": "Expression"
+						},
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false,
+						"tableOption": "autoCreate",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "LOOKUP_TYPE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "LOOKUP_TYPE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "LANGUAGE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "LANGUAGE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "LOOKUP_CODE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "LOOKUP_CODE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "MEANING",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "MEANING",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DESCRIPTION",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "DESCRIPTION",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ENABLED_FLAG",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ENABLED_FLAG",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "START_DATE_ACTIVE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "START_DATE_ACTIVE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "END_DATE_ACTIVE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "END_DATE_ACTIVE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CREATED_BY",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "CREATED_BY",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CREATION_DATE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "CREATION_DATE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "LAST_UPDATED_BY",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "LAST_UPDATED_BY",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "LAST_UPDATE_LOGIN",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "LAST_UPDATE_LOGIN",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "LAST_UPDATE_DATE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "LAST_UPDATE_DATE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SOURCE_LANG",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "SOURCE_LANG",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SECURITY_GROUP_ID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "SECURITY_GROUP_ID",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "VIEW_APPLICATION_ID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "VIEW_APPLICATION_ID",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "TERRITORY_CODE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "TERRITORY_CODE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE_CATEGORY",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE_CATEGORY",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE1",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE1",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE2",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE2",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE3",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE3",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE4",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE4",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE5",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE5",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE6",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE6",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE7",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE7",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE8",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE8",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE9",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE9",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE10",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE10",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE11",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE11",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE12",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE12",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE13",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE13",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE14",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE14",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE15",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ATTRIBUTE15",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "TAG",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "TAG",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "LEAF_NODE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "LEAF_NODE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ZD_EDITION_NAME",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ZD_EDITION_NAME",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ZD_SYNC",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ZD_SYNC",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "_m_timestamp",
+									"type": "String"
+								},
+								"sink": {
+									"name": "_m_timestamp",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "_m_pipeline",
+									"type": "String"
+								},
+								"sink": {
+									"name": "_m_pipeline",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "_m_datetime",
+									"type": "String"
+								},
+								"sink": {
+									"name": "_m_datetime",
+									"type": "String",
+									"physicalType": "String"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ADLS_FND_LOOKUP_VALUES",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "SQL_FND_LOOKUP_VALUES",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Archive FND_LOOKUP_VALUES",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copy FND_LOOKUP_VAKUES To SQL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"modifiedDatetimeStart": "2022-05-01T00:00:00.000Z",
+							"modifiedDatetimeEnd": {
+								"value": "@pipeline().TriggerTime",
+								"type": "Expression"
+							},
+							"wildcardFolderPath": "bfguk_erp_prod/schemas/APPLSYS",
+							"wildcardFileName": "*",
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ADLS_FND_LOOKUP_VALUES",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ARCHIVE_FND_LOOKUP_VALUES",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Delete FND_LOOKUP_VALUES",
+				"type": "Delete",
+				"dependsOn": [
+					{
+						"activity": "Archive FND_LOOKUP_VALUES",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "ADLS_FND_LOOKUP_VALUES",
+						"type": "DatasetReference"
+					},
+					"logStorageSettings": {
+						"linkedServiceName": {
+							"referenceName": "BFG_AZURE_STORAGE",
+							"type": "LinkedServiceReference"
+						},
+						"path": "raw/oracle_erp/logging"
+					},
+					"enableLogging": true,
+					"storeSettings": {
+						"type": "AzureBlobStorageReadSettings",
+						"recursive": true,
+						"modifiedDatetimeStart": "2022-05-01T00:00:00.000Z",
+						"modifiedDatetimeEnd": {
+							"value": "@pipeline().TriggerTime",
+							"type": "Expression"
+						},
+						"wildcardFileName": "*",
+						"enablePartitionDiscovery": false
+					}
+				}
+			}
+		],
+		"annotations": []
+	}
 }

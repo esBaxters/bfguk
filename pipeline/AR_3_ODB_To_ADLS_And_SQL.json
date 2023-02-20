@@ -1,1085 +1,1097 @@
 {
-  "name": "AR_3_ODB_To_ADLS_And_SQL",
-  "properties": {
-    "activities": [
-      {
-        "name": "Copy HZ_RELATIONSHIPS To ADLS",
-        "type": "Copy",
-        "dependsOn": [
-          {
-            "activity": "Copy HZ_PARTY_SITE_USES To ADLS",
-            "dependencyConditions": ["Succeeded"]
-          }
-        ],
-        "policy": {
-          "timeout": "7.00:00:00",
-          "retry": 0,
-          "retryIntervalInSeconds": 30,
-          "secureOutput": false,
-          "secureInput": false
-        },
-        "userProperties": [],
-        "typeProperties": {
-          "source": {
-            "type": "OracleSource",
-            "partitionOption": "None",
-            "queryTimeout": "02:00:00"
-          },
-          "sink": {
-            "type": "DelimitedTextSink",
-            "storeSettings": {
-              "type": "AzureBlobStorageWriteSettings",
-              "metadata": [
-                {
-                  "name": "_M_TIMESTAMP",
-                  "value": {
-                    "value": "@utcnow()",
-                    "type": "Expression"
-                  }
-                },
-                {
-                  "name": "_M_PIPELINE",
-                  "value": {
-                    "value": "@pipeline().Pipeline",
-                    "type": "Expression"
-                  }
-                },
-                {
-                  "name": "_M_DATETIME",
-                  "value": {
-                    "value": "@formatDateTime(utcnow())",
-                    "type": "Expression"
-                  }
-                }
-              ]
-            },
-            "formatSettings": {
-              "type": "DelimitedTextWriteSettings",
-              "quoteAllText": true,
-              "fileExtension": ".txt"
-            }
-          },
-          "enableStaging": false,
-          "translator": {
-            "type": "TabularTranslator",
-            "typeConversion": true,
-            "typeConversionSettings": {
-              "allowDataTruncation": true,
-              "treatBooleanAsNumber": false
-            }
-          }
-        },
-        "inputs": [
-          {
-            "referenceName": "BFG_ODB_HZ_RELATIONSHIPS",
-            "type": "DatasetReference"
-          }
-        ],
-        "outputs": [
-          {
-            "referenceName": "ADLS_HZ_RELATIONSHIPS",
-            "type": "DatasetReference"
-          }
-        ]
-      },
-      {
-        "name": "Archive HZ_RELATIONSHIPS",
-        "type": "Copy",
-        "dependsOn": [
-          {
-            "activity": "Copy HZ_PARTY_SITE_USES To SQL",
-            "dependencyConditions": ["Succeeded"]
-          }
-        ],
-        "policy": {
-          "timeout": "7.00:00:00",
-          "retry": 0,
-          "retryIntervalInSeconds": 30,
-          "secureOutput": false,
-          "secureInput": false
-        },
-        "userProperties": [],
-        "typeProperties": {
-          "source": {
-            "type": "DelimitedTextSource",
-            "storeSettings": {
-              "type": "AzureBlobStorageReadSettings",
-              "recursive": true,
-              "modifiedDatetimeStart": "2022-05-01T00:00:00.000Z",
-              "modifiedDatetimeEnd": {
-                "value": "@pipeline().TriggerTime",
-                "type": "Expression"
-              },
-              "wildcardFolderPath": "bfguk_erp_prod/schemas/AR/HZ_RELATIONSHIPS",
-              "wildcardFileName": "*",
-              "enablePartitionDiscovery": false
-            },
-            "formatSettings": {
-              "type": "DelimitedTextReadSettings"
-            }
-          },
-          "sink": {
-            "type": "DelimitedTextSink",
-            "storeSettings": {
-              "type": "AzureBlobStorageWriteSettings",
-              "copyBehavior": "PreserveHierarchy"
-            },
-            "formatSettings": {
-              "type": "DelimitedTextWriteSettings",
-              "quoteAllText": true,
-              "fileExtension": ".txt"
-            }
-          },
-          "enableStaging": false,
-          "translator": {
-            "type": "TabularTranslator",
-            "typeConversion": true,
-            "typeConversionSettings": {
-              "allowDataTruncation": true,
-              "treatBooleanAsNumber": false
-            }
-          }
-        },
-        "inputs": [
-          {
-            "referenceName": "ADLS_HZ_RELATIONSHIPS",
-            "type": "DatasetReference"
-          }
-        ],
-        "outputs": [
-          {
-            "referenceName": "HZ_RELATIONSHIPS_Archive",
-            "type": "DatasetReference"
-          }
-        ]
-      },
-      {
-        "name": "Delete HZ_RELATIONSHIPS",
-        "type": "Delete",
-        "dependsOn": [
-          {
-            "activity": "Archive HZ_RELATIONSHIPS",
-            "dependencyConditions": ["Succeeded"]
-          }
-        ],
-        "policy": {
-          "timeout": "7.00:00:00",
-          "retry": 0,
-          "retryIntervalInSeconds": 30,
-          "secureOutput": false,
-          "secureInput": false
-        },
-        "userProperties": [],
-        "typeProperties": {
-          "dataset": {
-            "referenceName": "ADLS_HZ_RELATIONSHIPS",
-            "type": "DatasetReference"
-          },
-          "logStorageSettings": {
-            "linkedServiceName": {
-              "referenceName": "BFG_Azure_Storage",
-              "type": "LinkedServiceReference"
-            },
-            "path": "raw/oracle_erp/logging"
-          },
-          "enableLogging": true,
-          "storeSettings": {
-            "type": "AzureBlobStorageReadSettings",
-            "recursive": true,
-            "modifiedDatetimeStart": "2022-05-01T00:00:00.000Z",
-            "modifiedDatetimeEnd": {
-              "value": "@pipeline().TriggerTime",
-              "type": "Expression"
-            },
-            "wildcardFileName": "*",
-            "enablePartitionDiscovery": false
-          }
-        }
-      },
-      {
-        "name": "Copy ADLS To SQL",
-        "type": "Copy",
-        "dependsOn": [
-          {
-            "activity": "Copy HZ_RELATIONSHIPS To ADLS",
-            "dependencyConditions": ["Succeeded"]
-          }
-        ],
-        "policy": {
-          "timeout": "7.00:00:00",
-          "retry": 0,
-          "retryIntervalInSeconds": 30,
-          "secureOutput": false,
-          "secureInput": false
-        },
-        "userProperties": [],
-        "typeProperties": {
-          "source": {
-            "type": "DelimitedTextSource",
-            "additionalColumns": [
-              {
-                "name": "_M_TIMESTAMP",
-                "value": {
-                  "value": "@utcnow()",
-                  "type": "Expression"
-                }
-              },
-              {
-                "name": "_M_PIPELINE",
-                "value": {
-                  "value": "@pipeline().Pipeline",
-                  "type": "Expression"
-                }
-              },
-              {
-                "name": "_M_DATETIME",
-                "value": {
-                  "value": "@formatDateTime(utcnow())",
-                  "type": "Expression"
-                }
-              }
-            ],
-            "storeSettings": {
-              "type": "AzureBlobStorageReadSettings",
-              "recursive": true,
-              "modifiedDatetimeStart": {
-                "value": "@getPastTime(10, 'Minute', pipeline().TriggerTime)",
-                "type": "Expression"
-              },
-              "wildcardFolderPath": "bfguk_erp_prod/schemas/AR/HZ_RELATIONSHIPS",
-              "wildcardFileName": "*",
-              "enablePartitionDiscovery": false
-            },
-            "formatSettings": {
-              "type": "DelimitedTextReadSettings"
-            }
-          },
-          "sink": {
-            "type": "AzureSqlSink",
-            "preCopyScript": "begin try\ntruncate table stg.HZ_RELATIONSHIPS\nend try\nbegin catch \nselect null\nend catch",
-            "writeBehavior": "insert",
-            "sqlWriterUseTableLock": false,
-            "tableOption": "autoCreate",
-            "disableMetricsCollection": false
-          },
-          "enableStaging": false,
-          "translator": {
-            "type": "TabularTranslator",
-            "typeConversion": true,
-            "typeConversionSettings": {
-              "allowDataTruncation": true,
-              "treatBooleanAsNumber": false
-            }
-          }
-        },
-        "inputs": [
-          {
-            "referenceName": "ADLS_HZ_RELATIONSHIPS",
-            "type": "DatasetReference"
-          }
-        ],
-        "outputs": [
-          {
-            "referenceName": "SQL_HZ_RELATIONSHIPS",
-            "type": "DatasetReference"
-          }
-        ]
-      },
-      {
-        "name": "Copy HZ_PARTY_SITE_USES To ADLS",
-        "type": "Copy",
-        "dependsOn": [],
-        "policy": {
-          "timeout": "7.00:00:00",
-          "retry": 0,
-          "retryIntervalInSeconds": 30,
-          "secureOutput": false,
-          "secureInput": false
-        },
-        "userProperties": [],
-        "typeProperties": {
-          "source": {
-            "type": "OracleSource",
-            "partitionOption": "None",
-            "queryTimeout": "02:00:00"
-          },
-          "sink": {
-            "type": "DelimitedTextSink",
-            "storeSettings": {
-              "type": "AzureBlobStorageWriteSettings",
-              "metadata": [
-                {
-                  "name": "_M_TIMESTAMP",
-                  "value": {
-                    "value": "@utcnow()",
-                    "type": "Expression"
-                  }
-                },
-                {
-                  "name": "_M_PIPELINE",
-                  "value": {
-                    "value": "@pipeline().Pipeline",
-                    "type": "Expression"
-                  }
-                },
-                {
-                  "name": "_M_DATETIME",
-                  "value": {
-                    "value": "@formatDateTime(utcnow())",
-                    "type": "Expression"
-                  }
-                }
-              ]
-            },
-            "formatSettings": {
-              "type": "DelimitedTextWriteSettings",
-              "quoteAllText": true,
-              "fileExtension": ".txt"
-            }
-          },
-          "enableStaging": false,
-          "translator": {
-            "type": "TabularTranslator",
-            "mappings": [
-              {
-                "source": {
-                  "name": "PARTY_SITE_USE_ID",
-                  "type": "Decimal"
-                },
-                "sink": {
-                  "name": "PARTY_SITE_USE_ID",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "BEGIN_DATE",
-                  "type": "DateTime"
-                },
-                "sink": {
-                  "name": "BEGIN_DATE",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "COMMENTS",
-                  "type": "String"
-                },
-                "sink": {
-                  "name": "COMMENTS",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "END_DATE",
-                  "type": "DateTime"
-                },
-                "sink": {
-                  "name": "END_DATE",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "PARTY_SITE_ID",
-                  "type": "Decimal"
-                },
-                "sink": {
-                  "name": "PARTY_SITE_ID",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "LAST_UPDATE_DATE",
-                  "type": "DateTime"
-                },
-                "sink": {
-                  "name": "LAST_UPDATE_DATE",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "REQUEST_ID",
-                  "type": "Decimal"
-                },
-                "sink": {
-                  "name": "REQUEST_ID",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "LAST_UPDATED_BY",
-                  "type": "Decimal"
-                },
-                "sink": {
-                  "name": "LAST_UPDATED_BY",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "PROGRAM_APPLICATION_ID",
-                  "type": "Decimal"
-                },
-                "sink": {
-                  "name": "PROGRAM_APPLICATION_ID",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "CREATION_DATE",
-                  "type": "DateTime"
-                },
-                "sink": {
-                  "name": "CREATION_DATE",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "PROGRAM_ID",
-                  "type": "Decimal"
-                },
-                "sink": {
-                  "name": "PROGRAM_ID",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "CREATED_BY",
-                  "type": "Decimal"
-                },
-                "sink": {
-                  "name": "CREATED_BY",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "PROGRAM_UPDATE_DATE",
-                  "type": "DateTime"
-                },
-                "sink": {
-                  "name": "PROGRAM_UPDATE_DATE",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "LAST_UPDATE_LOGIN",
-                  "type": "Decimal"
-                },
-                "sink": {
-                  "name": "LAST_UPDATE_LOGIN",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "WH_UPDATE_DATE",
-                  "type": "DateTime"
-                },
-                "sink": {
-                  "name": "WH_UPDATE_DATE",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "SITE_USE_TYPE",
-                  "type": "String"
-                },
-                "sink": {
-                  "name": "SITE_USE_TYPE",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "PRIMARY_PER_TYPE",
-                  "type": "String"
-                },
-                "sink": {
-                  "name": "PRIMARY_PER_TYPE",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "STATUS",
-                  "type": "String"
-                },
-                "sink": {
-                  "name": "STATUS",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "OBJECT_VERSION_NUMBER",
-                  "type": "Double"
-                },
-                "sink": {
-                  "name": "OBJECT_VERSION_NUMBER",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "CREATED_BY_MODULE",
-                  "type": "String"
-                },
-                "sink": {
-                  "name": "CREATED_BY_MODULE",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "APPLICATION_ID",
-                  "type": "Double"
-                },
-                "sink": {
-                  "name": "APPLICATION_ID",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              }
-            ],
-            "typeConversion": true,
-            "typeConversionSettings": {
-              "allowDataTruncation": true,
-              "treatBooleanAsNumber": false
-            }
-          }
-        },
-        "inputs": [
-          {
-            "referenceName": "BFG_ODB_HZ_PARTY_SITE_USES",
-            "type": "DatasetReference"
-          }
-        ],
-        "outputs": [
-          {
-            "referenceName": "ADLS_HZ_PARTY_SITE_USES",
-            "type": "DatasetReference"
-          }
-        ]
-      },
-      {
-        "name": "Copy HZ_PARTY_SITE_USES To SQL",
-        "type": "Copy",
-        "dependsOn": [
-          {
-            "activity": "Copy ADLS To SQL",
-            "dependencyConditions": ["Succeeded"]
-          }
-        ],
-        "policy": {
-          "timeout": "7.00:00:00",
-          "retry": 0,
-          "retryIntervalInSeconds": 30,
-          "secureOutput": false,
-          "secureInput": false
-        },
-        "userProperties": [],
-        "typeProperties": {
-          "source": {
-            "type": "DelimitedTextSource",
-            "additionalColumns": [
-              {
-                "name": "_M_TIMESTAMP",
-                "value": {
-                  "value": "@utcnow()",
-                  "type": "Expression"
-                }
-              },
-              {
-                "name": "_M_PIPELINE",
-                "value": {
-                  "value": "@pipeline().Pipeline",
-                  "type": "Expression"
-                }
-              },
-              {
-                "name": "_M_DATETIME",
-                "value": {
-                  "value": "@formatDateTime(utcnow())",
-                  "type": "Expression"
-                }
-              }
-            ],
-            "storeSettings": {
-              "type": "AzureBlobStorageReadSettings",
-              "recursive": true,
-              "modifiedDatetimeStart": "2022-05-09T00:00:00.000Z",
-              "wildcardFolderPath": "bfguk_erp_prod/schemas/AR/HZ_PARTY_SITE_USES",
-              "wildcardFileName": "*",
-              "enablePartitionDiscovery": false
-            },
-            "formatSettings": {
-              "type": "DelimitedTextReadSettings"
-            }
-          },
-          "sink": {
-            "type": "AzureSqlSink",
-            "preCopyScript": "truncate table stg.hz_party_site_uses",
-            "writeBehavior": "insert",
-            "sqlWriterUseTableLock": false,
-            "tableOption": "autoCreate",
-            "disableMetricsCollection": false
-          },
-          "enableStaging": false,
-          "translator": {
-            "type": "TabularTranslator",
-            "mappings": [
-              {
-                "source": {
-                  "name": "PARTY_SITE_USE_ID",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "PARTY_SITE_USE_ID",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "BEGIN_DATE",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "BEGIN_DATE",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "COMMENTS",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "COMMENTS",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "END_DATE",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "END_DATE",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "PARTY_SITE_ID",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "PARTY_SITE_ID",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "LAST_UPDATE_DATE",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "LAST_UPDATE_DATE",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "REQUEST_ID",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "REQUEST_ID",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "LAST_UPDATED_BY",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "LAST_UPDATED_BY",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "PROGRAM_APPLICATION_ID",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "PROGRAM_APPLICATION_ID",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "CREATION_DATE",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "CREATION_DATE",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "PROGRAM_ID",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "PROGRAM_ID",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "CREATED_BY",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "CREATED_BY",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "PROGRAM_UPDATE_DATE",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "PROGRAM_UPDATE_DATE",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "LAST_UPDATE_LOGIN",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "LAST_UPDATE_LOGIN",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "WH_UPDATE_DATE",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "WH_UPDATE_DATE",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "SITE_USE_TYPE",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "SITE_USE_TYPE",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "PRIMARY_PER_TYPE",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "PRIMARY_PER_TYPE",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "STATUS",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "STATUS",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "OBJECT_VERSION_NUMBER",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "OBJECT_VERSION_NUMBER",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "CREATED_BY_MODULE",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "CREATED_BY_MODULE",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "APPLICATION_ID",
-                  "type": "String",
-                  "physicalType": "String"
-                },
-                "sink": {
-                  "name": "APPLICATION_ID",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "_m_timestamp",
-                  "type": "String"
-                },
-                "sink": {
-                  "name": "_m_timestamp",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "_m_pipeline",
-                  "type": "String"
-                },
-                "sink": {
-                  "name": "_m_pipeline",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              },
-              {
-                "source": {
-                  "name": "_m_datetime",
-                  "type": "String"
-                },
-                "sink": {
-                  "name": "_m_datetime",
-                  "type": "String",
-                  "physicalType": "String"
-                }
-              }
-            ],
-            "typeConversion": true,
-            "typeConversionSettings": {
-              "allowDataTruncation": true,
-              "treatBooleanAsNumber": false
-            }
-          }
-        },
-        "inputs": [
-          {
-            "referenceName": "ADLS_HZ_PARTY_SITE_USES",
-            "type": "DatasetReference"
-          }
-        ],
-        "outputs": [
-          {
-            "referenceName": "SQL_HZ_PARTY_SITE_USES",
-            "type": "DatasetReference"
-          }
-        ]
-      },
-      {
-        "name": "Archive HZ_PARTY_SITE_USES",
-        "type": "Copy",
-        "dependsOn": [
-          {
-            "activity": "Copy HZ_PARTY_SITE_USES To SQL",
-            "dependencyConditions": ["Succeeded"]
-          }
-        ],
-        "policy": {
-          "timeout": "7.00:00:00",
-          "retry": 0,
-          "retryIntervalInSeconds": 30,
-          "secureOutput": false,
-          "secureInput": false
-        },
-        "userProperties": [],
-        "typeProperties": {
-          "source": {
-            "type": "DelimitedTextSource",
-            "storeSettings": {
-              "type": "AzureBlobStorageReadSettings",
-              "recursive": true,
-              "modifiedDatetimeStart": "2022-05-01T00:00:00.000Z",
-              "modifiedDatetimeEnd": {
-                "value": "@pipeline().TriggerTime",
-                "type": "Expression"
-              },
-              "wildcardFolderPath": "bfguk_erp_prod/schemas/AR/HZ_PARTY_SITE_USES",
-              "wildcardFileName": "*",
-              "enablePartitionDiscovery": false
-            },
-            "formatSettings": {
-              "type": "DelimitedTextReadSettings"
-            }
-          },
-          "sink": {
-            "type": "DelimitedTextSink",
-            "storeSettings": {
-              "type": "AzureBlobStorageWriteSettings",
-              "copyBehavior": "PreserveHierarchy"
-            },
-            "formatSettings": {
-              "type": "DelimitedTextWriteSettings",
-              "quoteAllText": true,
-              "fileExtension": ".txt"
-            }
-          },
-          "enableStaging": false,
-          "translator": {
-            "type": "TabularTranslator",
-            "typeConversion": true,
-            "typeConversionSettings": {
-              "allowDataTruncation": true,
-              "treatBooleanAsNumber": false
-            }
-          }
-        },
-        "inputs": [
-          {
-            "referenceName": "ADLS_HZ_PARTY_SITE_USES",
-            "type": "DatasetReference"
-          }
-        ],
-        "outputs": [
-          {
-            "referenceName": "HZ_PARTY_SITE_USES_Archive",
-            "type": "DatasetReference"
-          }
-        ]
-      },
-      {
-        "name": "Delete HZ_PARTY_SITE_USES",
-        "type": "Delete",
-        "dependsOn": [
-          {
-            "activity": "Archive HZ_PARTY_SITE_USES",
-            "dependencyConditions": ["Succeeded"]
-          }
-        ],
-        "policy": {
-          "timeout": "7.00:00:00",
-          "retry": 0,
-          "retryIntervalInSeconds": 30,
-          "secureOutput": false,
-          "secureInput": false
-        },
-        "userProperties": [],
-        "typeProperties": {
-          "dataset": {
-            "referenceName": "ADLS_HZ_PARTY_SITE_USES",
-            "type": "DatasetReference"
-          },
-          "logStorageSettings": {
-            "linkedServiceName": {
-              "referenceName": "BFG_Azure_Storage",
-              "type": "LinkedServiceReference"
-            },
-            "path": "raw/oracle_erp/logging"
-          },
-          "enableLogging": true,
-          "storeSettings": {
-            "type": "AzureBlobStorageReadSettings",
-            "recursive": true,
-            "modifiedDatetimeStart": "2022-05-01T00:00:00.000Z",
-            "modifiedDatetimeEnd": {
-              "value": "@pipeline().TriggerTime",
-              "type": "Expression"
-            },
-            "enablePartitionDiscovery": false
-          }
-        }
-      }
-    ],
-    "annotations": []
-  }
+	"name": "AR_3_ODB_To_ADLS_And_SQL",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy HZ_RELATIONSHIPS To ADLS",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copy HZ_PARTY_SITE_USES To ADLS",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "OracleSource",
+						"partitionOption": "None",
+						"queryTimeout": "02:00:00"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings",
+							"metadata": [
+								{
+									"name": "_M_TIMESTAMP",
+									"value": {
+										"value": "@utcnow()",
+										"type": "Expression"
+									}
+								},
+								{
+									"name": "_M_PIPELINE",
+									"value": {
+										"value": "@pipeline().Pipeline",
+										"type": "Expression"
+									}
+								},
+								{
+									"name": "_M_DATETIME",
+									"value": {
+										"value": "@formatDateTime(utcnow())",
+										"type": "Expression"
+									}
+								}
+							]
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "BFG_ODB_HZ_RELATIONSHIPS",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ADLS_HZ_RELATIONSHIPS",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Archive HZ_RELATIONSHIPS",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copy HZ_PARTY_SITE_USES To SQL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"modifiedDatetimeStart": "2022-05-01T00:00:00.000Z",
+							"modifiedDatetimeEnd": {
+								"value": "@pipeline().TriggerTime",
+								"type": "Expression"
+							},
+							"wildcardFolderPath": "bfguk_erp_prod/schemas/AR/HZ_RELATIONSHIPS",
+							"wildcardFileName": "*",
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ADLS_HZ_RELATIONSHIPS",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ARCHIVE_HZ_RELATIONSHIPS",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Delete HZ_RELATIONSHIPS",
+				"type": "Delete",
+				"dependsOn": [
+					{
+						"activity": "Archive HZ_RELATIONSHIPS",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "ADLS_HZ_RELATIONSHIPS",
+						"type": "DatasetReference"
+					},
+					"logStorageSettings": {
+						"linkedServiceName": {
+							"referenceName": "BFG_AZURE_STORAGE",
+							"type": "LinkedServiceReference"
+						},
+						"path": "raw/oracle_erp/logging"
+					},
+					"enableLogging": true,
+					"storeSettings": {
+						"type": "AzureBlobStorageReadSettings",
+						"recursive": true,
+						"modifiedDatetimeStart": "2022-05-01T00:00:00.000Z",
+						"modifiedDatetimeEnd": {
+							"value": "@pipeline().TriggerTime",
+							"type": "Expression"
+						},
+						"wildcardFileName": "*",
+						"enablePartitionDiscovery": false
+					}
+				}
+			},
+			{
+				"name": "Copy ADLS To SQL",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copy HZ_RELATIONSHIPS To ADLS",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"additionalColumns": [
+							{
+								"name": "_M_TIMESTAMP",
+								"value": {
+									"value": "@utcnow()",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "_M_PIPELINE",
+								"value": {
+									"value": "@pipeline().Pipeline",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "_M_DATETIME",
+								"value": {
+									"value": "@formatDateTime(utcnow())",
+									"type": "Expression"
+								}
+							}
+						],
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"modifiedDatetimeStart": {
+								"value": "@getPastTime(10, 'Minute', pipeline().TriggerTime)",
+								"type": "Expression"
+							},
+							"wildcardFolderPath": "bfguk_erp_prod/schemas/AR/HZ_RELATIONSHIPS",
+							"wildcardFileName": "*",
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"preCopyScript": "begin try\ntruncate table stg.HZ_RELATIONSHIPS\nend try\nbegin catch \nselect null\nend catch",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false,
+						"tableOption": "autoCreate",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ADLS_HZ_RELATIONSHIPS",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "SQL_HZ_RELATIONSHIPS",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Copy HZ_PARTY_SITE_USES To ADLS",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "OracleSource",
+						"partitionOption": "None",
+						"queryTimeout": "02:00:00"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings",
+							"metadata": [
+								{
+									"name": "_M_TIMESTAMP",
+									"value": {
+										"value": "@utcnow()",
+										"type": "Expression"
+									}
+								},
+								{
+									"name": "_M_PIPELINE",
+									"value": {
+										"value": "@pipeline().Pipeline",
+										"type": "Expression"
+									}
+								},
+								{
+									"name": "_M_DATETIME",
+									"value": {
+										"value": "@formatDateTime(utcnow())",
+										"type": "Expression"
+									}
+								}
+							]
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "PARTY_SITE_USE_ID",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "PARTY_SITE_USE_ID",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "BEGIN_DATE",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "BEGIN_DATE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "COMMENTS",
+									"type": "String"
+								},
+								"sink": {
+									"name": "COMMENTS",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "END_DATE",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "END_DATE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PARTY_SITE_ID",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "PARTY_SITE_ID",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "LAST_UPDATE_DATE",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "LAST_UPDATE_DATE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "REQUEST_ID",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "REQUEST_ID",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "LAST_UPDATED_BY",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "LAST_UPDATED_BY",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PROGRAM_APPLICATION_ID",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "PROGRAM_APPLICATION_ID",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CREATION_DATE",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "CREATION_DATE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PROGRAM_ID",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "PROGRAM_ID",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CREATED_BY",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "CREATED_BY",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PROGRAM_UPDATE_DATE",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "PROGRAM_UPDATE_DATE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "LAST_UPDATE_LOGIN",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "LAST_UPDATE_LOGIN",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "WH_UPDATE_DATE",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "WH_UPDATE_DATE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SITE_USE_TYPE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SITE_USE_TYPE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PRIMARY_PER_TYPE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PRIMARY_PER_TYPE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "STATUS",
+									"type": "String"
+								},
+								"sink": {
+									"name": "STATUS",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "OBJECT_VERSION_NUMBER",
+									"type": "Double"
+								},
+								"sink": {
+									"name": "OBJECT_VERSION_NUMBER",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CREATED_BY_MODULE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CREATED_BY_MODULE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "APPLICATION_ID",
+									"type": "Double"
+								},
+								"sink": {
+									"name": "APPLICATION_ID",
+									"type": "String",
+									"physicalType": "String"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "BFG_ODB_HZ_PARTY_SITE_USES",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ADLS_HZ_PARTY_SITE_USES",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Copy HZ_PARTY_SITE_USES To SQL",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copy ADLS To SQL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"additionalColumns": [
+							{
+								"name": "_M_TIMESTAMP",
+								"value": {
+									"value": "@utcnow()",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "_M_PIPELINE",
+								"value": {
+									"value": "@pipeline().Pipeline",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "_M_DATETIME",
+								"value": {
+									"value": "@formatDateTime(utcnow())",
+									"type": "Expression"
+								}
+							}
+						],
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"modifiedDatetimeStart": "2022-05-09T00:00:00.000Z",
+							"wildcardFolderPath": "bfguk_erp_prod/schemas/AR/HZ_PARTY_SITE_USES",
+							"wildcardFileName": "*",
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"preCopyScript": "truncate table stg.hz_party_site_uses",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false,
+						"tableOption": "autoCreate",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "PARTY_SITE_USE_ID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "PARTY_SITE_USE_ID",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "BEGIN_DATE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "BEGIN_DATE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "COMMENTS",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "COMMENTS",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "END_DATE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "END_DATE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PARTY_SITE_ID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "PARTY_SITE_ID",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "LAST_UPDATE_DATE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "LAST_UPDATE_DATE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "REQUEST_ID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "REQUEST_ID",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "LAST_UPDATED_BY",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "LAST_UPDATED_BY",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PROGRAM_APPLICATION_ID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "PROGRAM_APPLICATION_ID",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CREATION_DATE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "CREATION_DATE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PROGRAM_ID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "PROGRAM_ID",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CREATED_BY",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "CREATED_BY",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PROGRAM_UPDATE_DATE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "PROGRAM_UPDATE_DATE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "LAST_UPDATE_LOGIN",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "LAST_UPDATE_LOGIN",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "WH_UPDATE_DATE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "WH_UPDATE_DATE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SITE_USE_TYPE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "SITE_USE_TYPE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PRIMARY_PER_TYPE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "PRIMARY_PER_TYPE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "STATUS",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "STATUS",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "OBJECT_VERSION_NUMBER",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "OBJECT_VERSION_NUMBER",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CREATED_BY_MODULE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "CREATED_BY_MODULE",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "APPLICATION_ID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "APPLICATION_ID",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "_m_timestamp",
+									"type": "String"
+								},
+								"sink": {
+									"name": "_m_timestamp",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "_m_pipeline",
+									"type": "String"
+								},
+								"sink": {
+									"name": "_m_pipeline",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "_m_datetime",
+									"type": "String"
+								},
+								"sink": {
+									"name": "_m_datetime",
+									"type": "String",
+									"physicalType": "String"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ADLS_HZ_PARTY_SITE_USES",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "SQL_HZ_PARTY_SITE_USES",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Archive HZ_PARTY_SITE_USES",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copy HZ_PARTY_SITE_USES To SQL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"modifiedDatetimeStart": "2022-05-01T00:00:00.000Z",
+							"modifiedDatetimeEnd": {
+								"value": "@pipeline().TriggerTime",
+								"type": "Expression"
+							},
+							"wildcardFolderPath": "bfguk_erp_prod/schemas/AR/HZ_PARTY_SITE_USES",
+							"wildcardFileName": "*",
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ADLS_HZ_PARTY_SITE_USES",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ARCHIVE_HZ_PARTY_SITE_USES",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Delete HZ_PARTY_SITE_USES",
+				"type": "Delete",
+				"dependsOn": [
+					{
+						"activity": "Archive HZ_PARTY_SITE_USES",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "ADLS_HZ_PARTY_SITE_USES",
+						"type": "DatasetReference"
+					},
+					"logStorageSettings": {
+						"linkedServiceName": {
+							"referenceName": "BFG_AZURE_STORAGE",
+							"type": "LinkedServiceReference"
+						},
+						"path": "raw/oracle_erp/logging"
+					},
+					"enableLogging": true,
+					"storeSettings": {
+						"type": "AzureBlobStorageReadSettings",
+						"recursive": true,
+						"modifiedDatetimeStart": "2022-05-01T00:00:00.000Z",
+						"modifiedDatetimeEnd": {
+							"value": "@pipeline().TriggerTime",
+							"type": "Expression"
+						},
+						"enablePartitionDiscovery": false
+					}
+				}
+			}
+		],
+		"annotations": []
+	}
 }
