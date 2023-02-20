@@ -9,26 +9,26 @@
     "type": "AzureSqlTable",
     "schema": [
       {
-        "name": "OwnerName",
+        "name": "owner_name",
         "type": "varchar"
       },
       {
-        "name": "TableName",
+        "name": "table_name",
         "type": "varchar"
       },
       {
-        "name": "WatermarkDatetime",
+        "name": "watermark_datetime",
         "type": "datetime",
         "precision": 23,
         "scale": 3
       },
       {
-        "name": "UpdatedAt",
+        "name": "updated_at",
         "type": "datetime2",
         "scale": 7
       },
       {
-        "name": "MaxDateTime2",
+        "name": "max_datetime",
         "type": "datetime2",
         "scale": 7
       }

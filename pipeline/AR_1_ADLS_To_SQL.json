@@ -51,10 +51,10 @@
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
 							"modifiedDatetimeStart": {
-								"value": "@activity('Lookup Generic File Timestamp').output.FirstRow.WatermarkDatetime",
+								"value": "@activity('Lookup Generic File Timestamp').output.FirstRow.watermark_datetime",
 								"type": "Expression"
 							},
-							"wildcardFolderPath": "oracle_erp/baxdevus/schemas/AR/AR_RECEIVABLE_APPLICATIONS_ALL",
+							"wildcardFolderPath": "bfguk_erp_prod/schemas/AR/AR_RECEIVABLE_APPLICATIONS_ALL",
 							"wildcardFileName": "*",
 							"enablePartitionDiscovery": false
 						},
@@ -65,7 +65,7 @@
 					"sink": {
 						"type": "AzureSqlSink",
 						"preCopyScript": {
-							"value": "begin try\ntruncate table [stg].[AR_RECEIVABLE_APPLICATIONS_ALL]\nend try\nbegin catch \nselect null\nend catch",
+							"value": "begin try\ntruncate table [stg].[ar_receivable_applications_all]\nend try\nbegin catch \nselect null\nend catch",
 							"type": "Expression"
 						},
 						"writeBehavior": "insert",
@@ -84,7 +84,7 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "RECEIVABLE_APPLICATION_ID",
+									"name": "receivable_application_id",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -96,7 +96,7 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "LAST_UPDATED_BY",
+									"name": "last_updated_by",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -108,7 +108,7 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "LAST_UPDATE_DATE",
+									"name": "last_update_date",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -120,7 +120,7 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "CREATED_BY",
+									"name": "created_by",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -132,7 +132,7 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "CREATION_DATE",
+									"name": "creation_date",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -144,7 +144,7 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "AMOUNT_APPLIED",
+									"name": "amount_applied",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -156,7 +156,7 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "AMOUNT_APPLIED_FROM",
+									"name": "amount_applied_from",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -168,7 +168,7 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "TRANS_TO_RECEIPT_RATE",
+									"name": "trans_to_receipt_rate",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -180,7 +180,7 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GL_DATE",
+									"name": "gl_date",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -192,7 +192,7 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "CODE_COMBINATION_ID",
+									"name": "code_combination_id",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -204,7 +204,7 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "SET_OF_BOOKS_ID",
+									"name": "set_of_books_id",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -216,7 +216,7 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "DISPLAY",
+									"name": "display",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -228,7 +228,7 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "APPLY_DATE",
+									"name": "apply_date",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -240,7 +240,7 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "APPLICATION_TYPE",
+									"name": "application_type",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -252,7 +252,7 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "STATUS",
+									"name": "status",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -264,7 +264,7 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "PAYMENT_SCHEDULE_ID",
+									"name": "payment_schedule_id",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -276,7 +276,7 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "LAST_UPDATE_LOGIN",
+									"name": "last_update_login",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -288,7 +288,7 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "CASH_RECEIPT_ID",
+									"name": "cash_receipt_id",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -1812,7 +1812,7 @@
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
 							"modifiedDatetimeStart": {
-								"value": "@activity('Lookup Generic File Timestamp').output.FirstRow.WatermarkDatetime",
+								"value": "@activity('Lookup Generic File Timestamp').output.FirstRow.watermark_datetime",
 								"type": "Expression"
 							},
 							"wildcardFolderPath": "oracle_erp/baxdevus/schemas/AR/HZ_CUST_ACCOUNTS",
@@ -3609,7 +3609,7 @@
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
 							"modifiedDatetimeStart": {
-								"value": "@activity('Lookup Generic File Timestamp').output.FirstRow.WatermarkDatetime",
+								"value": "@activity('Lookup Generic File Timestamp').output.FirstRow.watermark_datetime",
 								"type": "Expression"
 							},
 							"wildcardFolderPath": "oracle_erp/baxdevus/schemas/AR/HZ_CUST_ACCT_SITES_ALL",
@@ -4650,7 +4650,7 @@
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
 							"modifiedDatetimeStart": {
-								"value": "@activity('Lookup Generic File Timestamp').output.FirstRow.WatermarkDatetime",
+								"value": "@activity('Lookup Generic File Timestamp').output.FirstRow.watermark_datetime",
 								"type": "Expression"
 							},
 							"wildcardFolderPath": "oracle_erp/baxdevus/schemas/AR/HZ_CUST_SITE_USES_ALL",
@@ -6183,7 +6183,7 @@
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
 							"modifiedDatetimeStart": {
-								"value": "@activity('Lookup Generic File Timestamp').output.FirstRow.WatermarkDatetime",
+								"value": "@activity('Lookup Generic File Timestamp').output.FirstRow.watermark_datetime",
 								"type": "Expression"
 							},
 							"wildcardFolderPath": "oracle_erp/baxdevus/schemas/AR/HZ_LOCATIONS",
@@ -7704,7 +7704,7 @@
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
 							"modifiedDatetimeStart": {
-								"value": "@activity('Lookup Generic File Timestamp').output.FirstRow.WatermarkDatetime",
+								"value": "@activity('Lookup Generic File Timestamp').output.FirstRow.watermark_datetime",
 								"type": "Expression"
 							},
 							"wildcardFolderPath": "oracle_erp/baxdevus/schemas/AR/HZ_PARTIES",
@@ -9501,7 +9501,7 @@
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
 							"modifiedDatetimeStart": {
-								"value": "@activity('Lookup Generic File Timestamp').output.FirstRow.WatermarkDatetime",
+								"value": "@activity('Lookup Generic File Timestamp').output.FirstRow.watermark_datetime",
 								"type": "Expression"
 							},
 							"wildcardFolderPath": "oracle_erp/baxdevus/schemas/AR/HZ_PARTY_SITES",
@@ -10547,7 +10547,7 @@
 					"source": {
 						"type": "AzureSqlSource",
 						"sqlReaderQuery": {
-							"value": "select WatermarkDatetime \nfrom [dbo].[dwatermark] \nwhere owner_name = '@{variables('adf_owner_name')}'\nand TableName = '@{variables('Table_Generic')}'",
+							"value": "select watermark_datetime \nfrom [dbo].[dwatermark] \nwhere owner_name = '@{variables('adf_owner_name')}'\nand TableName = '@{variables('Table_Generic')}'",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
