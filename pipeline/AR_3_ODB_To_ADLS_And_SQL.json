@@ -225,21 +225,21 @@
 						"type": "DelimitedTextSource",
 						"additionalColumns": [
 							{
-								"name": "_M_TIMESTAMP",
+								"name": "_m_timestamp",
 								"value": {
 									"value": "@utcnow()",
 									"type": "Expression"
 								}
 							},
 							{
-								"name": "_M_PIPELINE",
+								"name": "_m_pipeline",
 								"value": {
 									"value": "@pipeline().Pipeline",
 									"type": "Expression"
 								}
 							},
 							{
-								"name": "_M_DATETIME",
+								"name": "_m_datetime",
 								"value": {
 									"value": "@formatDateTime(utcnow())",
 									"type": "Expression"
@@ -272,6 +272,1289 @@
 					"enableStaging": false,
 					"translator": {
 						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "RELATIONSHIP_ID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "relationship_id",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SUBJECT_ID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "subject_id",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SUBJECT_TYPE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "subject_type",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SUBJECT_TABLE_NAME",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "subject_table_name",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "OBJECT_ID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "object_id",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "OBJECT_TYPE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "object_type",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "OBJECT_TABLE_NAME",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "object_table_name",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "PARTY_ID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "party_id",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "RELATIONSHIP_CODE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "relationship_code",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "DIRECTIONAL_FLAG",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "directional_flag",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "COMMENTS",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "comments",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "START_DATE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "start_date",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "END_DATE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "end_date",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "STATUS",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "status",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CREATED_BY",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "created_by",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CREATION_DATE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "creation_date",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "LAST_UPDATED_BY",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "last_updated_by",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "LAST_UPDATE_DATE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "last_update_date",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "LAST_UPDATE_LOGIN",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "last_update_login",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "WH_UPDATE_DATE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "wh_update_date",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "REQUEST_ID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "request_id",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "PROGRAM_APPLICATION_ID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "program_application_id",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "PROGRAM_ID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "program_id",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "PROGRAM_UPDATE_DATE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "program_update_date",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE_CATEGORY",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute_category",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE1",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute1",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE2",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute2",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE3",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute3",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE4",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute4",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE5",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute5",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE6",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute6",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE7",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute7",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE8",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute8",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE9",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute9",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE10",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute10",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE11",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute11",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE12",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute12",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE13",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute13",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE14",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute14",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE15",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute15",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE16",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute16",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE17",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute17",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE18",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute18",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE19",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute19",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE20",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute20",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "GLOBAL_ATTRIBUTE_CATEGORY",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "global_attribute_category",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "GLOBAL_ATTRIBUTE1",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "global_attribute1",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "GLOBAL_ATTRIBUTE2",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "global_attribute2",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "GLOBAL_ATTRIBUTE3",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "global_attribute3",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "GLOBAL_ATTRIBUTE4",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "global_attribute4",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "GLOBAL_ATTRIBUTE5",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "global_attribute5",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "GLOBAL_ATTRIBUTE6",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "global_attribute6",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "GLOBAL_ATTRIBUTE7",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "global_attribute7",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "GLOBAL_ATTRIBUTE8",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "global_attribute8",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "GLOBAL_ATTRIBUTE9",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "global_attribute9",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "GLOBAL_ATTRIBUTE10",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "global_attribute10",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "GLOBAL_ATTRIBUTE11",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "global_attribute11",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "GLOBAL_ATTRIBUTE12",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "global_attribute12",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "GLOBAL_ATTRIBUTE13",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "global_attribute13",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "GLOBAL_ATTRIBUTE14",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "global_attribute14",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "GLOBAL_ATTRIBUTE15",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "global_attribute15",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "GLOBAL_ATTRIBUTE16",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "global_attribute16",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "GLOBAL_ATTRIBUTE17",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "global_attribute17",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "GLOBAL_ATTRIBUTE18",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "global_attribute18",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "GLOBAL_ATTRIBUTE19",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "global_attribute19",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "GLOBAL_ATTRIBUTE20",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "global_attribute20",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CONTENT_SOURCE_TYPE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "content_source_type",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "RELATIONSHIP_TYPE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "relationship_type",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "OBJECT_VERSION_NUMBER",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "object_version_number",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CREATED_BY_MODULE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "created_by_module",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "APPLICATION_ID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "application_id",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ADDITIONAL_INFORMATION1",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "additional_information1",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ADDITIONAL_INFORMATION2",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "additional_information2",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ADDITIONAL_INFORMATION3",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "additional_information3",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ADDITIONAL_INFORMATION4",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "additional_information4",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ADDITIONAL_INFORMATION5",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "additional_information5",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ADDITIONAL_INFORMATION6",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "additional_information6",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ADDITIONAL_INFORMATION7",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "additional_information7",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ADDITIONAL_INFORMATION8",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "additional_information8",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ADDITIONAL_INFORMATION9",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "additional_information9",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ADDITIONAL_INFORMATION10",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "additional_information10",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ADDITIONAL_INFORMATION11",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "additional_information11",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ADDITIONAL_INFORMATION12",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "additional_information12",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ADDITIONAL_INFORMATION13",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "additional_information13",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ADDITIONAL_INFORMATION14",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "additional_information14",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ADDITIONAL_INFORMATION15",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "additional_information15",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ADDITIONAL_INFORMATION16",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "additional_information16",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ADDITIONAL_INFORMATION17",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "additional_information17",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ADDITIONAL_INFORMATION18",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "additional_information18",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ADDITIONAL_INFORMATION19",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "additional_information19",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ADDITIONAL_INFORMATION20",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "additional_information20",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ADDITIONAL_INFORMATION21",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "additional_information21",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ADDITIONAL_INFORMATION22",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "additional_information22",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ADDITIONAL_INFORMATION23",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "additional_information23",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ADDITIONAL_INFORMATION24",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "additional_information24",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ADDITIONAL_INFORMATION25",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "additional_information25",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ADDITIONAL_INFORMATION26",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "additional_information26",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ADDITIONAL_INFORMATION27",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "additional_information27",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ADDITIONAL_INFORMATION28",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "additional_information28",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ADDITIONAL_INFORMATION29",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "additional_information29",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ADDITIONAL_INFORMATION30",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "additional_information30",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "DIRECTION_CODE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "direction_code",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "PERCENTAGE_OWNERSHIP",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "percentage_ownership",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ACTUAL_CONTENT_SOURCE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "actual_content_source",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "_m_timestamp",
+									"type": "String"
+								},
+								"sink": {
+									"name": "_m_timestamp",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "_m_pipeline",
+									"type": "String"
+								},
+								"sink": {
+									"name": "_m_pipeline",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "_m_datetime",
+									"type": "String"
+								},
+								"sink": {
+									"name": "_m_datetime",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							}
+						],
 						"typeConversion": true,
 						"typeConversionSettings": {
 							"allowDataTruncation": true,
@@ -624,21 +1907,21 @@
 						"type": "DelimitedTextSource",
 						"additionalColumns": [
 							{
-								"name": "_M_TIMESTAMP",
+								"name": "_m_timestamp",
 								"value": {
 									"value": "@utcnow()",
 									"type": "Expression"
 								}
 							},
 							{
-								"name": "_M_PIPELINE",
+								"name": "_m_pipeline",
 								"value": {
 									"value": "@pipeline().Pipeline",
 									"type": "Expression"
 								}
 							},
 							{
-								"name": "_M_DATETIME",
+								"name": "_m_datetime",
 								"value": {
 									"value": "@formatDateTime(utcnow())",
 									"type": "Expression"
