@@ -1959,9 +1959,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "PARTY_SITE_USE_ID",
+									"name": "party_site_use_id",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -1971,9 +1971,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "BEGIN_DATE",
+									"name": "begin_date",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -1983,9 +1983,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "COMMENTS",
+									"name": "comments",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -1995,9 +1995,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "END_DATE",
+									"name": "end_date",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -2007,9 +2007,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "PARTY_SITE_ID",
+									"name": "party_site_id",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -2019,9 +2019,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "LAST_UPDATE_DATE",
+									"name": "last_update_date",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -2031,9 +2031,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "REQUEST_ID",
+									"name": "request_id",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -2043,9 +2043,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "LAST_UPDATED_BY",
+									"name": "last_updated_by",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -2055,9 +2055,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "PROGRAM_APPLICATION_ID",
+									"name": "program_application_id",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -2067,9 +2067,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "CREATION_DATE",
+									"name": "creation_date",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -2079,9 +2079,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "PROGRAM_ID",
+									"name": "program_id",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -2091,9 +2091,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "CREATED_BY",
+									"name": "created_by",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -2103,9 +2103,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "PROGRAM_UPDATE_DATE",
+									"name": "program_update_date",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -2115,9 +2115,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "LAST_UPDATE_LOGIN",
+									"name": "last_update_login",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -2127,9 +2127,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "WH_UPDATE_DATE",
+									"name": "wh_update_date",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -2139,9 +2139,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "SITE_USE_TYPE",
+									"name": "site_use_type",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -2151,9 +2151,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "PRIMARY_PER_TYPE",
+									"name": "primary_per_type",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -2163,9 +2163,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "STATUS",
+									"name": "status",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -2175,9 +2175,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "OBJECT_VERSION_NUMBER",
+									"name": "object_version_number",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -2187,9 +2187,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "CREATED_BY_MODULE",
+									"name": "created_by_module",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -2199,9 +2199,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "APPLICATION_ID",
+									"name": "application_id",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -2212,7 +2212,7 @@
 								"sink": {
 									"name": "_m_timestamp",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -2223,7 +2223,7 @@
 								"sink": {
 									"name": "_m_pipeline",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -2234,7 +2234,7 @@
 								"sink": {
 									"name": "_m_datetime",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							}
 						],
