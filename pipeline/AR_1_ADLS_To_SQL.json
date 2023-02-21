@@ -1826,7 +1826,7 @@
 					"sink": {
 						"type": "AzureSqlSink",
 						"preCopyScript": {
-							"value": "begin try\ntruncate table [stg].[HZ_CUST_ACCOUNTS]\nend try\nbegin catch \nselect null\nend catch",
+							"value": "begin try\ntruncate table [stg].[hz_cust_accounts]\nend try\nbegin catch \nselect null\nend catch",
 							"type": "Expression"
 						},
 						"writeBehavior": "insert",
@@ -1845,7 +1845,7 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "CUST_ACCOUNT_ID",
+									"name": "cust_account_id",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -1857,7 +1857,7 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "PARTY_ID",
+									"name": "party_id",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -1869,7 +1869,7 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "LAST_UPDATE_DATE",
+									"name": "last_update_date",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -1881,7 +1881,7 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "ACCOUNT_NUMBER",
+									"name": "account_number",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -1893,7 +1893,7 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "LAST_UPDATED_BY",
+									"name": "last_updated_by",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -1905,7 +1905,7 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "CREATION_DATE",
+									"name": "creation_date",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -1917,7 +1917,7 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "CREATED_BY",
+									"name": "created_by",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -1929,7 +1929,7 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "LAST_UPDATE_LOGIN",
+									"name": "last_update_login",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -3623,7 +3623,7 @@
 					"sink": {
 						"type": "AzureSqlSink",
 						"preCopyScript": {
-							"value": "begin try\ntruncate table [stg].[HZ_CUST_ACCT_SITES_ALL]\nend try\nbegin catch \nselect null\nend catch",
+							"value": "begin try\ntruncate table [stg].[hz_cust_acct_sites_all]\nend try\nbegin catch \nselect null\nend catch",
 							"type": "Expression"
 						},
 						"writeBehavior": "insert",
@@ -4664,7 +4664,7 @@
 					"sink": {
 						"type": "AzureSqlSink",
 						"preCopyScript": {
-							"value": "begin try\ntruncate table [stg].[HZ_CUST_SITE_USES_ALL]\nend try\nbegin catch \nselect null\nend catch",
+							"value": "begin try\ntruncate table [stg].[hz_cust_site_uses_all]\nend try\nbegin catch \nselect null\nend catch",
 							"type": "Expression"
 						},
 						"writeBehavior": "insert",
@@ -6197,7 +6197,7 @@
 					"sink": {
 						"type": "AzureSqlSink",
 						"preCopyScript": {
-							"value": "begin try\ntruncate table [stg].[HZ_LOCATIONS]\nend try\nbegin catch \nselect null\nend catch",
+							"value": "begin try\ntruncate table [stg].[hz_locations]\nend try\nbegin catch \nselect null\nend catch",
 							"type": "Expression"
 						},
 						"writeBehavior": "insert",
@@ -7718,7 +7718,7 @@
 					"sink": {
 						"type": "AzureSqlSink",
 						"preCopyScript": {
-							"value": "begin try\ntruncate table [stg].[HZ_PARTIES]\nend try\nbegin catch \nselect null\nend catch",
+							"value": "begin try\ntruncate table [stg].[hz_parties]\nend try\nbegin catch \nselect null\nend catch",
 							"type": "Expression"
 						},
 						"writeBehavior": "insert",
@@ -9515,7 +9515,7 @@
 					"sink": {
 						"type": "AzureSqlSink",
 						"preCopyScript": {
-							"value": "begin try\ntruncate table [stg].[HZ_PARTY_SITES]\nend try\nbegin catch \nselect null\nend catch",
+							"value": "begin try\ntruncate table [stg].[hz_party_sites]\nend try\nbegin catch \nselect null\nend catch",
 							"type": "Expression"
 						},
 						"writeBehavior": "insert",
