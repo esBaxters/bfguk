@@ -10547,7 +10547,7 @@
 					"source": {
 						"type": "AzureSqlSource",
 						"sqlReaderQuery": {
-							"value": "select watermark_datetime \nfrom [dbo].[dwatermark] \nwhere owner_name = '@{variables('adf_owner_name')}'\nand table_name = '@{variables('Table_Generic')}'",
+							"value": "select watermark_datetime \nfrom [dbo].[watermark] \nwhere owner_name = '@{variables('adf_owner_name')}'\nand table_name = '@{variables('Table_Generic')}'",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
