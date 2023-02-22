@@ -26,21 +26,21 @@
 							"type": "AzureBlobStorageWriteSettings",
 							"metadata": [
 								{
-									"name": "_M_TIMESTAMP",
+									"name": "_m_timestamp",
 									"value": {
 										"value": "@utcnow()",
 										"type": "Expression"
 									}
 								},
 								{
-									"name": "_M_PIPELINE",
+									"name": "_m_pipeline",
 									"value": {
 										"value": "@pipeline().Pipeline",
 										"type": "Expression"
 									}
 								},
 								{
-									"name": "_M_DATETIME",
+									"name": "_m_datetime",
 									"value": {
 										"value": "@formatDateTime(utcnow())",
 										"type": "Expression"
@@ -510,21 +510,21 @@
 						"type": "DelimitedTextSource",
 						"additionalColumns": [
 							{
-								"name": "_M_TIMESTAMP",
+								"name": "_m_timestamp",
 								"value": {
 									"value": "@utcnow()",
 									"type": "Expression"
 								}
 							},
 							{
-								"name": "_M_PIPELINE",
+								"name": "_m_pipeline",
 								"value": {
 									"value": "@pipeline().Pipeline",
 									"type": "Expression"
 								}
 							},
 							{
-								"name": "_M_DATETIME",
+								"name": "_m_datetime",
 								"value": {
 									"value": "@formatDateTime(utcnow())",
 									"type": "Expression"
