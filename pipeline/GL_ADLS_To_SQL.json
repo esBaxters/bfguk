@@ -1968,7 +1968,7 @@
 					"source": {
 						"type": "AzureSqlSource",
 						"sqlReaderQuery": {
-							"value": "select watermark_datetime \nfrom [dbo].[WATERMARK] \nwhere OWNER_NAME = '@{variables('ADF_OWNER_NAME')}'\nand TABLE_NAME = '@{variables('Table_Generic')}'",
+							"value": "select watermark_datetime \nfrom [dbo].[WATERMARK] \nwhere owner_name = '@{variables('adf_owner_name')}'\nand table_name = '@{variables('table_generic')}'",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
@@ -2002,23 +2002,23 @@
 				"typeProperties": {
 					"storedProcedureName": "[dbo].[update_watermark]",
 					"storedProcedureParameters": {
-						"LastModifiedtime": {
+						"last_modified_time": {
 							"value": {
 								"value": "@pipeline().TriggerTime",
 								"type": "Expression"
 							},
 							"type": "Datetime"
 						},
-						"OWNER_NAME": {
+						"owner_name": {
 							"value": {
-								"value": "@variables('ADF_OWNER_NAME')",
+								"value": "@variables('adf_owner_name')",
 								"type": "Expression"
 							},
 							"type": "String"
 						},
-						"TABLE_NAME": {
+						"table_name": {
 							"value": {
-								"value": "@variables('Table_Generic')",
+								"value": "@variables('table_generic')",
 								"type": "Expression"
 							},
 							"type": "String"
@@ -2032,11 +2032,11 @@
 			}
 		],
 		"variables": {
-			"ADF_OWNER_NAME": {
+			"adf_owner_name": {
 				"type": "String",
-				"defaultValue": "ADF"
+				"defaultValue": "adf"
 			},
-			"Table_Generic": {
+			"table_generic": {
 				"type": "String",
 				"defaultValue": "GL_TABLES"
 			},
@@ -2044,7 +2044,7 @@
 				"type": "String",
 				"defaultValue": "GL_IMPORT_REFERENCES"
 			},
-			"ODB_OWNER_NAME": {
+			"ODB_owner_name": {
 				"type": "String"
 			}
 		},
