@@ -1,362 +1,396 @@
 {
-  "name": "CONTROL_PIPELINE",
-  "properties": {
-    "activities": [
-      {
-        "name": "Execute AR1 ODB To ADLS",
-        "type": "ExecutePipeline",
-        "dependsOn": [],
-        "userProperties": [],
-        "typeProperties": {
-          "pipeline": {
-            "referenceName": "BGF_AR_1_ODB_To_ADLS",
-            "type": "PipelineReference"
-          },
-          "waitOnCompletion": true
-        }
-      },
-      {
-        "name": "Execute AR1 ADLS To SQL",
-        "type": "ExecutePipeline",
-        "dependsOn": [
-          {
-            "activity": "Execute GL ADLS To SQL",
-            "dependencyConditions": ["Succeeded"]
-          }
-        ],
-        "userProperties": [],
-        "typeProperties": {
-          "pipeline": {
-            "referenceName": "AR_1_ADLS_To_SQL",
-            "type": "PipelineReference"
-          },
-          "waitOnCompletion": true
-        }
-      },
-      {
-        "name": "Execute AR2 ODB To ADLS",
-        "type": "ExecutePipeline",
-        "dependsOn": [
-          {
-            "activity": "Execute AR1 ODB To ADLS",
-            "dependencyConditions": ["Succeeded"]
-          }
-        ],
-        "userProperties": [],
-        "typeProperties": {
-          "pipeline": {
-            "referenceName": "BFG_AR_2_ODB_to_ADLS",
-            "type": "PipelineReference"
-          },
-          "waitOnCompletion": true
-        }
-      },
-      {
-        "name": "Execute AR2 ADLS To SQL",
-        "type": "ExecutePipeline",
-        "dependsOn": [
-          {
-            "activity": "Execute AR1 ADLS To SQL",
-            "dependencyConditions": ["Succeeded"]
-          }
-        ],
-        "userProperties": [],
-        "typeProperties": {
-          "pipeline": {
-            "referenceName": "AR_2_ADLS_To_SQL",
-            "type": "PipelineReference"
-          },
-          "waitOnCompletion": true
-        }
-      },
-      {
-        "name": "Execute GMI ODB To ADLS",
-        "type": "ExecutePipeline",
-        "dependsOn": [
-          {
-            "activity": "Execute GL2 ODB To ADLS",
-            "dependencyConditions": ["Succeeded"]
-          }
-        ],
-        "userProperties": [],
-        "typeProperties": {
-          "pipeline": {
-            "referenceName": "BFG_GMI_ODB_To_ADLS",
-            "type": "PipelineReference"
-          },
-          "waitOnCompletion": true
-        }
-      },
-      {
-        "name": "Execute GMI ADLS To SQL",
-        "type": "ExecutePipeline",
-        "dependsOn": [
-          {
-            "activity": "Execute INV ODB To ADLS",
-            "dependencyConditions": ["Succeeded"]
-          }
-        ],
-        "userProperties": [],
-        "typeProperties": {
-          "pipeline": {
-            "referenceName": "GMI_ADLS_To_SQL",
-            "type": "PipelineReference"
-          },
-          "waitOnCompletion": true
-        }
-      },
-      {
-        "name": "Execute GL ADLS To SQL",
-        "type": "ExecutePipeline",
-        "dependsOn": [
-          {
-            "activity": "Execute GMI ADLS To SQL",
-            "dependencyConditions": ["Succeeded"]
-          }
-        ],
-        "userProperties": [],
-        "typeProperties": {
-          "pipeline": {
-            "referenceName": "GL_ADLS_To_SQL",
-            "type": "PipelineReference"
-          },
-          "waitOnCompletion": true
-        }
-      },
-      {
-        "name": "Execute GL1 ODB To ADLS",
-        "type": "ExecutePipeline",
-        "dependsOn": [
-          {
-            "activity": "Execute GMI ODB To ADLS",
-            "dependencyConditions": ["Succeeded"]
-          }
-        ],
-        "userProperties": [],
-        "typeProperties": {
-          "pipeline": {
-            "referenceName": "BFG_GL_1_ODB_To_ADLS",
-            "type": "PipelineReference"
-          },
-          "waitOnCompletion": true
-        }
-      },
-      {
-        "name": "Execute INV ADLS To SQL",
-        "type": "ExecutePipeline",
-        "dependsOn": [
-          {
-            "activity": "Execute AR2 ADLS To SQL",
-            "dependencyConditions": ["Succeeded"]
-          }
-        ],
-        "userProperties": [],
-        "typeProperties": {
-          "pipeline": {
-            "referenceName": "INV_ADLS_To_SQL",
-            "type": "PipelineReference"
-          },
-          "waitOnCompletion": true
-        }
-      },
-      {
-        "name": "Execute INV ODB To ADLS",
-        "type": "ExecutePipeline",
-        "dependsOn": [
-          {
-            "activity": "Execute GL1 ODB To ADLS",
-            "dependencyConditions": ["Succeeded"]
-          }
-        ],
-        "userProperties": [],
-        "typeProperties": {
-          "pipeline": {
-            "referenceName": "BFG_INV_ODB_To_ADLS",
-            "type": "PipelineReference"
-          },
-          "waitOnCompletion": true
-        }
-      },
-      {
-        "name": "Execute AR3 ODB To ADLS",
-        "type": "ExecutePipeline",
-        "dependsOn": [
-          {
-            "activity": "Execute AR2 ODB To ADLS",
-            "dependencyConditions": ["Succeeded"]
-          }
-        ],
-        "userProperties": [],
-        "typeProperties": {
-          "pipeline": {
-            "referenceName": "AR_3_ODB_To_ADLS_And_SQL",
-            "type": "PipelineReference"
-          },
-          "waitOnCompletion": true
-        }
-      },
-      {
-        "name": "Execute APPSYS ODB To ADLS",
-        "type": "ExecutePipeline",
-        "dependsOn": [
-          {
-            "activity": "Execute AR3 ODB To ADLS",
-            "dependencyConditions": ["Succeeded"]
-          }
-        ],
-        "userProperties": [],
-        "typeProperties": {
-          "pipeline": {
-            "referenceName": "BFG_APPLSYS_ODB_To_ADLS_And_SQL",
-            "type": "PipelineReference"
-          },
-          "waitOnCompletion": true
-        }
-      },
-      {
-        "name": "Execute GL2 ODB To ADLS",
-        "type": "ExecutePipeline",
-        "dependsOn": [
-          {
-            "activity": "Execute APPSYS ODB To ADLS",
-            "dependencyConditions": ["Succeeded"]
-          }
-        ],
-        "userProperties": [],
-        "typeProperties": {
-          "pipeline": {
-            "referenceName": "BFG_GL_2_ODB_To_ADLS_And_SQL",
-            "type": "PipelineReference"
-          },
-          "waitOnCompletion": true
-        }
-      },
-      {
-        "name": "Update DimDate",
-        "type": "SqlServerStoredProcedure",
-        "dependsOn": [
-          {
-            "activity": "Execute INV ADLS To SQL",
-            "dependencyConditions": ["Succeeded"]
-          }
-        ],
-        "policy": {
-          "timeout": "7.00:00:00",
-          "retry": 0,
-          "retryIntervalInSeconds": 30,
-          "secureOutput": false,
-          "secureInput": false
-        },
-        "userProperties": [],
-        "typeProperties": {
-          "storedProcedureName": "[dbo].[Update_DimCustomer_Type1]"
-        },
-        "linkedServiceName": {
-          "referenceName": "BFG_SQL_DB",
-          "type": "LinkedServiceReference"
-        }
-      },
-      {
-        "name": "Update DimCustomer",
-        "type": "SqlServerStoredProcedure",
-        "dependsOn": [
-          {
-            "activity": "Update DimDate",
-            "dependencyConditions": ["Succeeded"]
-          }
-        ],
-        "policy": {
-          "timeout": "7.00:00:00",
-          "retry": 0,
-          "retryIntervalInSeconds": 30,
-          "secureOutput": false,
-          "secureInput": false
-        },
-        "userProperties": [],
-        "typeProperties": {
-          "storedProcedureName": "[dbo].[Update_DimCustomer_Type1]"
-        },
-        "linkedServiceName": {
-          "referenceName": "BFG_SQL_DB",
-          "type": "LinkedServiceReference"
-        }
-      },
-      {
-        "name": "Update DimProduct",
-        "type": "SqlServerStoredProcedure",
-        "dependsOn": [
-          {
-            "activity": "Update DimCustomer",
-            "dependencyConditions": ["Succeeded"]
-          }
-        ],
-        "policy": {
-          "timeout": "7.00:00:00",
-          "retry": 0,
-          "retryIntervalInSeconds": 30,
-          "secureOutput": false,
-          "secureInput": false
-        },
-        "userProperties": [],
-        "typeProperties": {
-          "storedProcedureName": "[dbo].[Update_DimProduct_Type1]"
-        },
-        "linkedServiceName": {
-          "referenceName": "BFG_SQL_DB",
-          "type": "LinkedServiceReference"
-        }
-      },
-      {
-        "name": "Update Fact",
-        "type": "SqlServerStoredProcedure",
-        "dependsOn": [
-          {
-            "activity": "Update DimProduct",
-            "dependencyConditions": ["Succeeded"]
-          }
-        ],
-        "policy": {
-          "timeout": "7.00:00:00",
-          "retry": 0,
-          "retryIntervalInSeconds": 30,
-          "secureOutput": false,
-          "secureInput": false
-        },
-        "userProperties": [],
-        "typeProperties": {
-          "storedProcedureName": "[dbo].[update_FactInvoice]"
-        },
-        "linkedServiceName": {
-          "referenceName": "BFG_SQL_DB",
-          "type": "LinkedServiceReference"
-        }
-      },
-      {
-        "name": "Update Solution Fact Summary",
-        "type": "SqlServerStoredProcedure",
-        "dependsOn": [
-          {
-            "activity": "Update Fact",
-            "dependencyConditions": ["Succeeded"]
-          }
-        ],
-        "policy": {
-          "timeout": "7.00:00:00",
-          "retry": 0,
-          "retryIntervalInSeconds": 30,
-          "secureOutput": false,
-          "secureInput": false
-        },
-        "userProperties": [],
-        "typeProperties": {
-          "storedProcedureName": "[solution].[Insert_CustomerDailySalesFact_Summary]"
-        },
-        "linkedServiceName": {
-          "referenceName": "BFG_SQL_DB",
-          "type": "LinkedServiceReference"
-        }
-      }
-    ],
-    "annotations": []
-  }
+	"name": "CONTROL_PIPELINE",
+	"properties": {
+		"activities": [
+			{
+				"name": "Execute AR1 ODB To ADLS",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "BGF_AR_1_ODB_To_ADLS",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Execute AR1 ADLS To SQL",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Execute GL ADLS To SQL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "AR_1_ADLS_To_SQL",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Execute AR2 ODB To ADLS",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Execute AR1 ODB To ADLS",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "BFG_AR_2_ODB_to_ADLS",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Execute AR2 ADLS To SQL",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Execute AR1 ADLS To SQL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "AR_2_ADLS_To_SQL",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Execute GMI ODB To ADLS",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Execute GL2 ODB To ADLS",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "BFG_GMI_ODB_To_ADLS",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Execute GMI ADLS To SQL",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Execute INV ODB To ADLS",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "GMI_ADLS_To_SQL",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Execute GL ADLS To SQL",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Execute GMI ADLS To SQL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "GL_ADLS_To_SQL",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Execute GL1 ODB To ADLS",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Execute GMI ODB To ADLS",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "BFG_GL_1_ODB_To_ADLS",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Execute INV ADLS To SQL",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Execute AR2 ADLS To SQL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "INV_ADLS_To_SQL",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Execute INV ODB To ADLS",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Execute GL1 ODB To ADLS",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "BFG_INV_ODB_To_ADLS",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Execute AR3 ODB To ADLS",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Execute AR2 ODB To ADLS",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "AR_3_ODB_To_ADLS_And_SQL",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Execute APPSYS ODB To ADLS",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Execute AR3 ODB To ADLS",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "BFG_APPLSYS_ODB_To_ADLS_And_SQL",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Execute GL2 ODB To ADLS",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Execute APPSYS ODB To ADLS",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "BFG_GL_2_ODB_To_ADLS_And_SQL",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Update DimDate",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "Execute INV ADLS To SQL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[Update_DimCustomer_Type1]"
+				},
+				"linkedServiceName": {
+					"referenceName": "BFG_SQL_DB",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Update DimCustomer",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "Update DimDate",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[Update_DimCustomer_Type1]"
+				},
+				"linkedServiceName": {
+					"referenceName": "BFG_SQL_DB",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Update DimProduct",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "Update DimCustomer",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[Update_DimProduct_Type1]"
+				},
+				"linkedServiceName": {
+					"referenceName": "BFG_SQL_DB",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Update Fact",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "Update DimProduct",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[update_FactInvoice]"
+				},
+				"linkedServiceName": {
+					"referenceName": "BFG_SQL_DB",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Update Solution Fact Summary",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "Update Fact",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[solution].[Insert_CustomerDailySalesFact_Summary]"
+				},
+				"linkedServiceName": {
+					"referenceName": "BFG_SQL_DB",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"annotations": []
+	}
 }

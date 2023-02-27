@@ -2000,7 +2000,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[dbo].[UpdateWatermark]",
+					"storedProcedureName": "[dbo].[update_watermark]",
 					"storedProcedureParameters": {
 						"LastModifiedtime": {
 							"value": {
