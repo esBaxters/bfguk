@@ -2038,7 +2038,7 @@
 			},
 			"table_generic": {
 				"type": "String",
-				"defaultValue": "GL_TABLES"
+				"defaultValue": "gl_tables"
 			},
 			"table_gl_import_references": {
 				"type": "String",
