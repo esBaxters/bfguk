@@ -2040,11 +2040,11 @@
 				"type": "String",
 				"defaultValue": "GL_TABLES"
 			},
-			"Table_GL_IMPORT_REFERENCES": {
+			"table_gl_import_references": {
 				"type": "String",
-				"defaultValue": "GL_IMPORT_REFERENCES"
+				"defaultValue": "gl_import_references"
 			},
-			"ODB_owner_name": {
+			"odb_owner_name": {
 				"type": "String"
 			}
 		},
