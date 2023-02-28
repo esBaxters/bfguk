@@ -302,7 +302,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[dbo].[Update_DimCustomer_Type1]"
+					"storedProcedureName": "[dbo].[update_dim_customer]"
 				},
 				"linkedServiceName": {
 					"referenceName": "BFG_SQL_DB",
