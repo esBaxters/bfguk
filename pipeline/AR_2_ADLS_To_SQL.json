@@ -51,7 +51,7 @@
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
 							"modifiedDatetimeStart": {
-								"value": "@activity('Lookup Generic File Timestamp').output.FirstRow.WATERMARK_DATETIME",
+								"value": "@activity('Lookup Generic File Timestamp').output.FirstRow.watermark_datetime",
 								"type": "Expression"
 							},
 							"wildcardFolderPath": "bfguk_erp_prod/schemas/AR/RA_BATCH_SOURCES_ALL",
@@ -1368,7 +1368,7 @@
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
 							"modifiedDatetimeStart": {
-								"value": "@activity('Lookup Generic File Timestamp').output.FirstRow.WATERMARK_DATETIME",
+								"value": "@activity('Lookup Generic File Timestamp').output.FirstRow.watermark_datetime",
 								"type": "Expression"
 							},
 							"wildcardFolderPath": "bfguk_erp_prod/schemas/AR/RA_CUSTOMER_TRX_ALL",
@@ -3795,7 +3795,7 @@
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
 							"modifiedDatetimeStart": {
-								"value": "@activity('Lookup RA_CUSTOMER_TRX_LINES_ALL ADLS Timestamp').output.FirstRow.WATERMARK_DATETIME",
+								"value": "@activity('Lookup RA_CUSTOMER_TRX_LINES_ALL ADLS Timestamp').output.FirstRow.watermark_datetime",
 								"type": "Expression"
 							},
 							"wildcardFolderPath": "bfguk_erp_prod/schemas/AR/RA_CUSTOMER_TRX_LINES_ALL",
@@ -5952,7 +5952,7 @@
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
 							"modifiedDatetimeStart": {
-								"value": "@activity('Lookup Generic File Timestamp').output.FirstRow.WATERMARK_DATETIME",
+								"value": "@activity('Lookup Generic File Timestamp').output.FirstRow.watermark_datetime",
 								"type": "Expression"
 							},
 							"wildcardFolderPath": "bfguk_erp_prod/schemas/AR/RA_CUST_TRX_LINE_GL_DIST_ALL",
@@ -7221,7 +7221,7 @@
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
 							"modifiedDatetimeStart": {
-								"value": "@activity('Lookup Generic File Timestamp').output.FirstRow.WATERMARK_DATETIME",
+								"value": "@activity('Lookup Generic File Timestamp').output.FirstRow.watermark_datetime",
 								"type": "Expression"
 							},
 							"wildcardFolderPath": "bfguk_erp_prod/schemas/AR/RA_CUST_TRX_TYPES_ALL",
@@ -8325,24 +8325,24 @@
 					"source": {
 						"type": "AzureSqlSource",
 						"sqlReaderQuery": {
-							"value": "select WATERMARK_DATETIME \nfrom [dbo].[WATERMARK] \nwhere OWNER_NAME = '@{variables('ADF_OWNER_NAME')}'\nand TABLE_NAME = '@{variables('Table_Generic')}'",
+							"value": "select watermark_datetime \nfrom [dbo].[watermark] \nwhere owner_name = '@{variables('adf_owner_name')}'\nand table_name = '@{variables('table_generic')}'",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
 					"dataset": {
-						"referenceName": "WATERMARK",
+						"referenceName": "watermark",
 						"type": "DatasetReference"
 					}
 				}
 			},
 			{
-				"name": "Update Generic ADLS Watermark",
+				"name": "Update Generic ADLS watermark",
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "Update RA_CUSTOMER_TRX_LINES_ALL ADLS Watermark",
+						"activity": "Update RA_CUSTOMER_TRX_LINES_ALL ADLS watermark",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -8357,7 +8357,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[dbo].[UpdateWatermark]",
+					"storedProcedureName": "[dbo].[Updatewatermark]",
 					"storedProcedureParameters": {
 						"LastModifiedtime": {
 							"value": {
@@ -8366,16 +8366,16 @@
 							},
 							"type": "Datetime"
 						},
-						"OWNER_NAME": {
+						"owner_name": {
 							"value": {
-								"value": "@variables('ADF_OWNER_NAME')",
+								"value": "@variables('adf_owner_name')",
 								"type": "Expression"
 							},
 							"type": "String"
 						},
-						"TABLE_NAME": {
+						"table_name": {
 							"value": {
-								"value": "@variables('Table_Generic')",
+								"value": "@variables('table_generic')",
 								"type": "Expression"
 							},
 							"type": "String"
@@ -8403,20 +8403,20 @@
 					"source": {
 						"type": "AzureSqlSource",
 						"sqlReaderQuery": {
-							"value": "select WATERMARK_DATETIME \nfrom [dbo].[WATERMARK] \nwhere OWNER_NAME = '@{variables('ADF_OWNER_NAME')}'\nand TABLE_NAME = '@{variables('Table_RA_CUSTOMER_TRX_LINES_ALL')}'",
+							"value": "select watermark_datetime \nfrom [dbo].[watermark] \nwhere owner_name = '@{variables('adf_owner_name')}'\nand table_name = '@{variables('Table_RA_CUSTOMER_TRX_LINES_ALL')}'",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
 					"dataset": {
-						"referenceName": "WATERMARK",
+						"referenceName": "watermark",
 						"type": "DatasetReference"
 					}
 				}
 			},
 			{
-				"name": "Update RA_CUSTOMER_TRX_LINES_ALL ADLS Watermark",
+				"name": "Update RA_CUSTOMER_TRX_LINES_ALL ADLS watermark",
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
@@ -8435,7 +8435,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[dbo].[UpdateWatermark]",
+					"storedProcedureName": "[dbo].[Updatewatermark]",
 					"storedProcedureParameters": {
 						"LastModifiedtime": {
 							"value": {
@@ -8444,14 +8444,14 @@
 							},
 							"type": "Datetime"
 						},
-						"OWNER_NAME": {
+						"owner_name": {
 							"value": {
-								"value": "@variables('ADF_OWNER_NAME')",
+								"value": "@variables('adf_owner_name')",
 								"type": "Expression"
 							},
 							"type": "String"
 						},
-						"TABLE_NAME": {
+						"table_name": {
 							"value": {
 								"value": "@variables('Table_RA_CUSTOMER_TRX_LINES_ALL')",
 								"type": "Expression"
@@ -8467,17 +8467,17 @@
 			}
 		],
 		"variables": {
-			"ADF_OWNER_NAME": {
+			"adf_owner_name": {
 				"type": "String",
 				"defaultValue": "ADF"
 			},
-			"Table_Generic": {
+			"table_generic": {
 				"type": "String",
 				"defaultValue": "AR_2_TABLES"
 			},
-			"Table_RA_CUSTOMER_TRX_LINES_ALL": {
+			"table_ra_customer_trx_lines_all": {
 				"type": "String",
-				"defaultValue": "RA_CUSTOMER_TRX_LINES_ALL"
+				"defaultValue": "ra_customer_trx_lines_all"
 			}
 		},
 		"annotations": []
