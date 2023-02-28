@@ -8332,7 +8332,7 @@
 						"partitionOption": "None"
 					},
 					"dataset": {
-						"referenceName": "watermark",
+						"referenceName": "WATERMARK",
 						"type": "DatasetReference"
 					}
 				}
@@ -8357,9 +8357,9 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[dbo].[Updatewatermark]",
+					"storedProcedureName": "[dbo].[update_watermark]",
 					"storedProcedureParameters": {
-						"LastModifiedtime": {
+						"last_modified_time": {
 							"value": {
 								"value": "@pipeline().TriggerTime",
 								"type": "Expression"
@@ -8410,7 +8410,7 @@
 						"partitionOption": "None"
 					},
 					"dataset": {
-						"referenceName": "watermark",
+						"referenceName": "WATERMARK",
 						"type": "DatasetReference"
 					}
 				}
@@ -8435,9 +8435,9 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[dbo].[Updatewatermark]",
+					"storedProcedureName": "[dbo].[update_watermark]",
 					"storedProcedureParameters": {
-						"LastModifiedtime": {
+						"last_modified_time": {
 							"value": {
 								"value": "@pipeline().TriggerTime",
 								"type": "Expression"
