@@ -10501,7 +10501,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[dbo].[UpdateWatermark]",
+					"storedProcedureName": "[dbo].[update_watermark]",
 					"storedProcedureParameters": {
 						"last_modified_time": {
 							"value": {
@@ -10571,7 +10571,7 @@
 			},
 			"table_ar_receivable_applications_all": {
 				"type": "String",
-				"defaultValue": "AR_RECEIVABLE_APPLICATIONS_ALL"
+				"defaultValue": "ar_receivable_applications_all"
 			}
 		},
 		"annotations": []
