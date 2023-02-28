@@ -10503,7 +10503,7 @@
 				"typeProperties": {
 					"storedProcedureName": "[dbo].[UpdateWatermark]",
 					"storedProcedureParameters": {
-						"LastModifiedtime": {
+						"last_modified_time": {
 							"value": {
 								"value": "@pipeline().TriggerTime",
 								"type": "Expression"
@@ -10517,9 +10517,9 @@
 							},
 							"type": "String"
 						},
-						"TableName": {
+						"table_name": {
 							"value": {
-								"value": "@variables('Table_Generic')",
+								"value": "@variables('table_generic')",
 								"type": "Expression"
 							},
 							"type": "String"
@@ -10547,7 +10547,7 @@
 					"source": {
 						"type": "AzureSqlSource",
 						"sqlReaderQuery": {
-							"value": "select watermark_datetime \nfrom [dbo].[watermark] \nwhere owner_name = '@{variables('adf_owner_name')}'\nand table_name = '@{variables('Table_Generic')}'",
+							"value": "select watermark_datetime \nfrom [dbo].[watermark] \nwhere owner_name = '@{variables('adf_owner_name')}'\nand table_name = '@{variables('table_generic')}'",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
@@ -10563,13 +10563,13 @@
 		"variables": {
 			"adf_owner_name": {
 				"type": "String",
-				"defaultValue": "ADF"
+				"defaultValue": "adf"
 			},
-			"Table_Generic": {
+			"table_generic": {
 				"type": "String",
-				"defaultValue": "AR_1_TABLES"
+				"defaultValue": "ar_1_tables"
 			},
-			"Table_AR_RECEIVABLE_APPLICATIONS_ALL": {
+			"table_ar_receivable_applications_all": {
 				"type": "String",
 				"defaultValue": "AR_RECEIVABLE_APPLICATIONS_ALL"
 			}
