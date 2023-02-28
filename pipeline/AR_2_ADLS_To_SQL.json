@@ -8403,7 +8403,7 @@
 					"source": {
 						"type": "AzureSqlSource",
 						"sqlReaderQuery": {
-							"value": "select watermark_datetime \nfrom [dbo].[watermark] \nwhere owner_name = '@{variables('adf_owner_name')}'\nand table_name = '@{variables('Table_RA_CUSTOMER_TRX_LINES_ALL')}'",
+							"value": "select watermark_datetime \nfrom [dbo].[watermark] \nwhere owner_name = '@{variables('adf_owner_name')}'\nand table_name = '@{variables('table_ra_customer_trx_lines_all')}'",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
@@ -8453,7 +8453,7 @@
 						},
 						"table_name": {
 							"value": {
-								"value": "@variables('Table_RA_CUSTOMER_TRX_LINES_ALL')",
+								"value": "@variables('table_ra_customer_trx_lines_all')",
 								"type": "Expression"
 							},
 							"type": "String"
