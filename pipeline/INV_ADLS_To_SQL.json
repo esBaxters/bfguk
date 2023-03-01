@@ -6957,7 +6957,7 @@
 			},
 			"table_generic": {
 				"type": "String",
-				"defaultValue": "INV_TABLES"
+				"defaultValue": "inv_tables"
 			}
 		},
 		"annotations": []
