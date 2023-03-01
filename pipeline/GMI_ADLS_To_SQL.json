@@ -1,163 +1,1653 @@
 {
-  "name": "GMI_ADLS_To_SQL",
-  "properties": {
-    "activities": [
-      {
-        "name": "Copy IC_ITEM_MST_B To SQL",
-        "type": "Copy",
-        "dependsOn": [
-          {
-            "activity": "Lookup Generic File Timestamp",
-            "dependencyConditions": ["Succeeded"]
-          }
-        ],
-        "policy": {
-          "timeout": "7.00:00:00",
-          "retry": 0,
-          "retryIntervalInSeconds": 30,
-          "secureOutput": false,
-          "secureInput": false
-        },
-        "userProperties": [],
-        "typeProperties": {
-          "source": {
-            "type": "DelimitedTextSource",
-            "storeSettings": {
-              "type": "AzureBlobStorageReadSettings",
-              "recursive": true,
-              "modifiedDatetimeStart": {
-                "value": "@activity('Lookup Generic File Timestamp').output.FirstRow.watermark_datetime",
-                "type": "Expression"
-              },
-              "wildcardFolderPath": "bfguk_erp_prod/schemas/GMI/IC_ITEM_MST_B",
-              "wildcardFileName": "*",
-              "enablePartitionDiscovery": false
-            },
-            "formatSettings": {
-              "type": "DelimitedTextReadSettings"
-            }
-          },
-          "sink": {
-            "type": "AzureSqlSink",
-            "preCopyScript": {
-              "value": "begin try\ntruncate table [stg].[IC_ITEM_MST_B]\nend try\nbegin catch \nselect null\nend catch",
-              "type": "Expression"
-            },
-            "writeBehavior": "insert",
-            "sqlWriterUseTableLock": false,
-            "tableOption": "autoCreate",
-            "disableMetricsCollection": false
-          },
-          "enableStaging": false,
-          "translator": {
-            "type": "TabularTranslator",
-            "typeConversion": true,
-            "typeConversionSettings": {
-              "allowDataTruncation": true,
-              "treatBooleanAsNumber": false
-            }
-          }
-        },
-        "inputs": [
-          {
-            "referenceName": "ADLS_ODB_IC_ITEM_MST_B",
-            "type": "DatasetReference"
-          }
-        ],
-        "outputs": [
-          {
-            "referenceName": "SQL_IC_ITEM_MST_B",
-            "type": "DatasetReference"
-          }
-        ]
-      },
-      {
-        "name": "Lookup Generic File Timestamp",
-        "type": "Lookup",
-        "dependsOn": [],
-        "policy": {
-          "timeout": "7.00:00:00",
-          "retry": 0,
-          "retryIntervalInSeconds": 30,
-          "secureOutput": false,
-          "secureInput": false
-        },
-        "userProperties": [],
-        "typeProperties": {
-          "source": {
-            "type": "AzureSqlSource",
-            "sqlReaderQuery": {
-              "value": "select watermark_datetime \nfrom [dbo].[watermark] \nwhere owner_name = '@{variables('adf_owner_name')}'\nand table_name = '@{variables('table_generic')}'",
-              "type": "Expression"
-            },
-            "queryTimeout": "02:00:00",
-            "partitionOption": "None"
-          },
-          "dataset": {
-            "referenceName": "watermark",
-            "type": "DatasetReference"
-          }
-        }
-      },
-      {
-        "name": "Update Generic ADLS watermark",
-        "type": "SqlServerStoredProcedure",
-        "dependsOn": [
-          {
-            "activity": "Copy IC_ITEM_MST_B To SQL",
-            "dependencyConditions": ["Succeeded"]
-          }
-        ],
-        "policy": {
-          "timeout": "7.00:00:00",
-          "retry": 0,
-          "retryIntervalInSeconds": 30,
-          "secureOutput": false,
-          "secureInput": false
-        },
-        "userProperties": [],
-        "typeProperties": {
-          "storedProcedureName": "[dbo].[update_watermark]",
-          "storedProcedureParameters": {
-            "last_modified_time": {
-              "value": {
-                "value": "@pipeline().TriggerTime",
-                "type": "Expression"
-              },
-              "type": "Datetime"
-            },
-            "owner_name": {
-              "value": {
-                "value": "@variables('adf_owner_name')",
-                "type": "Expression"
-              },
-              "type": "String"
-            },
-            "table_name": {
-              "value": {
-                "value": "@variables('table_generic')",
-                "type": "Expression"
-              },
-              "type": "String"
-            }
-          }
-        },
-        "linkedServiceName": {
-          "referenceName": "BFG_SQL_DB",
-          "type": "LinkedServiceReference"
-        }
-      }
-    ],
-    "variables": {
-      "adf_owner_name": {
-        "type": "String",
-        "defaultValue": "adf"
-      },
-      "table_generic": {
-        "type": "String",
-        "defaultValue": "gmi_tables"
-      }
-    },
-    "annotations": []
-  }
+	"name": "GMI_ADLS_To_SQL",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy IC_ITEM_MST_B To SQL",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Lookup Generic File Timestamp",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"additionalColumns": [
+							{
+								"name": "_M_TIMESTAMP",
+								"value": {
+									"value": "@utcnow()",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "_M_PIPELINE",
+								"value": {
+									"value": "@pipeline().Pipeline",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "_M_DATETIME",
+								"value": {
+									"value": "@formatDateTime(utcnow())",
+									"type": "Expression"
+								}
+							}
+						],
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"modifiedDatetimeStart": {
+								"value": "@activity('Lookup Generic File Timestamp').output.FirstRow.watermark_datetime",
+								"type": "Expression"
+							},
+							"wildcardFolderPath": "bfguk_erp_prod/schemas/GMI/IC_ITEM_MST_B",
+							"wildcardFileName": "*",
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"preCopyScript": {
+							"value": "begin try\ntruncate table [stg].[IC_ITEM_MST_B]\nend try\nbegin catch \nselect null\nend catch",
+							"type": "Expression"
+						},
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false,
+						"tableOption": "autoCreate",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "ITEM_ID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "item_id",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ITEM_NO",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "item_no",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ITEM_DESC1",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "item_desc1",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ITEM_DESC2",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "item_desc2",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ALT_ITEMA",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "alt_itema",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ALT_ITEMB",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "alt_itemb",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ITEM_UM",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "item_um",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "DUALUM_IND",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "dualum_ind",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ITEM_UM2",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "item_um2",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "DEVIATION_LO",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "deviation_lo",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "DEVIATION_HI",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "deviation_hi",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "LEVEL_CODE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "level_code",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "LOT_CTL",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "lot_ctl",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "LOT_INDIVISIBLE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "lot_indivisible",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SUBLOT_CTL",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "sublot_ctl",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "LOCT_CTL",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "loct_ctl",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "NONINV_IND",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "noninv_ind",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "MATCH_TYPE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "match_type",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "INACTIVE_IND",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "inactive_ind",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "INV_TYPE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "inv_type",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SHELF_LIFE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "shelf_life",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "RETEST_INTERVAL",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "retest_interval",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "GL_CLASS",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "gl_class",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "INV_CLASS",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "inv_class",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SALES_CLASS",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "sales_class",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SHIP_CLASS",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ship_class",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "FRT_CLASS",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "frt_class",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "PRICE_CLASS",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "price_class",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "STORAGE_CLASS",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "storage_class",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "PURCH_CLASS",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "purch_class",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TAX_CLASS",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "tax_class",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CUSTOMS_CLASS",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "customs_class",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ALLOC_CLASS",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "alloc_class",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "PLANNING_CLASS",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "planning_class",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ITEMCOST_CLASS",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "itemcost_class",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "COST_MTHD_CODE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "cost_mthd_code",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "UPC_CODE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "upc_code",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "GRADE_CTL",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "grade_ctl",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "STATUS_CTL",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "status_ctl",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "QC_GRADE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "qc_grade",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "LOT_STATUS",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "lot_status",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "BULK_ID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "bulk_id",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "PKG_ID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "pkg_id",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "QCITEM_ID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "qcitem_id",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "QCHOLD_RES_CODE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "qchold_res_code",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "EXPACTION_CODE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "expaction_code",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "FILL_QTY",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "fill_qty",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "FILL_UM",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "fill_um",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "EXPACTION_INTERVAL",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "expaction_interval",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "PHANTOM_TYPE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "phantom_type",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "WHSE_ITEM_ID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "whse_item_id",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "EXPERIMENTAL_IND",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "experimental_ind",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "EXPORTED_DATE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "exported_date",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TRANS_CNT",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "trans_cnt",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "DELETE_MARK",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "delete_mark",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TEXT_CODE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "text_code",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SEQ_DPND_CLASS",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "seq_dpnd_class",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "COMMODITY_CODE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "commodity_code",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CREATION_DATE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "creation_date",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CREATED_BY",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "created_by",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "LAST_UPDATE_DATE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "last_update_date",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "LAST_UPDATED_BY",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "last_updated_by",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "LAST_UPDATE_LOGIN",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "last_update_login",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "PROGRAM_APPLICATION_ID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "program_application_id",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "PROGRAM_ID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "program_id",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "PROGRAM_UPDATE_DATE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "program_update_date",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "REQUEST_ID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "request_id",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE1",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute1",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE2",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute2",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE3",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute3",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE4",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute4",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE5",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute5",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE6",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute6",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE7",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute7",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE8",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute8",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE9",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute9",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE10",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute10",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE11",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute11",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE12",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute12",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE13",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute13",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE14",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute14",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE15",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute15",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE16",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute16",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE17",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute17",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE18",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute18",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE19",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute19",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE20",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute20",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE21",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute21",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE22",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute22",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE23",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute23",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE24",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute24",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE25",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute25",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE26",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute26",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE27",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute27",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE28",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute28",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE29",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute29",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE30",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute30",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ATTRIBUTE_CATEGORY",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "attribute_category",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ITEM_ABCCODE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "item_abccode",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ONT_PRICING_QTY_SOURCE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ont_pricing_qty_source",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ALLOC_CATEGORY_ID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "alloc_category_id",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CUSTOMS_CATEGORY_ID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "customs_category_id",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "FRT_CATEGORY_ID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "frt_category_id",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "GL_CATEGORY_ID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "gl_category_id",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "INV_CATEGORY_ID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "inv_category_id",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "COST_CATEGORY_ID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "cost_category_id",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "PLANNING_CATEGORY_ID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "planning_category_id",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "PRICE_CATEGORY_ID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "price_category_id",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "PURCH_CATEGORY_ID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "purch_category_id",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SALES_CATEGORY_ID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "sales_category_id",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SEQ_CATEGORY_ID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "seq_category_id",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SHIP_CATEGORY_ID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ship_category_id",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "STORAGE_CATEGORY_ID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "storage_category_id",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TAX_CATEGORY_ID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "tax_category_id",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AUTOLOT_ACTIVE_INDICATOR",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "autolot_active_indicator",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "LOT_PREFIX",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "lot_prefix",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "LOT_SUFFIX",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "lot_suffix",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SUBLOT_PREFIX",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "sublot_prefix",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SUBLOT_SUFFIX",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "sublot_suffix",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "_M_TIMESTAMP",
+									"type": "String"
+								},
+								"sink": {
+									"name": "_m_timestamp",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "_M_PIPELINE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "_m_pipeline",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "_M_DATETIME",
+									"type": "String"
+								},
+								"sink": {
+									"name": "_m_datetime",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ADLS_ODB_IC_ITEM_MST_B",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "SQL_IC_ITEM_MST_B",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Lookup Generic File Timestamp",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": {
+							"value": "select watermark_datetime \nfrom [dbo].[watermark] \nwhere owner_name = '@{variables('adf_owner_name')}'\nand table_name = '@{variables('table_generic')}'",
+							"type": "Expression"
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "WATERMARK",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "Update Generic ADLS watermark",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "Copy IC_ITEM_MST_B To SQL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[update_watermark]",
+					"storedProcedureParameters": {
+						"last_modified_time": {
+							"value": {
+								"value": "@pipeline().TriggerTime",
+								"type": "Expression"
+							},
+							"type": "Datetime"
+						},
+						"owner_name": {
+							"value": {
+								"value": "@variables('adf_owner_name')",
+								"type": "Expression"
+							},
+							"type": "String"
+						},
+						"table_name": {
+							"value": {
+								"value": "@variables('table_generic')",
+								"type": "Expression"
+							},
+							"type": "String"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "BFG_SQL_DB",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"variables": {
+			"adf_owner_name": {
+				"type": "String",
+				"defaultValue": "adf"
+			},
+			"table_generic": {
+				"type": "String",
+				"defaultValue": "gmi_tables"
+			}
+		},
+		"annotations": []
+	}
 }
