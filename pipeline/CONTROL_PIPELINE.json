@@ -256,7 +256,7 @@
 				}
 			},
 			{
-				"name": "Update DimDate",
+				"name": "Update Dim Date",
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
@@ -275,7 +275,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[dbo].[Update_DimCustomer_Type1]"
+					"storedProcedureName": "[dbo].[update_dim_date]"
 				},
 				"linkedServiceName": {
 					"referenceName": "BFG_SQL_DB",
@@ -283,11 +283,11 @@
 				}
 			},
 			{
-				"name": "Update DimCustomer",
+				"name": "Update Dim Customer",
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "Update DimDate",
+						"activity": "Update Dim Date",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -310,11 +310,11 @@
 				}
 			},
 			{
-				"name": "Update DimProduct",
+				"name": "Update Dim Product",
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "Update DimCustomer",
+						"activity": "Update Dim Customer",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -329,7 +329,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[dbo].[Update_DimProduct_Type1]"
+					"storedProcedureName": "[dbo].[update_dim_product]"
 				},
 				"linkedServiceName": {
 					"referenceName": "BFG_SQL_DB",
@@ -341,7 +341,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "Update DimProduct",
+						"activity": "Update Dim Product",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -356,7 +356,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[dbo].[update_FactInvoice]"
+					"storedProcedureName": "[dbo].[update_fact_invoice]"
 				},
 				"linkedServiceName": {
 					"referenceName": "BFG_SQL_DB",
@@ -383,7 +383,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[solution].[Insert_CustomerDailySalesFact_Summary]"
+					"storedProcedureName": "[solution].[insert_customer_daily_sales_fact_summary]"
 				},
 				"linkedServiceName": {
 					"referenceName": "BFG_SQL_DB",
