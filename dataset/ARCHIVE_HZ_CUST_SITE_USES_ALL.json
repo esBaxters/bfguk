@@ -1,23 +1,23 @@
 {
-  "name": "HZ_CUST_SITE_USES_ALL",
-  "properties": {
-    "linkedServiceName": {
-      "referenceName": "BFG_AZURE_STORAGE",
-      "type": "LinkedServiceReference"
-    },
-    "annotations": [],
-    "type": "DelimitedText",
-    "typeProperties": {
-      "location": {
-        "type": "AzureBlobStorageLocation",
-        "folderPath": "bfguk_erp_prod/schemas/AR/HZ_CUST_SITE_USES_ALL",
-        "container": "archive"
-      },
-      "columnDelimiter": "|",
-      "compressionCodec": "gzip",
-      "escapeChar": "\\",
-      "quoteChar": "\""
-    },
-    "schema": []
-  }
+	"name": "ARCHIVE_HZ_CUST_SITE_USES_ALL",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "BFG_AZURE_STORAGE",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": "bfguk_erp_prod/schemas/AR/HZ_CUST_SITE_USES_ALL",
+				"container": "archive"
+			},
+			"columnDelimiter": "|",
+			"compressionCodec": "gzip",
+			"escapeChar": "\\",
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
 }
