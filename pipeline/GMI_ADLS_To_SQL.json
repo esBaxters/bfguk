@@ -1607,7 +1607,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[dbo].[update_watermark]",
+					"storedProcedureName": "[dbo].[sp_update_watermark]",
 					"storedProcedureParameters": {
 						"last_modified_time": {
 							"value": {

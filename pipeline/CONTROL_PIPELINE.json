@@ -275,7 +275,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[dbo].[update_dim_date]"
+					"storedProcedureName": "[dbo].[sp_update_dim_date]"
 				},
 				"linkedServiceName": {
 					"referenceName": "BFG_SQL_DB",
@@ -302,7 +302,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[dbo].[update_dim_customer]"
+					"storedProcedureName": "[dbo].[sp_update_dim_customer]"
 				},
 				"linkedServiceName": {
 					"referenceName": "BFG_SQL_DB",
@@ -329,7 +329,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[dbo].[update_dim_product]"
+					"storedProcedureName": "[dbo].[sp_update_dim_product]"
 				},
 				"linkedServiceName": {
 					"referenceName": "BFG_SQL_DB",
@@ -356,7 +356,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[dbo].[update_fact_invoice]"
+					"storedProcedureName": "[dbo].[sp_update_fact_invoice]"
 				},
 				"linkedServiceName": {
 					"referenceName": "BFG_SQL_DB",
@@ -383,7 +383,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[solution].[insert_customer_daily_sales_fact_summary]"
+					"storedProcedureName": "[solution].[sp_insert_customer_daily_sales_fact_summary]"
 				},
 				"linkedServiceName": {
 					"referenceName": "BFG_SQL_DB",
