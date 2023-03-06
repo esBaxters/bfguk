@@ -1,0 +1,1265 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "dotintegrationprod"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/ARCHIVE_HZ_RELATIONSHIPS')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "BFG_AZURE_STORAGE",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"folderPath": "bfguk_erp_prod/schemas/AR/HZ_RELATIONSHIPS",
+						"container": "archive"
+					},
+					"columnDelimiter": "|",
+					"compressionCodec": "gzip",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ARCHIVE_IC_ITEM_MST_B')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "BFG_AZURE_STORAGE",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"folderPath": "bfguk_erp_prod/schemas/GMI/IC_ITEM_MST_B",
+						"container": "archive"
+					},
+					"columnDelimiter": "|",
+					"compressionCodec": "gzip",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ARCHIVE_MTL_CATEGORIES_B')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "BFG_AZURE_STORAGE",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"folderPath": "bfguk_erp_prod/schemas/INV/MTL_CATEGORIES_B",
+						"container": "archive"
+					},
+					"columnDelimiter": "|",
+					"compressionCodec": "gzip",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ARCHIVE_MTL_CATEGORY_SETS_TL')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "BFG_AZURE_STORAGE",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"folderPath": "bfguk_erp_prod/schemas/INV/MTL_CATEGORY_SETS_TL",
+						"container": "archive"
+					},
+					"columnDelimiter": "|",
+					"compressionCodec": "gzip",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ARCHIVE_MTL_ITEM_CATEGORIES')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "BFG_AZURE_STORAGE",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"folderPath": "bfguk_erp_prod/schemas/INV/MTL_ITEM_CATEGORIES",
+						"container": "archive"
+					},
+					"columnDelimiter": "|",
+					"compressionCodec": "gzip",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ARCHIVE_MTL_SYSTEM_ITEMS_B')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "BFG_AZURE_STORAGE",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"folderPath": "bfguk_erp_prod/schemas/INV/MTL_SYSTEM_ITEMS_B",
+						"container": "archive"
+					},
+					"columnDelimiter": "|",
+					"compressionCodec": "gzip",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ARCHIVE_MTL_SYSTEM_ITEMS_TL')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "BFG_AZURE_STORAGE",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"folderPath": "bfguk_erp_prod/schemas/INV/MTL_SYSTEM_ITEMS_TL",
+						"container": "archive"
+					},
+					"columnDelimiter": "|",
+					"compressionCodec": "gzip",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ARCHIVE_MTL_UOM_CONVERSIONS')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "BFG_AZURE_STORAGE",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"folderPath": "bfguk_erp_prod/schemas/INV/MTL_UOM_CONVERSIONS",
+						"container": "archive"
+					},
+					"columnDelimiter": "|",
+					"compressionCodec": "gzip",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ARCHIVE_OE_ORDER_HEADERS_ALL')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "BFG_AZURE_STORAGE",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"folderPath": "bfguk_erp_prod/schemas/ONT/OE_ORDER_HEADERS_ALL",
+						"container": "archive"
+					},
+					"columnDelimiter": "|",
+					"compressionCodec": "gzip",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ARCHIVE_RA_BATCH_SOURCES_ALL')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "BFG_AZURE_STORAGE",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"folderPath": "bfguk_erp_prod/schemas/AR/RA_BATCH_SOURCES_ALL",
+						"container": "archive"
+					},
+					"columnDelimiter": "|",
+					"compressionCodec": "gzip",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ARCHIVE_RA_CUSTOMER_TRX_ALL')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "BFG_AZURE_STORAGE",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"folderPath": "bfguk_erp_prod/schemas/AR/RA_CUSTOMER_TRX_ALL",
+						"container": "archive"
+					},
+					"columnDelimiter": "|",
+					"compressionCodec": "gzip",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ARCHIVE_RA_CUST_TRX_LINE_GL_DIST_ALL')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "BFG_AZURE_STORAGE",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"folderPath": "bfguk_erp_prod/schemas/AR/RA_CUST_TRX_LINE_GL_DIST_ALL",
+						"container": "archive"
+					},
+					"columnDelimiter": "|",
+					"compressionCodec": "gzip",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ARCHIVE_RA_CUST_TRX_TYPES_ALL')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "BFG_AZURE_STORAGE",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"folderPath": "bfguk_erp_prod/schemas/AR/RA_CUST_TRX_TYPES_ALL",
+						"container": "archive"
+					},
+					"columnDelimiter": "|",
+					"compressionCodec": "gzip",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/BFG_ASQL_RA_CUSTOMER_TRX_ALL')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "BFG_SQL_DB",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "CUSTOMER_TRX_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LAST_UPDATE_DATE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LAST_UPDATED_BY",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CREATION_DATE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CREATED_BY",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LAST_UPDATE_LOGIN",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TRX_NUMBER",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CUST_TRX_TYPE_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TRX_DATE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SET_OF_BOOKS_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BILL_TO_CONTACT_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BATCH_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BATCH_SOURCE_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "REASON_CODE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SOLD_TO_CUSTOMER_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SOLD_TO_CONTACT_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SOLD_TO_SITE_USE_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BILL_TO_CUSTOMER_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BILL_TO_SITE_USE_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SHIP_TO_CUSTOMER_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SHIP_TO_CONTACT_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SHIP_TO_SITE_USE_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SHIPMENT_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "REMIT_TO_ADDRESS_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TERM_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TERM_DUE_DATE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PREVIOUS_CUSTOMER_TRX_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PRIMARY_SALESREP_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PRINTING_ORIGINAL_DATE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PRINTING_LAST_PRINTED",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PRINTING_OPTION",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PRINTING_COUNT",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PRINTING_PENDING",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PURCHASE_ORDER",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PURCHASE_ORDER_REVISION",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PURCHASE_ORDER_DATE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CUSTOMER_REFERENCE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CUSTOMER_REFERENCE_DATE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "COMMENTS",
+						"type": "nvarchar"
+					},
+					{
+						"name": "INTERNAL_NOTES",
+						"type": "nvarchar"
+					},
+					{
+						"name": "EXCHANGE_RATE_TYPE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "EXCHANGE_DATE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "EXCHANGE_RATE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TERRITORY_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "INVOICE_CURRENCY_CODE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "INITIAL_CUSTOMER_TRX_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "AGREEMENT_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "END_DATE_COMMITMENT",
+						"type": "nvarchar"
+					},
+					{
+						"name": "START_DATE_COMMITMENT",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LAST_PRINTED_SEQUENCE_NUM",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ATTRIBUTE_CATEGORY",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ATTRIBUTE1",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ATTRIBUTE2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ATTRIBUTE3",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ATTRIBUTE4",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ATTRIBUTE5",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ATTRIBUTE6",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ATTRIBUTE7",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ATTRIBUTE8",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ATTRIBUTE9",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ATTRIBUTE10",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ORIG_SYSTEM_BATCH_NAME",
+						"type": "nvarchar"
+					},
+					{
+						"name": "POST_REQUEST_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "REQUEST_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PROGRAM_APPLICATION_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PROGRAM_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PROGRAM_UPDATE_DATE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "FINANCE_CHARGES",
+						"type": "nvarchar"
+					},
+					{
+						"name": "COMPLETE_FLAG",
+						"type": "nvarchar"
+					},
+					{
+						"name": "POSTING_CONTROL_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BILL_TO_ADDRESS_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RA_POST_LOOP_NUMBER",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SHIP_TO_ADDRESS_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CREDIT_METHOD_FOR_RULES",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CREDIT_METHOD_FOR_INSTALLMENTS",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RECEIPT_METHOD_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ATTRIBUTE11",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ATTRIBUTE12",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ATTRIBUTE13",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ATTRIBUTE14",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ATTRIBUTE15",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RELATED_CUSTOMER_TRX_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "INVOICING_RULE_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SHIP_VIA",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SHIP_DATE_ACTUAL",
+						"type": "nvarchar"
+					},
+					{
+						"name": "WAYBILL_NUMBER",
+						"type": "nvarchar"
+					},
+					{
+						"name": "FOB_POINT",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CUSTOMER_BANK_ACCOUNT_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "INTERFACE_HEADER_ATTRIBUTE1",
+						"type": "nvarchar"
+					},
+					{
+						"name": "INTERFACE_HEADER_ATTRIBUTE2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "INTERFACE_HEADER_ATTRIBUTE3",
+						"type": "nvarchar"
+					},
+					{
+						"name": "INTERFACE_HEADER_ATTRIBUTE4",
+						"type": "nvarchar"
+					},
+					{
+						"name": "INTERFACE_HEADER_ATTRIBUTE5",
+						"type": "nvarchar"
+					},
+					{
+						"name": "INTERFACE_HEADER_ATTRIBUTE6",
+						"type": "nvarchar"
+					},
+					{
+						"name": "INTERFACE_HEADER_ATTRIBUTE7",
+						"type": "nvarchar"
+					},
+					{
+						"name": "INTERFACE_HEADER_ATTRIBUTE8",
+						"type": "nvarchar"
+					},
+					{
+						"name": "INTERFACE_HEADER_CONTEXT",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DEFAULT_USSGL_TRX_CODE_CONTEXT",
+						"type": "nvarchar"
+					},
+					{
+						"name": "INTERFACE_HEADER_ATTRIBUTE10",
+						"type": "nvarchar"
+					},
+					{
+						"name": "INTERFACE_HEADER_ATTRIBUTE11",
+						"type": "nvarchar"
+					},
+					{
+						"name": "INTERFACE_HEADER_ATTRIBUTE12",
+						"type": "nvarchar"
+					},
+					{
+						"name": "INTERFACE_HEADER_ATTRIBUTE13",
+						"type": "nvarchar"
+					},
+					{
+						"name": "INTERFACE_HEADER_ATTRIBUTE14",
+						"type": "nvarchar"
+					},
+					{
+						"name": "INTERFACE_HEADER_ATTRIBUTE15",
+						"type": "nvarchar"
+					},
+					{
+						"name": "INTERFACE_HEADER_ATTRIBUTE9",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DEFAULT_USSGL_TRANSACTION_CODE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RECURRED_FROM_TRX_NUMBER",
+						"type": "nvarchar"
+					},
+					{
+						"name": "STATUS_TRX",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DOC_SEQUENCE_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DOC_SEQUENCE_VALUE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PAYING_CUSTOMER_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PAYING_SITE_USE_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RELATED_BATCH_SOURCE_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DEFAULT_TAX_EXEMPT_FLAG",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CREATED_FROM",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ORG_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "WH_UPDATE_DATE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GLOBAL_ATTRIBUTE1",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GLOBAL_ATTRIBUTE2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GLOBAL_ATTRIBUTE3",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GLOBAL_ATTRIBUTE4",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GLOBAL_ATTRIBUTE5",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GLOBAL_ATTRIBUTE6",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GLOBAL_ATTRIBUTE7",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GLOBAL_ATTRIBUTE8",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GLOBAL_ATTRIBUTE9",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GLOBAL_ATTRIBUTE10",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GLOBAL_ATTRIBUTE11",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GLOBAL_ATTRIBUTE12",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GLOBAL_ATTRIBUTE13",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GLOBAL_ATTRIBUTE14",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GLOBAL_ATTRIBUTE15",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GLOBAL_ATTRIBUTE16",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GLOBAL_ATTRIBUTE17",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GLOBAL_ATTRIBUTE18",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GLOBAL_ATTRIBUTE19",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GLOBAL_ATTRIBUTE20",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GLOBAL_ATTRIBUTE21",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GLOBAL_ATTRIBUTE22",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GLOBAL_ATTRIBUTE23",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GLOBAL_ATTRIBUTE24",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GLOBAL_ATTRIBUTE25",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GLOBAL_ATTRIBUTE26",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GLOBAL_ATTRIBUTE27",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GLOBAL_ATTRIBUTE28",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GLOBAL_ATTRIBUTE29",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GLOBAL_ATTRIBUTE30",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GLOBAL_ATTRIBUTE_CATEGORY",
+						"type": "nvarchar"
+					},
+					{
+						"name": "EDI_PROCESSED_FLAG",
+						"type": "nvarchar"
+					},
+					{
+						"name": "EDI_PROCESSED_STATUS",
+						"type": "nvarchar"
+					},
+					{
+						"name": "MRC_EXCHANGE_RATE_TYPE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "MRC_EXCHANGE_DATE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "MRC_EXCHANGE_RATE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PAYMENT_SERVER_ORDER_NUM",
+						"type": "nvarchar"
+					},
+					{
+						"name": "APPROVAL_CODE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ADDRESS_VERIFICATION_CODE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "OLD_TRX_NUMBER",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BR_AMOUNT",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BR_UNPAID_FLAG",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BR_ON_HOLD_FLAG",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DRAWEE_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DRAWEE_CONTACT_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DRAWEE_SITE_USE_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "REMITTANCE_BANK_ACCOUNT_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "OVERRIDE_REMIT_ACCOUNT_FLAG",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DRAWEE_BANK_ACCOUNT_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SPECIAL_INSTRUCTIONS",
+						"type": "nvarchar"
+					},
+					{
+						"name": "REMITTANCE_BATCH_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PREPAYMENT_FLAG",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CT_REFERENCE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CONTRACT_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BILL_TEMPLATE_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "REVERSED_CASH_RECEIPT_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CC_ERROR_CODE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CC_ERROR_TEXT",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CC_ERROR_FLAG",
+						"type": "nvarchar"
+					},
+					{
+						"name": "UPGRADE_METHOD",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LEGAL_ENTITY_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "REMIT_BANK_ACCT_USE_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PAYMENT_TRXN_EXTENSION_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "AX_ACCOUNTED_FLAG",
+						"type": "nvarchar"
+					},
+					{
+						"name": "APPLICATION_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PAYMENT_ATTRIBUTES",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BILLING_DATE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "INTEREST_HEADER_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LATE_CHARGES_ASSESSED",
+						"type": "nvarchar"
+					},
+					{
+						"name": "REV_REC_APPLICATION",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DOCUMENT_TYPE_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DOCUMENT_CREATION_DATE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SRC_INVOICING_RULE_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BILLING_EXT_REQUEST",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "stg",
+					"table": "RA_CUSTOMER_TRX_ALL"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/BFG_FND_LOOKUP_VALUES')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "BFG_ORACLE_PROD",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "OracleTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "APPLSYS",
+					"table": "FND_LOOKUP_VALUES"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/BFG_ODBD_AR_ADJUSTMENTS_ALL')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "BFG_ORACLE_PROD",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "OracleTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "AR",
+					"table": "AR_ADJUSTMENTS_ALL"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/BFG_ODB_AR_CASH_RECEIPTS_ALL')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "BFG_ORACLE_PROD",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "OracleTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "AR",
+					"table": "AR_CASH_RECEIPTS_ALL"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/BFG_ODB_AR_RECEIVABLE_APPLICATIONS_ALL')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "BFG_ORACLE_PROD",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "OracleTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "AR",
+					"table": "AR_RECEIVABLE_APPLICATIONS_ALL"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/BFG_ODB_GL_CODE_COMBINATIONS')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "BFG_ORACLE_PROD",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "OracleTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "GL",
+					"table": "GL_CODE_COMBINATIONS"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/BFG_ODB_GL_IMPORT_REFERENCES')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "BFG_ORACLE_PROD",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "OracleTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "GL",
+					"table": "GL_IMPORT_REFERENCES"
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}

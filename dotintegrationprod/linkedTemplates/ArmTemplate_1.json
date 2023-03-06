@@ -6,19 +6,6 @@
 			"type": "string",
 			"metadata": "Data Factory name",
 			"defaultValue": "dotintegrationprod"
-		},
-		"BFG_AZURE_STORAGE_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'BFG_AZURE_STORAGE'"
-		},
-		"BFG_ORACLE_PROD_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'BFG_ORACLE_PROD'"
-		},
-		"BFG_SQL_DB_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'BFG_SQL_DB'",
-			"defaultValue": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=bfguk-erp-prod.database.windows.net;Initial Catalog=bfguk_erp_prod"
 		}
 	},
 	"variables": {
@@ -26,115 +13,100 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/BAXAZRAPP03')]",
-			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"name": "[concat(parameters('factoryName'), '/ADLS_HZ_PARTY_SITE_USES')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"type": "SelfHosted",
-				"description": "Oracle OCI / Ebusiness",
-				"typeProperties": {}
+				"linkedServiceName": {
+					"referenceName": "BFG_AZURE_STORAGE",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": {
+							"value": "@concat('HZ_PARTY_SITE_USES_', utcnow('yyyyMMddhhmmss'))",
+							"type": "Expression"
+						},
+						"folderPath": "bfguk_erp_prod/schemas/AR/HZ_PARTY_SITE_USES",
+						"container": "raw"
+					},
+					"columnDelimiter": "|",
+					"compressionCodec": "gzip",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
 			},
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/BFG-AZURE-STORAGE-IR')]",
-			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"name": "[concat(parameters('factoryName'), '/ADLS_HZ_RELATIONSHIPS')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"type": "Managed",
+				"linkedServiceName": {
+					"referenceName": "BFG_AZURE_STORAGE",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
 				"typeProperties": {
-					"computeProperties": {
-						"location": "UK South",
-						"dataFlowProperties": {
-							"computeType": "General",
-							"coreCount": 8,
-							"timeToLive": 10,
-							"cleanup": false
-						}
-					}
-				}
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": {
+							"value": "@concat('HZ_RELATIONSHIPS_', utcnow('yyyyMMddhhmmss'))",
+							"type": "Expression"
+						},
+						"folderPath": "bfguk_erp_prod/schemas/AR/HZ_RELATIONSHIPS",
+						"container": "raw"
+					},
+					"columnDelimiter": "|",
+					"compressionCodec": "gzip",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
 			},
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/BFG-SQL-DB-IR')]",
-			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"name": "[concat(parameters('factoryName'), '/ADLS_MTL_CATEGORIES_B')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"type": "Managed",
+				"linkedServiceName": {
+					"referenceName": "BFG_AZURE_STORAGE",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
 				"typeProperties": {
-					"computeProperties": {
-						"location": "UK South",
-						"dataFlowProperties": {
-							"computeType": "General",
-							"coreCount": 8,
-							"timeToLive": 10,
-							"cleanup": false
-						}
-					}
-				}
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": {
+							"value": "@concat('MTL_CATEGORIES_B_', utcnow('yyyyMMddhhmmss'))",
+							"type": "Expression"
+						},
+						"folderPath": "bfguk_erp_prod/schemas/INV/MTL_CATEGORIES_B",
+						"container": "raw"
+					},
+					"columnDelimiter": "|",
+					"compressionCodec": "gzip",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
 			},
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/BFG_AZURE_STORAGE')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobStorage",
-				"typeProperties": {
-					"connectionString": "[parameters('BFG_AZURE_STORAGE_connectionString')]"
-				},
-				"connectVia": {
-					"referenceName": "BFG-AZURE-STORAGE-IR",
-					"type": "IntegrationRuntimeReference"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/integrationRuntimes/BFG-AZURE-STORAGE-IR')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/BFG_ORACLE_PROD')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "Oracle",
-				"typeProperties": {
-					"connectionString": "[parameters('BFG_ORACLE_PROD_connectionString')]"
-				},
-				"connectVia": {
-					"referenceName": "BAXAZRAPP03",
-					"type": "IntegrationRuntimeReference"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/integrationRuntimes/BAXAZRAPP03')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/BFG_SQL_DB')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureSqlDatabase",
-				"typeProperties": {
-					"connectionString": "[parameters('BFG_SQL_DB_connectionString')]"
-				},
-				"connectVia": {
-					"referenceName": "BFG-SQL-DB-IR",
-					"type": "IntegrationRuntimeReference"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/integrationRuntimes/BFG-SQL-DB-IR')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ADLS_AR_ADJUSTMENTS_ALL')]",
+			"name": "[concat(parameters('factoryName'), '/ADLS_MTL_CATEGORY_SETS_TL')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -148,10 +120,10 @@
 					"location": {
 						"type": "AzureBlobStorageLocation",
 						"fileName": {
-							"value": "@concat('AR_ADJUSTMENTS_ALL_', utcnow('yyyyMMddhhmmss'))",
+							"value": "@concat('MTL_CATEGORY_SETS_TL_', utcnow('yyyyMMddhhmmss'))",
 							"type": "Expression"
 						},
-						"folderPath": "bfguk_erp_prod/schemas/AR/AR_ADJUSTMENTS_ALL",
+						"folderPath": "bfguk_erp_prod/schemas/INV/MTL_CATEGORY_SETS_TL",
 						"container": "raw"
 					},
 					"columnDelimiter": "|",
@@ -162,12 +134,10 @@
 				},
 				"schema": []
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/BFG_AZURE_STORAGE')]"
-			]
+			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ADLS_AR_CASH_RECEIPTS_ALL')]",
+			"name": "[concat(parameters('factoryName'), '/ADLS_MTL_ITEM_CATEGORIES')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -181,10 +151,10 @@
 					"location": {
 						"type": "AzureBlobStorageLocation",
 						"fileName": {
-							"value": "@concat('AR_CASH_RECEIPTS_ALL_', utcnow('yyyyMMddhhmmss'))",
+							"value": "@concat('MTL_ITEM_CATEGORIES_', utcnow('yyyyMMddhhmmss'))",
 							"type": "Expression"
 						},
-						"folderPath": "bfguk_erp_prod/schemas/AR/AR_CASH_RECEIPTS_ALL",
+						"folderPath": "bfguk_erp_prod/schemas/INV/MTL_ITEM_CATEGORIES",
 						"container": "raw"
 					},
 					"columnDelimiter": "|",
@@ -195,12 +165,10 @@
 				},
 				"schema": []
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/BFG_AZURE_STORAGE')]"
-			]
+			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ADLS_AR_RECEIVABLE_APPLICATIONS_ALL')]",
+			"name": "[concat(parameters('factoryName'), '/ADLS_MTL_SYSTEM_ITEMS_B')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -214,10 +182,10 @@
 					"location": {
 						"type": "AzureBlobStorageLocation",
 						"fileName": {
-							"value": "@concat('AR_RECEIVABLE_APPLICATIONS_ALL_', utcnow('yyyyMMddhhmmss'))",
+							"value": "@concat('MTL_SYSTEM_ITEMS_B_', utcnow('yyyyMMddhhmmss'))",
 							"type": "Expression"
 						},
-						"folderPath": "bfguk_erp_prod/schemas/AR/AR_RECEIVABLE_APPLICATIONS_ALL",
+						"folderPath": "bfguk_erp_prod/schemas/INV/MTL_SYSTEM_ITEMS_B",
 						"container": "raw"
 					},
 					"columnDelimiter": "|",
@@ -228,12 +196,10 @@
 				},
 				"schema": []
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/BFG_AZURE_STORAGE')]"
-			]
+			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ADLS_FND_LOOKUP_VALUES')]",
+			"name": "[concat(parameters('factoryName'), '/ADLS_MTL_SYSTEM_ITEMS_TL')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -247,10 +213,10 @@
 					"location": {
 						"type": "AzureBlobStorageLocation",
 						"fileName": {
-							"value": "@concat('FND_LOOKUP_VALUES_', utcnow('yyyyMMddhhmmss'))",
+							"value": "@concat('MTL_SYSTEM_ITEMS_TL_', utcnow('yyyyMMddhhmmss'))",
 							"type": "Expression"
 						},
-						"folderPath": "bfguk_erp_prod/schemas/APPLSYS",
+						"folderPath": "bfguk_erp_prod/schemas/INV/MTL_SYSTEM_ITEMS_TL",
 						"container": "raw"
 					},
 					"columnDelimiter": "|",
@@ -261,12 +227,10 @@
 				},
 				"schema": []
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/BFG_AZURE_STORAGE')]"
-			]
+			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ADLS_GL_CODE_COMBINATIONS')]",
+			"name": "[concat(parameters('factoryName'), '/ADLS_MTL_UOM_CONVERSIONS')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -280,10 +244,10 @@
 					"location": {
 						"type": "AzureBlobStorageLocation",
 						"fileName": {
-							"value": "@concat('GL_CODE_COMBINATIONS_', utcnow('yyyyMMddhhmmss'))",
+							"value": "@concat('MTL_UOM_CONVERSIONS_', utcnow('yyyyMMddhhmmss'))",
 							"type": "Expression"
 						},
-						"folderPath": "bfguk_erp_prod/schemas/GL/GL_CODE_COMBINATIONS",
+						"folderPath": "bfguk_erp_prod/schemas/INV/MTL_UOM_CONVERSIONS",
 						"container": "raw"
 					},
 					"columnDelimiter": "|",
@@ -294,12 +258,10 @@
 				},
 				"schema": []
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/BFG_AZURE_STORAGE')]"
-			]
+			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ADLS_GL_IMPORT_REFERENCES')]",
+			"name": "[concat(parameters('factoryName'), '/ADLS_ODB_IC_ITEM_MST_B')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -313,10 +275,10 @@
 					"location": {
 						"type": "AzureBlobStorageLocation",
 						"fileName": {
-							"value": "@concat('GL_IMPORT_REFERENCES_', utcnow('yyyyMMddhhmmss'))",
+							"value": "@concat('IC_ITEM_MST_B_', utcnow('yyyyMMddhhmmss'))",
 							"type": "Expression"
 						},
-						"folderPath": "bfguk_erp_prod/schemas/GL/GL_IMPORT_REFERENCES",
+						"folderPath": "bfguk_erp_prod/schemas/GMI/IC_ITEM_MST_B",
 						"container": "raw"
 					},
 					"columnDelimiter": "|",
@@ -327,12 +289,10 @@
 				},
 				"schema": []
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/BFG_AZURE_STORAGE')]"
-			]
+			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ADLS_GL_JE_HEADERS')]",
+			"name": "[concat(parameters('factoryName'), '/ADLS_OE_ORDER_HEADERS_ALL')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -346,10 +306,10 @@
 					"location": {
 						"type": "AzureBlobStorageLocation",
 						"fileName": {
-							"value": "@concat('GL_JE_HEADERS_', utcnow('yyyyMMddhhmmss'))",
+							"value": "@concat('OE_ORDER_HEADERS_ALL_', utcnow('yyyyMMddhhmmss'))",
 							"type": "Expression"
 						},
-						"folderPath": "bfguk_erp_prod/schemas/GL/GL_JE_HEADERS",
+						"folderPath": "bfguk_erp_prod/schemas/ONT/OE_ORDER_HEADERS_ALL",
 						"container": "raw"
 					},
 					"columnDelimiter": "|",
@@ -360,12 +320,10 @@
 				},
 				"schema": []
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/BFG_AZURE_STORAGE')]"
-			]
+			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ADLS_GL_JE_LINES')]",
+			"name": "[concat(parameters('factoryName'), '/ADLS_OE_ORDER_LINES_ALL')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -379,42 +337,10 @@
 					"location": {
 						"type": "AzureBlobStorageLocation",
 						"fileName": {
-							"value": "@concat('GL_JE_LINES_', utcnow('yyyyMMddhhmmss'))",
+							"value": "@concat('OE_ORDER_LINES_ALL_', utcnow('yyyyMMddhhmmss'))",
 							"type": "Expression"
 						},
-						"folderPath": "bfguk_erp_prod/schemas/GL/GL_JE_LINES",
-						"container": "raw"
-					},
-					"columnDelimiter": "|",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/BFG_AZURE_STORAGE')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ADLS_GL_LEDGERS')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "BFG_AZURE_STORAGE",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": {
-							"value": "@concat('GL_LEDGERS_', utcnow('yyyyMMddhhmmss'))",
-							"type": "Expression"
-						},
-						"folderPath": "bfguk_erp_prod/schemas/GL/GL_LEDGERS",
+						"folderPath": "bfguk_erp_prod/schemas/ONT/OE_ORDER_LINES_ALL",
 						"container": "raw"
 					},
 					"columnDelimiter": "|",
@@ -425,12 +351,10 @@
 				},
 				"schema": []
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/BFG_AZURE_STORAGE')]"
-			]
+			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ADLS_GL_PERIODS')]",
+			"name": "[concat(parameters('factoryName'), '/ADLS_RA_BATCH_SOURCES_ALL')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -444,10 +368,10 @@
 					"location": {
 						"type": "AzureBlobStorageLocation",
 						"fileName": {
-							"value": "@concat('GL_PERIODS_', utcnow('yyyyMMddhhmmss'))",
+							"value": "@concat('RA_BATCH_SOURCES_ALL_', utcnow('yyyyMMddhhmmss'))",
 							"type": "Expression"
 						},
-						"folderPath": "bfguk_erp_prod/schemas/GL/GL_PERIODS",
+						"folderPath": "bfguk_erp_prod/schemas/AR/RA_BATCH_SOURCES_ALL",
 						"container": "raw"
 					},
 					"columnDelimiter": "|",
@@ -458,12 +382,10 @@
 				},
 				"schema": []
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/BFG_AZURE_STORAGE')]"
-			]
+			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ADLS_GL_SETS_OF_BOOKS')]",
+			"name": "[concat(parameters('factoryName'), '/ADLS_RA_CUSTOMER_TRX_ALL')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -477,10 +399,10 @@
 					"location": {
 						"type": "AzureBlobStorageLocation",
 						"fileName": {
-							"value": "@concat('GL_SETS_OF_BOOKS_', utcnow('yyyyMMddhhmmss'))",
+							"value": "@concat('RA_CUSTOMER_TRX_ALL_', utcnow('yyyyMMddhhmmss'))",
 							"type": "Expression"
 						},
-						"folderPath": "bfguk_erp_prod/schemas/GL/GL_SETS_OF_BOOKS",
+						"folderPath": "bfguk_erp_prod/schemas/AR/RA_CUSTOMER_TRX_ALL",
 						"container": "raw"
 					},
 					"columnDelimiter": "|",
@@ -491,12 +413,10 @@
 				},
 				"schema": []
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/BFG_AZURE_STORAGE')]"
-			]
+			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ADLS_HZ_CUST_ACCOUNTS')]",
+			"name": "[concat(parameters('factoryName'), '/ADLS_RA_CUSTOMER_TRX_LINES_ALL')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -510,10 +430,10 @@
 					"location": {
 						"type": "AzureBlobStorageLocation",
 						"fileName": {
-							"value": "@Concat('HZ_CUST_ACCOUNTS_', utcnow('yyyyMMddhhmmss'))",
+							"value": "@concat('RA_CUSTOMER_TRX_LINES_ALL_', utcnow('yyyyMMddhhmmss'))",
 							"type": "Expression"
 						},
-						"folderPath": "bfguk_erp_prod/schemas/AR/HZ_CUST_ACCOUNTS",
+						"folderPath": "bfguk_erp_prod/schemas/AR/RA_CUSTOMER_TRX_LINES_ALL",
 						"container": "raw"
 					},
 					"columnDelimiter": "|",
@@ -524,12 +444,10 @@
 				},
 				"schema": []
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/BFG_AZURE_STORAGE')]"
-			]
+			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ADLS_HZ_CUST_ACCT_SITES_ALL')]",
+			"name": "[concat(parameters('factoryName'), '/ADLS_RA_CUST_TRX_LINE_GL_DIST_ALL')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -543,10 +461,10 @@
 					"location": {
 						"type": "AzureBlobStorageLocation",
 						"fileName": {
-							"value": "@concat('HZ_CUST_ACCT_SITES_ALL_', utcnow('yyyyMMddhhmmss'))",
+							"value": "@concat('RA_CUST_TRX_LINE_GL_DIST_ALL_', utcnow('yyyyMMddhhmmss'))",
 							"type": "Expression"
 						},
-						"folderPath": "bfguk_erp_prod/schemas/AR/HZ_CUST_ACCT_SITES_ALL",
+						"folderPath": "bfguk_erp_prod/schemas/AR/RA_CUST_TRX_LINE_GL_DIST_ALL",
 						"container": "raw"
 					},
 					"columnDelimiter": "|",
@@ -557,12 +475,10 @@
 				},
 				"schema": []
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/BFG_AZURE_STORAGE')]"
-			]
+			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ADLS_HZ_CUST_SITE_USES_ALL')]",
+			"name": "[concat(parameters('factoryName'), '/ADLS_RA_CUST_TRX_TYPES_ALL')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -576,10 +492,10 @@
 					"location": {
 						"type": "AzureBlobStorageLocation",
 						"fileName": {
-							"value": "@concat('HZ_CUST_SITE_USES_ALL_', utcnow('yyyyMMddhhmmss'))",
+							"value": "@concat('RA_CUST_TRX_TYPES_ALL_', utcnow('yyyyMMddhhmmss'))",
 							"type": "Expression"
 						},
-						"folderPath": "bfguk_erp_prod/schemas/AR/HZ_CUST_SITE_USES_ALL",
+						"folderPath": "bfguk_erp_prod/schemas/AR/RA_CUST_TRX_TYPES_ALL",
 						"container": "raw"
 					},
 					"columnDelimiter": "|",
@@ -590,9 +506,131 @@
 				},
 				"schema": []
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/BFG_AZURE_STORAGE')]"
-			]
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ADLS_STG_HZ_LOCATIONS')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "BFG_AZURE_STORAGE",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": {
+							"value": "@concat('HZ_LOCATIONS_', utcnow('yyyyMMddhhmmss'))",
+							"type": "Expression"
+						},
+						"folderPath": "bfguk_erp_prod/schemas/AR/HZ_LOCATIONS",
+						"container": "raw"
+					},
+					"columnDelimiter": "|",
+					"compressionCodec": "gzip",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ADLS_STG_HZ_PARTIES')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "BFG_AZURE_STORAGE",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": {
+							"value": "@Concat('HZ_PARTIES_', utcnow('yyyyMMddhhmmss'))",
+							"type": "Expression"
+						},
+						"folderPath": "bfguk_erp_prod/schemas/AR/HZ_PARTIES",
+						"container": "raw"
+					},
+					"columnDelimiter": "|",
+					"compressionCodec": "gzip",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ADLS_STG_HZ_PARTY_SITES')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "BFG_AZURE_STORAGE",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": {
+							"value": "@concat('HZ_PARTY_SITES_', utcnow('yyyyMMddhhmmss'))",
+							"type": "Expression"
+						},
+						"folderPath": "bfguk_erp_prod/schemas/AR/HZ_PARTY_SITES",
+						"container": "raw"
+					},
+					"columnDelimiter": "|",
+					"compressionCodec": "gzip",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ADLS_XLA_AE_HEADERS')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "BFG_AZURE_STORAGE",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": {
+							"value": "@concat('XLA_AE_HEADERS_', utcnow('yyyyMMddhhmmss'))",
+							"type": "Expression"
+						},
+						"folderPath": "bfguk_erp_prod/schemas/XLA/XLA_AE_HEADERS",
+						"container": "raw"
+					},
+					"columnDelimiter": "|",
+					"compressionCodec": "gzip",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
 		}
 	]
 }
