@@ -287,7 +287,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "Update Dim Date",
+						"activity": "Execute INV ADLS To SQL",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -314,7 +314,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "Update Dim Customer",
+						"activity": "Execute INV ADLS To SQL",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -342,6 +342,18 @@
 				"dependsOn": [
 					{
 						"activity": "Update Dim Product",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Update Dim Customer",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Update Dim Date",
 						"dependencyConditions": [
 							"Succeeded"
 						]
