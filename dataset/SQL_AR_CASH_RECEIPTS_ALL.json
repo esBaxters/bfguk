@@ -1,5 +1,5 @@
 {
-	"name": "SL_AR_CASH_RECEIPTS_ALL",
+	"name": "SQL_AR_CASH_RECEIPTS_ALL",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "BFG_SQL_DB",
