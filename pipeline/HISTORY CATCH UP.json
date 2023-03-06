@@ -1,5 +1,5 @@
 {
-	"name": "FULL_LOAD_RA_TRX_LINES_ALL",
+	"name": "HISTORY CATCH UP",
 	"properties": {
 		"activities": [
 			{
@@ -19,27 +19,27 @@
 						"type": "DelimitedTextSource",
 						"additionalColumns": [
 							{
-							  "name": "_M_TIMESTAMP",
-							  "value": {
-								"value": "@utcnow()",
-								"type": "Expression"
-							  }
+								"name": "_M_TIMESTAMP",
+								"value": {
+									"value": "@utcnow()",
+									"type": "Expression"
+								}
 							},
 							{
-							  "name": "_M_PIPELINE",
-							  "value": {
-								"value": "@pipeline().Pipeline",
-								"type": "Expression"
-							  }
+								"name": "_M_PIPELINE",
+								"value": {
+									"value": "@pipeline().Pipeline",
+									"type": "Expression"
+								}
 							},
 							{
-							  "name": "_M_DATETIME",
-							  "value": {
-								"value": "@formatDateTime(utcnow())",
-								"type": "Expression"
-							  }
+								"name": "_M_DATETIME",
+								"value": {
+									"value": "@formatDateTime(utcnow())",
+									"type": "Expression"
+								}
 							}
-						  ],
+						],
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
@@ -2147,6 +2147,126 @@
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "Update Dim Date",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "Copy RA_CUSTOMER_TRX_LINES_ALL To SQL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[sp_update_dim_date]"
+				},
+				"linkedServiceName": {
+					"referenceName": "BFG_SQL_DB",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Update Dim Customer",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "Copy RA_CUSTOMER_TRX_LINES_ALL To SQL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[sp_update_dim_customer]"
+				},
+				"linkedServiceName": {
+					"referenceName": "BFG_SQL_DB",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Update Dim Product",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "Copy RA_CUSTOMER_TRX_LINES_ALL To SQL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[sp_update_dim_product]"
+				},
+				"linkedServiceName": {
+					"referenceName": "BFG_SQL_DB",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Update Fact",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "Update Dim Date",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Update Dim Customer",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Update Dim Product",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[sp_update_fact_invoice]"
+				},
+				"linkedServiceName": {
+					"referenceName": "BFG_SQL_DB",
+					"type": "LinkedServiceReference"
+				}
 			}
 		],
 		"annotations": []
