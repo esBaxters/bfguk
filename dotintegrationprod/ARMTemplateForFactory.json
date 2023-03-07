@@ -34686,7 +34686,7 @@
 							"source": {
 								"type": "OracleSource",
 								"oracleReaderQuery": {
-									"value": "select\t\t\t\t*\nfrom\t\t\t\t@{variables('ODB_OWNER_NAME')}.@{variables('Table_RA_CUSTOMER_TRX_LINES_ALL')}\nwhere\t\t\t\tLAST_UPDATE_DATE >= '@{formatDateTime(activity('Lookup SQL RA_CUSTOMER_TRX_LINES_ALL Watermark').output.firstRow.WATERMARK_DATETIME, 'dd/MMM/yy')}'",
+									"value": "select\t\t\t\t*\nfrom\t\t\t\t@{variables('odb_owner_name')}.@{variables('table_ra_customer_trx_lines_all')}\nwhere\t\t\t\tLAST_UPDATE_DATE >= '@{formatDateTime(activity('Lookup SQL RA_CUSTOMER_TRX_LINES_ALL Watermark').output.firstRow.watermark_datetime, 'dd/MMM/yy')}'",
 									"type": "Expression"
 								},
 								"partitionOption": "None",
@@ -39900,7 +39900,7 @@
 							"source": {
 								"type": "AzureSqlSource",
 								"sqlReaderQuery": {
-									"value": "select WATERMARK_DATETIME \nfrom [dbo].[WATERMARK] \nwhere OWNER_NAME = '@{variables('SQL_OWNER_NAME')}'\nand TABLE_NAME = '@{variables('Table_RA_CUSTOMER_TRX_LINES_ALL')}'",
+									"value": "select watermark_datetime \nfrom [dbo].[watermark] \nwhere owner_name = '@{variables('sql_owner_name')}'\nand table_name = '@{variables('table_ra_customer_trx_lines_all')}'",
 									"type": "Expression"
 								},
 								"queryTimeout": "02:00:00",
@@ -39929,7 +39929,7 @@
 							"source": {
 								"type": "OracleSource",
 								"oracleReaderQuery": {
-									"value": "select\t\t\tmax(cast(LAST_UPDATE_DATE as timestamp)) as LAST_UPDATE_DATE\nfrom\t\t\t@{variables('ODB_OWNER_NAME')}.@{variables('Table_RA_CUSTOMER_TRX_LINES_ALL')}\n--where LAST_UPDATE_DATE >= '@{getPastTime(10, 'Day', 'dd/MMM/yy')}'",
+									"value": "select\t\t\tmax(cast(LAST_UPDATE_DATE as timestamp)) as LAST_UPDATE_DATE\nfrom\t\t\t@{variables('odb_owner_name')}.@{variables('table_ra_customer_trx_lines_all')}\n--where LAST_UPDATE_DATE >= '@{getPastTime(10, 'Day', 'dd/MMM/yy')}'",
 									"type": "Expression"
 								},
 								"partitionOption": "None",
@@ -39970,15 +39970,15 @@
 										"type": "Expression"
 									}
 								},
-								"OWNER_NAME": {
+								"owner_name": {
 									"value": {
-										"value": "@variables('SQL_OWNER_NAME')",
+										"value": "@variables('sql_owner_name')",
 										"type": "Expression"
 									}
 								},
-								"TABLE_NAME": {
+								"table_name": {
 									"value": {
-										"value": "@variables('Table_RA_CUSTOMER_TRX_LINES_ALL')",
+										"value": "@variables('table_ra_customer_trx_lines_all')",
 										"type": "Expression"
 									}
 								}
@@ -40600,21 +40600,21 @@
 					"cancelAfter": {}
 				},
 				"variables": {
-					"ODB_OWNER_NAME": {
+					"odb_owner_name": {
 						"type": "String",
-						"defaultValue": "AR"
+						"defaultValue": "ar"
 					},
-					"ADF_OWNER_NAME": {
+					"adf_owner_name": {
 						"type": "String",
-						"defaultValue": "ADF"
+						"defaultValue": "adf"
 					},
-					"SQL_OWNER_NAME": {
+					"sql_owner_name": {
 						"type": "String",
 						"defaultValue": "stg"
 					},
-					"Table_RA_CUSTOMER_TRX_LINES_ALL": {
+					"table_ra_customer_trx_lines_all": {
 						"type": "String",
-						"defaultValue": "RA_CUSTOMER_TRX_LINES_ALL"
+						"defaultValue": "ra_customer_trx_lines_all"
 					},
 					"dateformat": {
 						"type": "String"
@@ -42615,23 +42615,23 @@
 					"cancelAfter": {}
 				},
 				"variables": {
-					"ODB_OWNER_NAME": {
+					"odb_owner_name": {
 						"type": "String",
-						"defaultValue": "GL"
+						"defaultValue": "gl"
 					},
-					"Table_Generic": {
+					"table_generic": {
 						"type": "String",
-						"defaultValue": "GL_TABLES"
+						"defaultValue": "gl_tables"
 					},
-					"Table_GL_IMPORT_REFERENCES": {
+					"table_gl_import_references": {
 						"type": "String",
-						"defaultValue": "GL_IMPORT_REFERENCES"
+						"defaultValue": "gl_import_references"
 					},
-					"ADF_OWNER_NAME": {
+					"adf_owner_name": {
 						"type": "String",
-						"defaultValue": "ADF"
+						"defaultValue": "adf"
 					},
-					"SQL_OWNER_NAME": {
+					"sql_owner_name": {
 						"type": "String",
 						"defaultValue": "stg"
 					}
@@ -53652,6 +53652,33 @@
 						"userProperties": [],
 						"typeProperties": {
 							"storedProcedureName": "[[solution].[sp_insert_customer_daily_sales_fact_summary]"
+						},
+						"linkedServiceName": {
+							"referenceName": "BFG_SQL_DB",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "Update Table Governance",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [
+							{
+								"activity": "Update Solution Fact Summary",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[dbo].[sp_update_table_governance]"
 						},
 						"linkedServiceName": {
 							"referenceName": "BFG_SQL_DB",
@@ -71182,7 +71209,7 @@
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
-				"runtimeState": "Stopped",
+				"runtimeState": "Started",
 				"pipelines": [
 					{
 						"pipelineReference": {
