@@ -3388,7 +3388,7 @@
 					"source": {
 						"type": "OracleSource",
 						"oracleReaderQuery": {
-							"value": "select\t\t\t\t*\nfrom\t\t\t\t@{variables('odb_owner_name')}.@{variables('table_ra_customer_trx_lines_all')}\nwhere\t\t\t\tLAST_UPDATE_DATE >= '@{formatDateTime(activity('Lookup SQL RA_CUSTOMER_TRX_LINES_ALL Watermark').output.firstRow.WATERMARK_DATETIME, 'dd/MMM/yy')}'",
+							"value": "select\t\t\t\t*\nfrom\t\t\t\t@{variables('odb_owner_name')}.@{variables('table_ra_customer_trx_lines_all')}\nwhere\t\t\t\tLAST_UPDATE_DATE >= '@{formatDateTime(activity('Lookup SQL RA_CUSTOMER_TRX_LINES_ALL Watermark').output.firstRow.watermark_datetime, 'dd/MMM/yy')}'",
 							"type": "Expression"
 						},
 						"partitionOption": "None",
@@ -8594,7 +8594,7 @@
 					"source": {
 						"type": "AzureSqlSource",
 						"sqlReaderQuery": {
-							"value": "select WATERMARK_DATETIME \nfrom [dbo].[WATERMARK] \nwhere OWNER_NAME = '@{variables('sql_owner_name')}'\nand TABLE_NAME = '@{variables('table_ra_customer_trx_lines_all')}'",
+							"value": "select watermark_datetime \nfrom [dbo].[watermark] \nwhere owner_name = '@{variables('sql_owner_name')}'\nand table_name = '@{variables('table_ra_customer_trx_lines_all')}'",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
@@ -8662,13 +8662,13 @@
 								"type": "Expression"
 							}
 						},
-						"OWNER_NAME": {
+						"owner_name": {
 							"value": {
 								"value": "@variables('sql_owner_name')",
 								"type": "Expression"
 							}
 						},
-						"TABLE_NAME": {
+						"table_name": {
 							"value": {
 								"value": "@variables('table_ra_customer_trx_lines_all')",
 								"type": "Expression"
