@@ -1952,23 +1952,23 @@
 			}
 		],
 		"variables": {
-			"ODB_OWNER_NAME": {
+			"odb_owner_name": {
 				"type": "String",
-				"defaultValue": "GL"
+				"defaultValue": "gl"
 			},
-			"Table_Generic": {
+			"table_generic": {
 				"type": "String",
-				"defaultValue": "GL_TABLES"
+				"defaultValue": "gl_tables"
 			},
-			"Table_GL_IMPORT_REFERENCES": {
+			"table_gl_import_references": {
 				"type": "String",
-				"defaultValue": "GL_IMPORT_REFERENCES"
+				"defaultValue": "gl_import_references"
 			},
-			"ADF_OWNER_NAME": {
+			"adf_owner_name": {
 				"type": "String",
-				"defaultValue": "ADF"
+				"defaultValue": "adf"
 			},
-			"SQL_OWNER_NAME": {
+			"sql_owner_name": {
 				"type": "String",
 				"defaultValue": "stg"
 			}
