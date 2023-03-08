@@ -8403,7 +8403,7 @@
 					"source": {
 						"type": "AzureSqlSource",
 						"sqlReaderQuery": {
-							"value": "select watermark_datetime \nfrom [dbo].[watermark] \nwhere owner_name = '@{variables('adf_owner_name')}'\nand table_name = '@{variables('table_ra_customer_trx_lines_all')}'",
+							"value": "select dateadd(day, -3, watermark_datetime) as watermark_datetime \nfrom [dbo].[watermark] \nwhere owner_name = '@{variables('adf_owner_name')}'\nand table_name = '@{variables('table_ra_customer_trx_lines_all')}'",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
