@@ -1,0 +1,17 @@
+{
+	"name": "Fail_Safe_Update_Trigger",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 7,
+				"startTime": "2023-03-11T15:29:00Z",
+				"timeZone": "UTC"
+			}
+		}
+	}
+}
