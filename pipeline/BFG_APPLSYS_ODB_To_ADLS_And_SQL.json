@@ -534,10 +534,6 @@
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
-							"modifiedDatetimeStart": {
-								"value": "@getPastTime(10, 'Minute', pipeline().TriggerTime)",
-								"type": "Expression"
-							},
 							"wildcardFolderPath": "bfguk_erp_prod/schemas/APPLSYS",
 							"wildcardFileName": "*",
 							"enablePartitionDiscovery": false
@@ -568,9 +564,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "LOOKUP_TYPE",
+									"name": "lookup_type",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -580,9 +576,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "LANGUAGE",
+									"name": "language",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -592,9 +588,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "LOOKUP_CODE",
+									"name": "lookup_code",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -604,9 +600,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "MEANING",
+									"name": "meaning",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -616,9 +612,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "DESCRIPTION",
+									"name": "description",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -628,9 +624,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "ENABLED_FLAG",
+									"name": "enabled_flag",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -640,9 +636,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "START_DATE_ACTIVE",
+									"name": "start_date_active",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -652,9 +648,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "END_DATE_ACTIVE",
+									"name": "end_date_active",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -664,9 +660,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "CREATED_BY",
+									"name": "created_by",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -676,9 +672,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "CREATION_DATE",
+									"name": "creation_date",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -688,9 +684,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "LAST_UPDATED_BY",
+									"name": "last_updated_by",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -700,9 +696,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "LAST_UPDATE_LOGIN",
+									"name": "last_update_login",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -712,9 +708,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "LAST_UPDATE_DATE",
+									"name": "last_update_date",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -724,9 +720,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "SOURCE_LANG",
+									"name": "source_lang",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -736,9 +732,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "SECURITY_GROUP_ID",
+									"name": "security_group_id",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -748,9 +744,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "VIEW_APPLICATION_ID",
+									"name": "view_application_id",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -760,9 +756,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "TERRITORY_CODE",
+									"name": "territory_code",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -772,9 +768,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "ATTRIBUTE_CATEGORY",
+									"name": "attribute_category",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -784,9 +780,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "ATTRIBUTE1",
+									"name": "attribute1",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -796,9 +792,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "ATTRIBUTE2",
+									"name": "attribute2",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -808,9 +804,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "ATTRIBUTE3",
+									"name": "attribute3",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -820,9 +816,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "ATTRIBUTE4",
+									"name": "attribute4",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -832,9 +828,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "ATTRIBUTE5",
+									"name": "attribute5",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -844,9 +840,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "ATTRIBUTE6",
+									"name": "attribute6",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -856,9 +852,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "ATTRIBUTE7",
+									"name": "attribute7",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -868,9 +864,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "ATTRIBUTE8",
+									"name": "attribute8",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -880,9 +876,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "ATTRIBUTE9",
+									"name": "attribute9",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -892,9 +888,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "ATTRIBUTE10",
+									"name": "attribute10",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -904,9 +900,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "ATTRIBUTE11",
+									"name": "attribute11",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -916,9 +912,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "ATTRIBUTE12",
+									"name": "attribute12",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -928,9 +924,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "ATTRIBUTE13",
+									"name": "attribute13",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -940,9 +936,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "ATTRIBUTE14",
+									"name": "attribute14",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -952,9 +948,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "ATTRIBUTE15",
+									"name": "attribute15",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -964,9 +960,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "TAG",
+									"name": "tag",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -976,9 +972,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "LEAF_NODE",
+									"name": "leaf_node",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -988,9 +984,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "ZD_EDITION_NAME",
+									"name": "zd_edition_name",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -1000,9 +996,9 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "ZD_SYNC",
+									"name": "zd_sync",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -1013,7 +1009,7 @@
 								"sink": {
 									"name": "_m_timestamp",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -1024,7 +1020,7 @@
 								"sink": {
 									"name": "_m_pipeline",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -1035,7 +1031,7 @@
 								"sink": {
 									"name": "_m_datetime",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							}
 						],
