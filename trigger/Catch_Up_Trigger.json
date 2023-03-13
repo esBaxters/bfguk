@@ -3,14 +3,21 @@
 	"properties": {
 		"annotations": [],
 		"runtimeState": "Stopped",
-		"pipelines": [],
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "HISTORY CATCH UP",
+					"type": "PipelineReference"
+				}
+			}
+		],
 		"type": "ScheduleTrigger",
 		"typeProperties": {
 			"recurrence": {
 				"frequency": "Day",
 				"interval": 7,
-				"startTime": "2023-03-11T07:00:00Z",
-				"timeZone": "UTC"
+				"startTime": "2023-03-18T07:00:00",
+				"timeZone": "GMT Standard Time"
 			}
 		}
 	}
