@@ -7413,33 +7413,6 @@
 							"referenceName": "BFG_SQL_DB",
 							"type": "LinkedServiceReference"
 						}
-					},
-					{
-						"name": "Update Table Governance",
-						"type": "SqlServerStoredProcedure",
-						"dependsOn": [
-							{
-								"activity": "Update Solution Fact Summary",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"storedProcedureName": "[[dbo].[sp_update_table_governance]"
-						},
-						"linkedServiceName": {
-							"referenceName": "BFG_SQL_DB",
-							"type": "LinkedServiceReference"
-						}
 					}
 				],
 				"policy": {
