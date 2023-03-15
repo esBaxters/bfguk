@@ -8469,11 +8469,11 @@
 		"variables": {
 			"adf_owner_name": {
 				"type": "String",
-				"defaultValue": "ADF"
+				"defaultValue": "adf"
 			},
 			"table_generic": {
 				"type": "String",
-				"defaultValue": "AR_2_TABLES"
+				"defaultValue": "ar_2_tables"
 			},
 			"table_ra_customer_trx_lines_all": {
 				"type": "String",
