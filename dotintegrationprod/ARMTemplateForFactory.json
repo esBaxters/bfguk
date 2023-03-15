@@ -17367,11 +17367,11 @@
 				"variables": {
 					"adf_owner_name": {
 						"type": "String",
-						"defaultValue": "ADF"
+						"defaultValue": "adf"
 					},
 					"table_generic": {
 						"type": "String",
-						"defaultValue": "AR_2_TABLES"
+						"defaultValue": "ar_2_tables"
 					},
 					"table_ra_customer_trx_lines_all": {
 						"type": "String",
@@ -71179,18 +71179,28 @@
 			"properties": {
 				"annotations": [],
 				"runtimeState": "Stopped",
-				"pipelines": [],
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "HISTORY CATCH UP",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
 				"type": "ScheduleTrigger",
 				"typeProperties": {
 					"recurrence": {
 						"frequency": "Day",
 						"interval": 7,
-						"startTime": "2023-03-11T07:00:00Z",
-						"timeZone": "UTC"
+						"startTime": "2023-03-18T07:00:00",
+						"timeZone": "GMT Standard Time"
 					}
 				}
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/HISTORY CATCH UP')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Control_Trigger')]",

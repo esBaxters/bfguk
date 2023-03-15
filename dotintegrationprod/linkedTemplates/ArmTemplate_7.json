@@ -13,25 +13,6 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/SQL_RA_CUST_TRX_TYPES_ALL')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "BFG_SQL_DB",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "stg",
-					"table": "RA_CUST_TRX_TYPES_ALL"
-				}
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/SQL_XLA_AE_HEADERS')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -17499,11 +17480,11 @@
 				"variables": {
 					"adf_owner_name": {
 						"type": "String",
-						"defaultValue": "ADF"
+						"defaultValue": "adf"
 					},
 					"table_generic": {
 						"type": "String",
-						"defaultValue": "AR_2_TABLES"
+						"defaultValue": "ar_2_tables"
 					},
 					"table_ra_customer_trx_lines_all": {
 						"type": "String",
@@ -17513,7 +17494,6 @@
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/SQL_RA_CUST_TRX_TYPES_ALL')]",
 				"[concat(variables('factoryId'), '/datasets/WATERMARK')]"
 			]
 		},

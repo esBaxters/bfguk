@@ -13,37 +13,6 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/ADLS_HZ_CUST_SITE_USES_ALL')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "BFG_AZURE_STORAGE",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": {
-							"value": "@concat('HZ_CUST_SITE_USES_ALL_', utcnow('yyyyMMddhhmmss'))",
-							"type": "Expression"
-						},
-						"folderPath": "bfguk_erp_prod/schemas/AR/HZ_CUST_SITE_USES_ALL",
-						"container": "raw"
-					},
-					"columnDelimiter": "|",
-					"compressionCodec": "gzip",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/ADLS_HZ_PARTY_SITE_USES')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -620,6 +589,37 @@
 							"type": "Expression"
 						},
 						"folderPath": "bfguk_erp_prod/schemas/AR/HZ_PARTY_SITES",
+						"container": "raw"
+					},
+					"columnDelimiter": "|",
+					"compressionCodec": "gzip",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ADLS_XLA_AE_HEADERS')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "BFG_AZURE_STORAGE",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": {
+							"value": "@concat('XLA_AE_HEADERS_', utcnow('yyyyMMddhhmmss'))",
+							"type": "Expression"
+						},
+						"folderPath": "bfguk_erp_prod/schemas/XLA/XLA_AE_HEADERS",
 						"container": "raw"
 					},
 					"columnDelimiter": "|",

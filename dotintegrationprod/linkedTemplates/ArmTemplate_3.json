@@ -13,33 +13,6 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/ARCHIVE_HZ_PARTY_SITE_USES')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "BFG_AZURE_STORAGE",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"folderPath": "bfguk_erp_prod/schemas/AR/HZ_PARTY_SITE_USES",
-						"container": "archive"
-					},
-					"columnDelimiter": "|",
-					"compressionCodec": "gzip",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/ARCHIVE_HZ_RELATIONSHIPS')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -1265,6 +1238,25 @@
 				"typeProperties": {
 					"schema": "GL",
 					"table": "GL_CODE_COMBINATIONS"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/BFG_ODB_GL_IMPORT_REFERENCES')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "BFG_ORACLE_PROD",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "OracleTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "GL",
+					"table": "GL_IMPORT_REFERENCES"
 				}
 			},
 			"dependsOn": []
