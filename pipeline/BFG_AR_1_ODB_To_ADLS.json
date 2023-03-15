@@ -10199,13 +10199,13 @@
 			}
 		],
 		"variables": {
-			"ADF_OWNER_NAME": {
+			"adf_owner_name": {
 				"type": "String",
-				"defaultValue": "ADF"
+				"defaultValue": "adf"
 			},
-			"Table_Generic": {
+			"table_generic": {
 				"type": "String",
-				"defaultValue": "AR_2_TABLES"
+				"defaultValue": "ar_2_tables"
 			},
 			"Table_AR_RECEIVABLE_APPLICATIONS_ALL": {
 				"type": "String",
