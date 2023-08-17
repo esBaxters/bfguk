@@ -77,6 +77,18 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/USMI-ERPAdmin')]",
+			"type": "Microsoft.DataFactory/factories/credentials",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "ManagedIdentity",
+				"typeProperties": {
+					"resourceId": "/subscriptions/c01ca24b-05e5-41e8-937d-ead36f3b31b2/resourcegroups/dotintegration/providers/Microsoft.ManagedIdentity/userAssignedIdentities/USMI-ERPAdmin"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/BFG_AZURE_STORAGE')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -547,39 +559,6 @@
 							"type": "Expression"
 						},
 						"folderPath": "bfguk_erp_prod/schemas/AR/HZ_CUST_ACCT_SITES_ALL",
-						"container": "raw"
-					},
-					"columnDelimiter": "|",
-					"compressionCodec": "gzip",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/BFG_AZURE_STORAGE')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ADLS_HZ_CUST_SITE_USES_ALL')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "BFG_AZURE_STORAGE",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": {
-							"value": "@concat('HZ_CUST_SITE_USES_ALL_', utcnow('yyyyMMddhhmmss'))",
-							"type": "Expression"
-						},
-						"folderPath": "bfguk_erp_prod/schemas/AR/HZ_CUST_SITE_USES_ALL",
 						"container": "raw"
 					},
 					"columnDelimiter": "|",

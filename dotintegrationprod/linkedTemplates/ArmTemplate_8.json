@@ -7447,8 +7447,7 @@
 						"frequency": "Day",
 						"interval": 7,
 						"startTime": "2023-03-18T07:00:00",
-						"timeZone": "GMT Standard Time",
-						"schedule": {}
+						"timeZone": "GMT Standard Time"
 					}
 				}
 			},
